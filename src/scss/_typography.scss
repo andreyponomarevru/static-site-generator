@@ -1,0 +1,121 @@
+/* _______________________________________________________________
+
+   Typography
+   ____________________________________________________________ */
+
+/* SASS Inheretance. Принцип тотже что в ООП-наследовании.
+   ВСЕГДА ХРАНИ весь код испольюзий @extend в самом верху файла,
+   это хороший тон чтобы сразу видеть какие стили расширены и наследуют 
+   This approach makes it a lot easier to see that the style is based on another style.
+
+h1 {
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  color: #222;
+}
+
+h2 {
+  @extend h1
+}
+
+h3 {
+  @extend h1
+}
+
+*/
+
+html {
+  font-size: 24px;
+  /* all 'rem' font-size values are always set relative 
+     to this font-size of root (=html) element
+     https://stackoverflow.com/questions/16783861/where-to-set-base-font */
+}
+
+body {
+  /* always unitless value */
+  line-height: 1.5;
+  font-family: $body-font;
+}
+
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.3rem;
+}
+h4 {
+  font-size: 1rem;
+}
+h5 {
+  font-size: 0.8rem;
+}
+h6 {
+  font-size: 0.7rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-style: normal;
+}
+
+p {
+  text-indent: 2em;
+  margin-bottom: 1em; /* space between paragraphs */
+}
+
+em {
+  font-style: italic;
+}
+
+ol,
+ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  padding-left: 1.4em;
+}
+
+li {
+  padding-left: 0em;
+}
+
+/* ______ LINKS ______ */
+/* the order of selectors does matter ! */
+
+a {
+  &:link {
+    color: #f60;
+  }
+
+  /* styling for :visited links is limited due to privacy issues */
+  &:visited {
+    color: #900;
+  }
+
+  /* Links get :focus when visitors use the keyboard to tab to them
+     This pseudo-class is also fun to use with form text fields */
+  &:focus {
+    color: orange;
+  }
+  &:hover {
+    color: #f33;
+  }
+
+  /* Refers to any element that has been activated by user input—e.g., 
+     a hyperlink on which a user clicks during the time the mouse button 
+     is held down. */
+  &:active {
+    color: #b2f511;
+  }
+}
+
+/* ______ FORMS ______ */
+input:focus {
+  background: silver;
+}

@@ -1,0 +1,47 @@
+# ignore vim session and temp files
+*.vim
+*.swo
+*.swp
+
+# ignore log files and databases
+*.log
+*.sql
+*.sqlite
+
+# ignore compiled files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# ignore packaged files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# ignore some other files and folders recursively
+dist/
+node_modules/
+**/_source
+package-lock.json
+*~
+~*
+.*
+
+
+# ----------------------------------------------------
+# Whitelisted Files (track these files, if they exist)
+# ----------------------------------------------------
+!.gitignore
+!.editorconfig
+!.phpcs.xml.dist
+!.prettierrc
+!.eslintrc.js
+!.eslintignore
