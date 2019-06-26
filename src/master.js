@@ -1,18 +1,13 @@
-// CSS/SASS
-import './scss/_reset.scss';
-import './scss/_typography.scss';
-import './scss/_buttons.scss';
-import './scss/_debug.scss';
-import './scss/_grid.scss';
-import './scss/_mediaqueries.scss';
-import './scss/_navigation.scss';
-import './scss/_print.scss';
-import './scss/_sections.scss';
+// SASS _____________________________________________
 
-// JavaScript
-import './js/script';
+// page
+import './blocks.common/page/_page.scss';
 
-// console.log(sum(2, 2), mult(2, 3), s, myObj);
+// logo
+import './blocks.common/logo/_logo.scss';
 
-// Favicons
+// JavaScript _______________________________________
+import './blocks.common/page/page';
+
+// Favicons _________________________________________
 import './favicon/favicon';

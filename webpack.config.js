@@ -8,11 +8,11 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = {
+
   mode: 'development', 
 
   entry: {
     master: './src/master.js',
-    //script: './src/js/script.js' отключил т.к. master.js дублирует код script т.е. например выдача в консоль дублируется, реши потом эту проблему
   },
   
   devtool: 'inline-source-map',
@@ -45,12 +45,11 @@ module.exports = {
     overlay: true,
     publicPath: '/',
     contentBase: './dist',
-    //writeToDisk: true
   },
   
   module: {
+  
     rules: [
-    // ***********************************************************
     
         {
           test: /\.svg$/,
@@ -66,22 +65,11 @@ module.exports = {
                  { loader: 'css-loader', options: { sourceMap: true } },
                  { loader: 'postcss-loader' },
                  { loader: 'sass-loader', options: { sourceMap: true,
-                                                     data: '@import "./scss/_globals.scss";',
+                                                     data: '@import "./_globals.scss";',
                                                      includePaths: [__dirname, 'src'] } },
                                                          
           ]
-        }, 
-        /*
-        { // IMAGE LOADER https://webpack.js.org/loaders/file-loader/ ________________________
-          test: /\.(jpe?g|png|gif|ico)$/,
-          use: [ { loader: 'file-loader',
-                   options: { name: '[name].[hash:8].[ext]',
-                              context: 'src',
-                              outputPath: 'img',
-                   }
-                 } 
-               ]
-        },*/        
+        },    
         
         { // IMAGE LOADER https://webpack.js.org/loaders/file-loader/ ________________________
           test: /\.(jpe?g|png|gif|ico)$/,
@@ -97,20 +85,14 @@ module.exports = {
 
                                 if (/favicon/.test(resourcePath)) return `favicon/${url}`;
                                 /* if (/images/.test(context)) return `image_output_path/${url}`;*/
-                                return `img/${url}`;
+                                return `${url}`;
                               }
                    },
                 } 
           ]
         },   
         
-        
-        
-        
-        
 
-        
-        
         { // HTML LOADER _____________________________________________________________________
           test: /\.pug$/, // /\.(html)$/,
           use: [ { loader: 'html-loader' }, 
@@ -130,8 +112,9 @@ module.exports = {
           use: { loader: 'babel-loader',
                  options: { presets: ['@babel/preset-env'] } }
        },
-    // ***********************************************************
+
     ]
+    
   },
   
   plugins: [
@@ -141,24 +124,12 @@ module.exports = {
       inject: true,
       hash: false,
       filename: 'index.html', 
-      template: './src/pug/index.pug',
+      template: './src/index.pug',
       minify: { 
         removeComments: true, 
         collapseWhitespace: false,
       },           
     }),
-    /*
-    new HtmlWebpackPlugin({
-      inject: true,
-      hash: false,
-      filename: 'contact.html',
-      template: './src/pug/contact.pug',
-      minify: {
-        removeComments: true,
-        collapseWhiteSpace: false,
-      }
-    }),
-    */ 
     
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
@@ -176,5 +147,6 @@ module.exports = {
       trailingComma: 'es5' 
     }), 
   ]
+  
 };  
    
