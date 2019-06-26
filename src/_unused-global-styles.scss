@@ -1,0 +1,200 @@
+
+/* _______________________________________________________________
+
+   Typography
+   ____________________________________________________________ */
+
+/* SASS Inheretance. Almost like the inheretence in OOP.
+   ВСЕГДА ХРАНИ весь код испольюзий @extend в самом верху файла,
+   это хороший тон чтобы сразу видеть какие стили расширены и наследуют 
+   This approach makes it a lot easier to see that the style is based on another style. */
+
+.h1 {
+  font-size: 2rem;
+  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+  color: #222;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.h2 {
+  @extend h1
+  font-size: 1.5rem;
+}
+
+.h3 {
+  @extend h1
+  font-size: 1.3rem;
+}
+
+.h4 {
+  @extend h1
+  font-size: 1rem;
+}
+
+.h5 {
+  @extend h1
+  font-size: 0.8rem;
+}
+
+.h6 {
+  @extend h1
+  font-size: 0.7rem;
+}
+
+
+html {
+  font-size: 24px;
+  /* all 'rem' font-size values are always set relative 
+     to this font-size of root (=html) element
+     https://stackoverflow.com/questions/16783861/where-to-set-base-font */
+}
+
+.body {
+  /* always unitless value */
+  line-height: 1.5;
+  font-family: $body-font;
+}
+
+p {
+  text-indent: 2em;
+  margin-bottom: 1em; /* space between paragraphs */
+}
+
+em {
+  font-style: italic;
+}
+
+ol,
+ul {
+  list-style-type: disc;
+  list-style-position: outside;
+  padding-left: 1.4em;
+}
+
+li {
+  padding-left: 0em;
+}
+
+/* ______ LINKS ______ */
+/* the order of selectors does matter ! */
+
+a {
+  &:link {
+    color: #f60;
+  }
+
+  /* styling for :visited links is limited due to privacy issues */
+  &:visited {
+    color: #900;
+  }
+
+  /* Links get :focus when visitors use the keyboard to tab to them
+     This pseudo-class is also fun to use with form text fields */
+  &:focus {
+    color: orange;
+  }
+  &:hover {
+    color: #f33;
+  }
+
+  /* Refers to any element that has been activated by user input—e.g., 
+     a hyperlink on which a user clicks during the time the mouse button 
+     is held down. */
+  &:active {
+    color: #b2f511;
+  }
+}
+
+/* ______ FORMS ______ */
+input:focus {
+  background: silver;
+}
+
+/* ___________________________________________________________________________
+
+   EXAMPLE Media Queries for Responsive Design 
+   ___________________________________________________________________________*/
+
+@media only screen and (min-width: 35em) {
+  /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+  (-webkit-min-device-pixel-ratio: 1.25),
+  (min-resolution: 1.25dppx),
+  (min-resolution: 120dpi) {
+  /* Style adjustments for high resolution devices */
+}
+
+/* ___________________________________________________________________________
+
+   Print styles 
+   Inlined to avoid the additional HTTP request:
+   https://www.phpied.com/delay-loading-your-print-css/
+   ___________________________________________________________________________*/
+
+@media print {
+  *,
+  *:before,
+  *:after {
+    background: transparent !important;
+    color: #000 !important; /* Black prints faster */
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]:after {
+    content: ' (' attr(href) ')';
+  }
+
+  abbr[title]:after {
+    content: ' (' attr(title) ')';
+  }
+
+  /* Don't show links that are fragment identifiers, or use the `javascript:` pseudo protocol */
+
+  a[href^='#']:after,
+  a[href^='javascript:']:after {
+    content: '';
+  }
+
+  pre {
+    white-space: pre-wrap !important;
+  }
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /* Printing Tables:
+     http://css-discuss.incutio.com/wiki/Printing_Tables */
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
