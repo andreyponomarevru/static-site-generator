@@ -395,14 +395,27 @@ hr {
    Typography
    ____________________________________________________________ */
 
-/* SASS Inheretance. Almost like the inheretence in OOP.
-   ВСЕГДА ХРАНИ весь код испольюзий @extend в самом верху файла,
-   это хороший тон чтобы сразу видеть какие стили расширены и наследуют 
-   This approach makes it a lot easier to see that the style is based on another style. */
+html {
+  /* all 'rem' font-size values are always set relative 
+   * to this font-size of root (=html) element
+   * https://stackoverflow.com/questions/16783861/where-to-set-base-font 
+   */
+  font-size: $glob_font-size_body;
+}
+
+body {
+  line-height: $glob_line-height_body;
+  font-family: $glob_font-stack_serif;
+}
+
+p {
+  text-indent: 2em;
+  margin-bottom: 1em; /* space between paragraphs */
+}
 
 h1 {
   font-size: 2rem;
-  font-family: 'Raleway', Helvetica, Arial, sans-serif;
+  font-family: $glob_font-stack_serif;
   color: #222;
   font-weight: normal;
   font-style: normal;
@@ -431,24 +444,6 @@ h5 {
 h6 {
   @extend h1;
   font-size: 0.7rem;
-}
-
-html {
-  font-size: 24px;
-  /* all 'rem' font-size values are always set relative 
-     to this font-size of root (=html) element
-     https://stackoverflow.com/questions/16783861/where-to-set-base-font */
-}
-
-body {
-  /* always unitless value */
-  line-height: 1.5;
-  font-family: $body-font;
-}
-
-p {
-  text-indent: 2em;
-  margin-bottom: 1em; /* space between paragraphs */
 }
 
 em {

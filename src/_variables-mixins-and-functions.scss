@@ -1,9 +1,33 @@
-$body-font: Georgia, 'Times New Roman', Times, serif;
-$header-font: Georgia, 'Times New Roman', Times, serif;
-$primary-color: #474750;
-$border-radius: 6px;
+// VARIABLES
 
-@mixin debugger {
+// Typography
+$glob_font-stack_serif: Georgia, 'Times New Roman', Times, serif;
+
+$glob_font-size_body: 16px;
+$glob_font-size_h1: $glob_font-size_body * 2.5;
+$glob_font-size_h2: $glob_font-size_body * 2;
+$glob_font-size_h3: $glob_font-size_body * 1.28;
+$glob_font-size_h4: 16px;
+$glob_font-size_h5: 16px;
+$glob_font-size_h6: 16px;
+
+$glob_line-height_body: 1.5;
+
+// Colors
+$glob_buddha-gold: #d4aa00;
+$glob_link-color: blue;
+$glob_link-color_hover: red;
+
+
+// Media Quaries
+
+// Other
+$glob_border-radius: 6px;
+$glob_transition-time: 0.3s;
+
+// MIXINS
+
+@mixin glob_debugger {
   border: 1px solid red;
   background: #eee;
   color: black;

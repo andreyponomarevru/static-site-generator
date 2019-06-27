@@ -1,3 +1,5 @@
-.section {
-  @include debugger;
+$color: yellow;
+
+.section__h1 {
+  background: $color;
 }

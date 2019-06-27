@@ -3,33 +3,31 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PrettierPlugin = require("prettier-webpack-plugin"); // https://github.com/hawkins/prettier-webpack-plugin , https://prettier.io/docs/en/options.html
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 module.exports = {
-
   mode: 'development', 
-
   entry: {
     master: './src/master.js'
   },
-  
   devtool: 'inline-source-map',
-  
   output: {
     path: path.resolve(__dirname + '/dist'),
     filename: '[name].[contenthash:8].js',
     publicPath: './',
   },
-  
   watch: true,
-  
   optimization: {
-    
+    minimize: false,
     minimizer: [
-      new UglifyJsPlugin(),
-      new OptimizeCSSAssetsPlugin({}),
+      new TerserPlugin({
+        terserOptions: {
+          output: {
+            comments: false,
+          },
+        },
+      }),
     ],
   },
   
