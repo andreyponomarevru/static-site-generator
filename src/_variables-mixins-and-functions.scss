@@ -1,0 +1,10 @@
+$body-font: Georgia, 'Times New Roman', Times, serif;
+$header-font: Georgia, 'Times New Roman', Times, serif;
+$primary-color: #474750;
+$border-radius: 6px;
+
+@mixin debugger {
+  border: 1px solid red;
+  background: #eee;
+  color: black;
+}

@@ -12,7 +12,7 @@ module.exports = {
   mode: 'development', 
 
   entry: {
-    master: './src/master.js',
+    master: './src/master.js'
   },
   
   devtool: 'inline-source-map',
@@ -26,10 +26,11 @@ module.exports = {
   watch: true,
   
   optimization: {
+    
     minimizer: [
       new UglifyJsPlugin(),
-      new OptimizeCSSAssetsPlugin(),
-    ]
+      new OptimizeCSSAssetsPlugin({}),
+    ],
   },
   
   resolve: {
@@ -58,14 +59,15 @@ module.exports = {
             noquotes: true,
           }, 
         },
+
         
         { // SCSS LOADER _____________________________________________________________________
-          test: /\.scss$/,
+          test: /\.(sa|sc|c)ss$/,///\.scss$/,
           use: [ { loader: MiniCssExtractPlugin.loader },
                  { loader: 'css-loader', options: { sourceMap: true } },
                  { loader: 'postcss-loader' },
                  { loader: 'sass-loader', options: { sourceMap: true,
-                                                     data: '@import "./scss/_globals.scss";',
+                                                     data: '@import "./_variables-mixins-and-functions.scss";',
                                                      includePaths: [__dirname, 'src'] } },
                                                          
           ]
@@ -134,9 +136,10 @@ module.exports = {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
     }),
-                         
+                                 
     new MiniCssExtractPlugin({ 
       filename: 'master.[contenthash:8].css',
+
     }),
     
     new PrettierPlugin({ 
