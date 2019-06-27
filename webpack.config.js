@@ -65,7 +65,7 @@ module.exports = {
                  { loader: 'css-loader', options: { sourceMap: true } },
                  { loader: 'postcss-loader' },
                  { loader: 'sass-loader', options: { sourceMap: true,
-                                                     data: '@import "./_globals.scss";',
+                                                     data: '@import "./scss/_globals.scss";',
                                                      includePaths: [__dirname, 'src'] } },
                                                          
           ]
@@ -97,7 +97,7 @@ module.exports = {
           test: /\.pug$/, // /\.(html)$/,
           use: [ { loader: 'html-loader' }, 
                  { loader: 'pug-html-loader',
-                    options: { "pretty": true } } ] 
+                   options: { "pretty": true } } ] 
         },         
         
         { // FONT LOADER _____________________________________________________________________
@@ -124,13 +124,13 @@ module.exports = {
       inject: true,
       hash: false,
       filename: 'index.html', 
-      template: './src/index.pug',
+      template: './src/pug/index.pug',
       minify: { 
         removeComments: true, 
         collapseWhitespace: false,
       },           
     }),
-    
+  
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async',
     }),
