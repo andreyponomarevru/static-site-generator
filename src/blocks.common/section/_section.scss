@@ -3,3 +3,12 @@ $color: yellow;
 .section__h1 {
   background: $color;
 }
+
+h1 {
+  font-size: 3rem;
+  font-family: $glob_font-stack_serif;
+  color: #222;
+  font-weight: normal;
+  font-style: normal;
+  margin: 1px;
+}

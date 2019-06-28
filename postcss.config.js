@@ -1,10 +1,15 @@
-// It is handy to not have those transformations while we developing
-if (process.env.NODE_ENV === 'production') {
-  module.exports = {
-    plugins: [
-      require('autoprefixer'),
-      require('cssnano'),
-      // More postCSS modules here if needed
-    ],
-  };
-}
+module.exports = {
+  plugins: [
+    require('autoprefixer'),
+    // https://cssnano.co/
+
+    require('cssnano')({
+      preset: [
+        'default',
+        {
+          normalizeWhitespace: false,
+        },
+      ],
+    }),
+  ],
+};
