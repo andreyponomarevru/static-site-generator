@@ -5,9 +5,11 @@
   "main": "master.js",
   "private": true,
   "scripts": {
+    "prod-server": "webpack-dev-server --mode production",
+    "build-prod": "webpack --mode production",
+    "dev-server": "webpack-dev-server --mode development",
+    "build-dev": "webpack --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "start": "webpack-dev-server",
     "lint": "eslint"
   },
   "author": "Andrey Ponomarev",
