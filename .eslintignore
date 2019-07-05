@@ -3,3 +3,4 @@ postcss.config.js
 webpack.config.js
 prettier.config.js
 Session.vim
+node_modules/

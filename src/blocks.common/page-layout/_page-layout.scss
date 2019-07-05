@@ -1,0 +1,6 @@
+.page-layout {
+  display: grid;
+  //grid-template-rows:
+  grid-template-columns: [left-edge] 30% [col-b] 30% [col-c] 30% [right-edge];
+  grid-template-rows: [top-edge] 30% [row-b] 30% [row-c] 30% [bottom-edge];
+}

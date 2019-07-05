@@ -1,0 +1,26 @@
+.page-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page-header__link {
+  &:link {
+    text-decoration: none;
+    color: $glob_mine_shaft;
+  }
+
+  &:visited {
+    color: $glob_mine_shaft;
+  }
+
+  &:focus {
+    color: $glob_dove_gray;
+  }
+  &:hover {
+    color: $glob_dove_gray;
+  }
+
+  &:active {
+    color: $glob_dove_gray;
+  }
+}

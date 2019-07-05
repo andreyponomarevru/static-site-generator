@@ -1,0 +1,11 @@
+.paragraph {
+  text-indent: 2em;
+  margin-bottom: 1em; /* space between paragraphs */
+}
+
+@media print {
+  .paragraph {
+    orphans: 3;
+    widows: 3;
+  }
+}

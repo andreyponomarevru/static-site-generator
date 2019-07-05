@@ -1,28 +1,43 @@
-/* GLOBAL STYLES
- *
- * '_variables-mixins-and-functions.scss' contains global variables, mixins and functions.
- * It is already imported through webpack.config.js (in sass-loader options).
- * This file makes variables, mixins and functions declared within it available in all SCSS files of the project.
- *
- * 'blocks.common/html/_html.scss' contains the rest of global styles
- */
+// css reset
+import './_reset.scss';
 
-// BLOCKS ___________________________________________
+// *** BLOCKS ***
 
-// 'html' block provides global styles including CSS Reset
+// html
 import './blocks.common/html/_html.scss';
 
-// header
-import './blocks.common/header/_header.scss';
-import './blocks.common/header/header.js';
+// body
+import './blocks.common/body/_body.scss';
+
+// page-layout
+import './blocks.common/page-layout/_page-layout.scss';
+
+// paragraph
+import './blocks.common/paragraph/_paragraph.scss';
+
+// heading
+import './blocks.common/heading/_heading.scss';
+
+// link
+import './blocks.common/link/_link.scss';
+
+// list
+import './blocks.common/list/_list.scss';
 
 // logo
 import './blocks.common/logo/_logo.scss';
 import './blocks.common/logo/logo.js';
 
+// page-header
+import './blocks.common/page-header/_page-header.scss';
+import './blocks.common/page-header/page-header.js';
+
 // section
 import './blocks.common/section/_section.scss';
 import './blocks.common/section/section.js';
 
-// FAVICONS _________________________________________
+// page-footer
+import './blocks.common/page-footer/_page-footer.scss';
+
+// *** FAVICONS ***
 import './favicon/favicon';

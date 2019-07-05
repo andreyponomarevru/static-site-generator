@@ -1,15 +1,15 @@
 module.exports = {
   plugins: [
     require('autoprefixer'),
-    // https://cssnano.co/
-
+/*
     require('cssnano')({
+      // https://cssnano.co/
       preset: [
         'default',
         {
           normalizeWhitespace: false,
         },
       ],
-    }),
+    }),*/
   ],
 };

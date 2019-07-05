@@ -1,7 +1,9 @@
 const s = 5;
 
-function ups() {
-  return 25;
+function test(ups) {
+  return 25 + ups;
 }
 
-console.log(ups() + s);
+test();
+
+console.log(test(5) + s);

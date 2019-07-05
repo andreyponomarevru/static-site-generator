@@ -1,17 +1,5 @@
 const path = require('path');
-/*
- * https://github.com/postcss/postcss#articles
-const fs = require('fs');
-const PostCss = require('postcss');
-const Css = fs.readFileSync('src/app.css');
 
-PostCss([require('cssnano')])
-  .process(css, {from, to})
-  .then(result => {
-    fs.writeFileSync('app.css', result.css);
-    if (result.map) fs.writeFileSync('app.css.map', result.map);
-  });
-*/
 // Installed plugins:
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -21,12 +9,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-// My plugins:
-const myWebpackPlugin = require('./myWebpackPlugin');
 
 module.exports = (env, options) => {
   // console.log(options.mode); // returns string 'development' or 'production'
-
   return {
  
   entry: { 
@@ -58,8 +43,19 @@ module.exports = (env, options) => {
           },
         },
       }),
-      new OptimizeCSSAssetsPlugin({}),
-    ],
+      
+      new OptimizeCSSAssetsPlugin({
+      cssProcessor: require('cssnano'),
+      cssProcessorPluginOptions: {
+        preset: [
+                  'default', { discardComments: { removeAll: true }, 
+                               normalizeWhitespace: false }
+                ],
+      },
+      canPrint: true
+    }),
+      
+    ],    
   },
 
   devServer: {
@@ -81,8 +77,9 @@ module.exports = (env, options) => {
         
       { 
         test: /\.(sa|sc|c)ss$/,
-        use: [ // { loader: 'cssnano' },           
+        use: [     
           { loader: MiniCssExtractPlugin.loader },   
+          
           { 
             loader: 'css-loader', 
             options: { 
@@ -94,7 +91,7 @@ module.exports = (env, options) => {
           // from different SCSS files. Should be fixed
           // https://stackoverflow.com/questions/52564625/cssnano-doesnt-remove-duplicates
           // https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/63#issuecomment-100493459
-          /*
+       /*
           { loader: 'postcss-loader', 
             options: { 
               config: { 
@@ -102,7 +99,7 @@ module.exports = (env, options) => {
               },
             }, 
           },
-          */
+         */ 
           { 
             loader: 'sass-loader', 
             options: { 
@@ -137,7 +134,7 @@ module.exports = (env, options) => {
       },   
         
       { 
-        test: /\.pug$/, // /\.(html)$/,
+        test: /\.pug$/, 
         use: [ 
           { loader: 'html-loader' }, 
           { loader: 'pug-html-loader',
@@ -173,16 +170,15 @@ module.exports = (env, options) => {
     ]
   },
   
-  plugins: [
-    new myWebpackPlugin({message: "Hello world from the config"}),
-    
+  plugins: [   
+
     new CleanWebpackPlugin(),
-    
+   
     new HtmlWebpackPlugin({ 
       inject: true,
       hash: false,
       filename: 'index.html', 
-      template: './src/pug/index.pug',
+      template: './src/blocks.common/html/html.pug',
       minify: { 
         removeComments: true, 
         collapseWhitespace: false,
@@ -195,9 +191,8 @@ module.exports = (env, options) => {
                                  
     new MiniCssExtractPlugin({ 
       filename: 'master.[contenthash].css',
-
     }),
-    
+
     new PrettierPlugin({ 
       printWidth: 80,
       tabWidth: 2,        
@@ -206,6 +201,7 @@ module.exports = (env, options) => {
       trailingComma: 'es5',
       bracketSpacing: true,
     }), 
+   
   ]
 
   } // end of return

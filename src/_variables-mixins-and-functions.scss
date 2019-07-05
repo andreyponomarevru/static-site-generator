@@ -1,19 +1,25 @@
-// VARIABLES
+// VARIABLES **************************************************
 
 // Typography
-$glob_font-stack_serif: Georgia, 'Times New Roman', Times, serif;
+$glob_font-stack_serif: Lato, Arial, Verdana, sans-serif;
+$glob_font-size_base: 16px;
 
-$glob_font-size_body: 16px;
-$glob_font-size_h1: $glob_font-size_body * 2.5;
-$glob_font-size_h2: $glob_font-size_body * 2;
-$glob_font-size_h3: $glob_font-size_body * 1.28;
-$glob_font-size_h4: 16px;
-$glob_font-size_h5: 16px;
-$glob_font-size_h6: 16px;
+$glob_font-size_h1: 2em;
+$glob_font-size_h2: 1.5em;
+$glob_font-size_h3: 1.17em;
+$glob_font-size_h4: 1.12em;
+$glob_font-size_h5: 0.83em;
+$glob_font-size_h6: 0.75em;
 
 $glob_line-height_body: 1.5;
 
 // Colors
+$glob_white: white;
+$glob_flesh: #ffccaa;
+$glob_atomic_tangerine: #ff9955;
+$glob_resolution_blue: #003380;
+$glob_mine_shaft: #262626;
+$glob_dove_gray: #666;
 $glob_buddha-gold: #d4aa00;
 $glob_link-color: blue;
 $glob_link-color_hover: red;
@@ -24,10 +30,12 @@ $glob_link-color_hover: red;
 $glob_border-radius: 6px;
 $glob_transition-time: 0.3s;
 
-// MIXINS
+// MIXINS ****************************************************
 
 @mixin glob_debugger {
   border: 1px solid red;
   background: #eee;
   color: black;
 }
+
+// FUNCTIONS *************************************************
