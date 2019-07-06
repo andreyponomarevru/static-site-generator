@@ -1,10 +1,12 @@
 ol,
 ul {
+  @include glob_reset;
   list-style-position: outside;
   padding-left: 1.4em;
   list-style: none; /* disc */
 }
 
 li {
+  @include glob_reset;
   padding-left: 0;
 }

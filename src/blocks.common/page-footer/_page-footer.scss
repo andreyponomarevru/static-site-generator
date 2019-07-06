@@ -1,3 +1,15 @@
 .page-footer {
-  background: $glob_resolution_blue;
+  grid-area: footer;
+  display: flex;
+  justify-content: flex-end;
+
+  &__heading {
+    color: $glob_white;
+  }
+
+  &__page-layout {
+    @include glob_blank-margins;
+    background: $glob_resolution_blue;
+    padding-bottom: $blank-space - 1%;
+  }
 }

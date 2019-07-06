@@ -2,11 +2,11 @@
   font-size: $glob_font-size_base;
   color: $glob_white;
 
-  @media screen and (min-width: 900px) {
-    font-size: 18px;
+  @media screen and (min-width: $glob_screen-md) {
+    font-size: 16px;
   }
 
-  @media screen and (min-width: 1200px) {
-    font-size: 20px;
+  @media screen and (min-width: $glob_screen-lg) {
+    font-size: 16px;
   }
 }

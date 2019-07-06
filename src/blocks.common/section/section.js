@@ -1,4 +1,4 @@
-const s = 5;
+const s = 8;
 
 function test(ups) {
   return 25 + ups;

@@ -1,4 +1,5 @@
 .paragraph {
+  @include glob_reset;
   text-indent: 2em;
   margin-bottom: 1em; /* space between paragraphs */
 }

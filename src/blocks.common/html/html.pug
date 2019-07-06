@@ -21,7 +21,41 @@ html(lang='en' class='html')
   
     body(class='body')
      
-      div(class='page-layout')
+      div(class='page-layout body__page-layout')
         include ../page-header/page-header.pug
-        include ../section/section.pug
+        main(class='page-layout__main')
+          section(class='section page-layout__section').
+            Портфолио
+            // p(class='paragraph').
+            Type Test Demo Github HTML, CSS (SASS), JavaScript Приложение, 
+            меня зовут Андрей, я web-разработчик, специализирующийся на 
+            front-end'е. Hi, my name is Andrey, I'm a front-end web developer. 
+            Contrary to popular belief, Lorem Ipsum is not simply random text. 
+            It has roots in a piece of classical Latin literature from 45 BC, 
+            making it over earsршнd.
+          section(class='section page-layout__section').
+            Статьи
+            JavaScript Values Statements & Expressions Variables Operators 
+            & Syntax Constructions Устройство интерпретатора и асинхронность
+            Synchronous vs Asynchronous Asynchronous Programming. Promises
+            Execution Context & Lexical Environment Hoisting Closures 'this''
+            Global Object Global Methods & Properties Global Objects Modules
+            Debugging PHP CondoManage. Процесс разработки, чась 1 typeTest. 
+            Процесс разработки Linux Чистка системы
+          section(class='section').
+            Обо мне
+            Привет, меня зовут Андрей, я web-разработчик, специализирующийся 
+            на front-end'е. Hi, my name is Andrey, I'm a front-end web 
+            developer. Contrary to popular belief, Lorem Ipsum is not simply 
+            random text. It has roots in a piece of classical Latin 
+            literature from 45 BC, making it over 2000 years old. Основные 
+            ниши, которые большевсего мне интересны это web-типографика, 
+            web-анимация, web-аудио и всё, что связано с клиентским JavaScript.
+            I work on a LAMP stack, My main tools are: (LAMP Stack) — HTML 
+            (Pug) — CSS (SASS) — JavaScript — PHP — Environment: Linux, 
+            Webpack, Git Contrary to popular belief, Lore—m Ipsum is not 
+            simply random text. It has roots in a piece of classical Latin 
+            literature from 45 BC, making it over 2000 years old.
         include ../page-footer/page-footer.pug
+        
+

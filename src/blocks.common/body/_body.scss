@@ -1,4 +1,7 @@
 .body {
   line-height: $glob_line-height_body;
   font-family: $glob_font-stack_serif;
+
+  &__page-layout {
+  }
 }

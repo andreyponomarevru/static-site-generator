@@ -1,4 +1,6 @@
 .link {
+  @include glob_reset;
+
   &:link {
     color: #f60;
   }

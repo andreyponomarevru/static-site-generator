@@ -1,6 +1,13 @@
 .page-header {
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
+  grid-area: header;
+}
+
+.page-header__page-layout {
+  @include glob_blank-margins;
+  background: $glob_white;
 }
 
 .page-header__link {
