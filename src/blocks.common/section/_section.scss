@@ -1,4 +1,38 @@
 .section {
-  //width: 22em;
   flex: 1 1 30%;
+
+  &__heading {
+    margin: 0;
+    letter-spacing: $glob_letter-spacing_sm-text;
+  }
+
+  &__button:not(:last-child) {
+    margin-right: 1em;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    //flex: 1 0 auto;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__name {
+    margin: 0;
+  }
+
+  &__tech-stack {
+    font-size: $glob_font-size_base / 1.5;
+    letter-spacing: 0.1em;
+  }
+
+  &:not(:last-child) {
+    margin-right: 3em;
+  }
 }

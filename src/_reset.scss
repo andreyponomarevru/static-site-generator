@@ -23,6 +23,17 @@ dfn,
 em,
 img,
 ins,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+ul,
+ol,
+li,
 kbd,
 q,
 s,
@@ -332,4 +343,14 @@ video {
 
 em {
   font-style: italic;
+}
+
+ol,
+ul {
+  list-style-position: outside;
+  list-style: disk;
+}
+
+li {
+  padding-left: 0;
 }

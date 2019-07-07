@@ -5,6 +5,6 @@ through `webpack.config.js` (in sass-loader options). This file, `_variables-mix
 `index.js` - is the entry point for Webpack. We import all blocks in the same order they are mentioned in the main 'html' block
 
 `blocks.common/html/_html.scss` & `blocks.common/body/_body.scss` - all global typography-related rules declared in these two blocks
-`html` - is the main block of the project. It bundles all blocks of the project together
+`page` - is the main block of the project and master template for Pug plugin in `webpack.config.js`. It bundles all Pug files of the project together
 
 

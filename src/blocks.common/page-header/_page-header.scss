@@ -1,33 +1,40 @@
 .page-header {
+  @include glob_blank-margins;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-  grid-area: header;
-}
 
-.page-header__page-layout {
-  @include glob_blank-margins;
-  background: $glob_white;
-}
-
-.page-header__link {
-  &:link {
+  &__link:link {
     text-decoration: none;
     color: $glob_mine_shaft;
   }
 
-  &:visited {
+  &__link:visited {
+    text-decoration: none;
     color: $glob_mine_shaft;
   }
 
-  &:focus {
+  &__link:focus {
+    text-decoration: none;
     color: $glob_dove_gray;
+    padding: 0;
+    border: 0;
   }
-  &:hover {
+  &__link:hover {
+    text-decoration: none;
     color: $glob_dove_gray;
+    padding: 0;
+    border: 0;
   }
 
-  &:active {
+  &__link:active {
+    text-decoration: none;
     color: $glob_dove_gray;
+    padding: 0;
+    border: 0;
+  }
+
+  &__heading {
+    letter-spacing: $glob_letter-spacing_lg-text;
   }
 }

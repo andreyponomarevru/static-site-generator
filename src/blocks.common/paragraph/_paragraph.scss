@@ -1,7 +1,7 @@
 .paragraph {
-  @include glob_reset;
-  text-indent: 2em;
+  text-indent: 0;
   margin-bottom: 1em; /* space between paragraphs */
+  letter-spacing: $glob_letter-spacing_sm-text;
 }
 
 @media print {

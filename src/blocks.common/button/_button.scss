@@ -1,9 +1,38 @@
+.button {
+  display: inline-block;
+  padding: 0 0.7em 0.2em 0.7em;
+  border: 1px solid $glob_flesh;
 
+  &:link {
+    color: $glob_flesh;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: $glob_flesh;
+    text-decoration: none;
+  }
+
+  &:focus {
+    color: $glob_atomic_tangerine;
+    text-decoration: none;
+    border: 1px solid $glob_atomic_tangerine;
+  }
+
+  &:hover {
+    text-decoration: none;
+    border: 1px solid $glob_atomic_tangerine;
+    padding-bottom: 0.2em;
+    color: $glob_atomic_tangerine;
+  }
+
+  &:active {
+    color: $glob_atomic_tangerine;
+    text-decoration: none;
+  }
+}
 
 // Modifiers:
 
 .button_type_segmented {
-
 }
-
-.button_type_

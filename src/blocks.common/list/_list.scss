@@ -1,12 +1,18 @@
-ol,
-ul {
-  @include glob_reset;
+.list {
   list-style-position: outside;
-  padding-left: 1.4em;
-  list-style: none; /* disc */
+  list-style: none;
 }
 
-li {
-  @include glob_reset;
+.list__item {
   padding-left: 0;
+}
+
+// Modifiers:
+
+.list_style_ordered {
+  list-style: decimal;
+}
+
+.list_style_unordered {
+  list-style: disk;
 }

@@ -1,23 +1,29 @@
 .link {
-  @include glob_reset;
-
   &:link {
-    color: #f60;
+    color: $glob_flesh;
+    text-decoration: none;
   }
 
   &:visited {
-    color: #900;
+    color: $glob_flesh;
+    text-decoration: none;
   }
 
   &:focus {
-    color: orange;
+    color: $glob_atomic_tangerine;
+    text-decoration: none;
+    border-bottom: 1px solid $glob_atomic_tangerine;
   }
 
   &:hover {
-    color: #f33;
+    color: $glob_atomic_tangerine;
+    text-decoration: none;
+    border-bottom: 1px solid $glob_atomic_tangerine;
+    padding-bottom: 4px;
   }
 
   &:active {
-    color: #b2f511;
+    color: $glob_atomic_tangerine;
+    text-decoration: none;
   }
 }

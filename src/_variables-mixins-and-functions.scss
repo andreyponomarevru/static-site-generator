@@ -11,7 +11,10 @@ $glob_font-size_h4: 1.12em;
 $glob_font-size_h5: 0.83em;
 $glob_font-size_h6: 0.75em;
 
-$glob_line-height_body: 1.5;
+$glob_line-height: 1.85;
+
+$glob_letter-spacing_sm-text: 0.02em;
+$glob_letter-spacing_lg-text: 0;
 
 // Colors
 $glob_white: white;
@@ -25,14 +28,19 @@ $glob_link-color: blue;
 $glob_link-color_hover: red;
 
 // Media Quaries
-$glob_screen-md: 900px;
-$glob_screen-lg: 1200px;
+$glob_screen-xs: 0 !default;
+$glob_screen-sm: 480px !default;
+$glob_screen-md: 768px !default;
+$glob_screen-lg: 992px !default;
+$glob_screen-xl: 1200px !default;
+$glob_screen-xxl: 1800px !default;
 
 // Other
 $glob_border-radius: 6px;
 $glob_transition-time: 0.3s;
-$blank-space: 7%;
-$margin-left: 7%;
+
+$blank-space: 6%;
+$margin-left: 6%;
 
 // MIXINS ****************************************************
 
@@ -40,15 +48,6 @@ $margin-left: 7%;
   border: 1px solid red;
   background: #eee;
   color: red;
-}
-
-@mixin glob_reset {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
 }
 
 @mixin glob_blank-margins {

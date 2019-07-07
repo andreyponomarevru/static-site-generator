@@ -1,0 +1,7 @@
+.page-main {
+  @include glob_blank-margins;
+  display: flex;
+  flex-flow: row wrap;
+  background: $glob_resolution_blue;
+  padding-top: $blank-space - 2%;
+}

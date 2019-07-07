@@ -1,7 +1,5 @@
 .heading {
-  @include glob_reset;
   font-family: $glob_font-stack_serif;
-  color: $glob_mine_shaft;
   font-weight: normal;
   font-style: normal;
   margin: 0.67em 0;

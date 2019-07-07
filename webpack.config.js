@@ -178,7 +178,7 @@ module.exports = (env, options) => {
       inject: true,
       hash: false,
       filename: 'index.html', 
-      template: './src/blocks.common/html/html.pug',
+      template: './src/blocks.common/page/page.pug',
       minify: { 
         removeComments: true, 
         collapseWhitespace: false,
