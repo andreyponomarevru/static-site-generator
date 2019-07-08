@@ -3,8 +3,8 @@
   color: $glob_white;
   height: 100%;
 
-  @media screen and (min-width: $glob_screen-md) {
-    font-size: 16px;
+  @media screen and (min-width: $glob_screen-sm) {
+    font-size: 20px;
   }
 
   @media screen and (min-width: $glob_screen-lg) {

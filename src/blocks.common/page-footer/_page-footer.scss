@@ -1,5 +1,9 @@
 .page-footer {
-  @include glob_blank-margins;
+  //@include glob_blank-margins;
+  padding-left: $blank-space;
+  padding-right: $margin-left + $blank-space;
+  margin-left: $margin-left;
+
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-end;

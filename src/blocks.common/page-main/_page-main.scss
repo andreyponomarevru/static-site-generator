@@ -1,7 +1,18 @@
 .page-main {
-  @include glob_blank-margins;
+  padding-left: 5em;
+  margin-left: 0;
+
   display: flex;
   flex-flow: row wrap;
+  flex: 0 1 auto;
   background: $glob_resolution_blue;
   padding-top: $blank-space - 2%;
+
+  @media screen and (min-width: $glob_screen-lg) {
+    padding-left: $blank-space;
+    padding-right: $margin-left + $blank-space;
+    margin-left: $margin-left;
+
+    border: 0px solid red;
+  }
 }

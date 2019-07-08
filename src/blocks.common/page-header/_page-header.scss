@@ -1,8 +1,12 @@
 .page-header {
-  @include glob_blank-margins;
+  //@include glob_blank-margins;
+  padding-left: $blank-space;
+  padding-right: $margin-left + $blank-space;
+  margin-left: $margin-left;
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  align-items: center;
 
   &__link:link {
     text-decoration: none;
@@ -35,6 +39,7 @@
   }
 
   &__heading {
-    letter-spacing: $glob_letter-spacing_lg-text;
+    letter-spacing: $glob_letter-spacing_lg;
+    margin: 0.67em 0;
   }
 }

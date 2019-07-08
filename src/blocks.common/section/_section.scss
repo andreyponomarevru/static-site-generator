@@ -1,9 +1,18 @@
 .section {
   flex: 1 1 30%;
 
+  &__item {
+    margin-bottom: 2em;
+  }
+
   &__heading {
     margin: 0;
-    letter-spacing: $glob_letter-spacing_sm-text;
+  }
+
+  &__buttons {
+    display: flex;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
   }
 
   &__button:not(:last-child) {
@@ -12,24 +21,29 @@
 
   &__header {
     display: flex;
-    justify-content: space-between;
-    //flex: 1 0 auto;
-    align-items: center;
-    margin-bottom: 1em;
+    flex-flow: column nowrap;
+
+    @media screen and (min-width: $glob_screen-xl) {
+      flex-flow: row wrap;
+      justify-content: space-between;
+    }
+  }
+
+  &__header_vertical-align_top {
+    display: flex;
+    align-items: flex-start;
   }
 
   &__text {
     display: flex;
     flex-direction: column;
-  }
-
-  &__name {
-    margin: 0;
+    margin-bottom: 1em;
   }
 
   &__tech-stack {
     font-size: $glob_font-size_base / 1.5;
     letter-spacing: 0.1em;
+    //max-width: 18em;
   }
 
   &:not(:last-child) {
