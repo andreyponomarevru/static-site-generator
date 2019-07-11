@@ -2,33 +2,37 @@
   font-size: $glob_font-size_base;
   color: $glob_white;
   height: 100%;
+  background: #003380;
 
   @media screen and (min-width: $glob_screen-sm) {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   @media screen and (min-width: $glob_screen-lg) {
     font-size: 16px;
   }
-}
 
-.page__body {
-  line-height: $glob_line-height;
-  font-family: $glob_font-stack_serif;
-  height: 100%;
-}
+  &__body {
+    line-height: $glob_line-height;
+    font-family: $glob_font-stack_serif;
+    height: 100%;
+  }
+  /*
+  &__page-layout {
+    height: 100%;
+  }
+*/
+  &__preload * {
+    transition: none !important;
+  }
 
-.page__page-layout {
-  height: 100%;
+  &__page-layout {
+    display: grid;
+    grid-gap: 1.2em 1.2em;
+    grid-template-areas:
+      '. header  header  footer  .'
+      '. content content content .'
+      '. footer  footer  footer  .';
+    grid-template-columns: minmax(1em, 0.1fr) 1fr minmax(1em, 0.1fr);
+  }
 }
-
-/*
-.page__page-layout {
-  
-  display: grid;
-  grid-gap: 0 0;  
-  grid-template-areas:
-    '. header header-blank'
-    '. content content';
-  grid-template-columns: minmax(1em, .1fr) 1fr minmax(1em, .1fr);
-}*/

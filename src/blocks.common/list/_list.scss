@@ -2,18 +2,35 @@
   list-style-position: outside;
   list-style: none;
   margin-bottom: 1em;
-}
 
-.list__item {
-  padding-left: 0;
-}
+  &__item {
+    // padding-left: 0;
+    //display: flex;
+    //align-self: center;
+    //border: 1px solid red;
+    // flex-flow: row nowrap;
+    // justify-content: space-between;
+    // align-item: center;
+  }
 
-// Modifiers:
+  &__date {
+    font-size: $glob_font-size_base / 1.4;
+  }
 
-.list_style_ordered {
-  list-style: decimal;
-}
+  &__horizontal-rule {
+    flex: 1 1 auto;
+    padding-left: 2em;
+    //max-width: 100%;
+    //min-width: 10%;
+  }
 
-.list_style_unordered {
-  list-style: disk;
+  // Modifiers:
+
+  &_style_ordered {
+    list-style: decimal;
+  }
+
+  &_style_unordered {
+    list-style: disk;
+  }
 }

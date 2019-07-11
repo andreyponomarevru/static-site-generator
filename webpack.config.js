@@ -66,15 +66,7 @@ module.exports = (env, options) => {
   
   module: {
     rules: [
- 
-      { 
-        test: /\.svg$/,
-        loader: 'svg-url-loader',
-        options: {
-          noquotes: true,
-        }, 
-      },
-        
+
       { 
         test: /\.(sa|sc|c)ss$/,
         use: [     
@@ -112,34 +104,38 @@ module.exports = (env, options) => {
       },    
         
       { // IMAGE LOADER https://webpack.js.org/loaders/file-loader/
-        test: /\.(jpe?g|png|gif|ico)$/,
+        test: /\.(jpe?g|png|gif|ico|svg)$/,
         use: [ 
           { 
             loader: 'file-loader',
             options: { 
-              name: '[name].[hash:8].[ext]',
+              name: 'img/[name].[ext]',
               context: 'src',
               outputPath: (url, resourcePath, context) => {
                 // `resourcePath` is original absolute path to asset
                 // `context` is directory where stored asset (`rootContext`) or `context` option
                 // To get relative path you can use
                 // const relativePath = path.relative(context, resourcePath);
-                if (/favicon/.test(resourcePath)) return `favicon/${url}`;
-                /* if (/images/.test(context)) return `image_output_path/${url}`;*/
+                //if (/favicon/.test(resourcePath)) return `favicon/${url}`;
                 return `${url}`;
               }
             },
           } 
         ]
-      },   
-        
+      },
+
       { 
         test: /\.pug$/, 
         use: [ 
-          { loader: 'html-loader' }, 
+          { loader: 'html-loader',
+            options: {
+              //attrs: ['img:src','xlink:href','image:xlink:href'] 
+            }
+          }, 
           { loader: 'pug-html-loader',
             options: { 
-              "pretty": true 
+              "pretty": true,
+
             } 
           } 
         ] 

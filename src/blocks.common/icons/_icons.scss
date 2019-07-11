@@ -1,0 +1,24 @@
+.icon {
+  background-size: cover;
+  border: 0 solid red;
+  /* Use the current text color as the icon’s fill color. */
+  fill: white; //currentColor;
+  /* Inherit the text’s size too. Also allows sizing the icon by changing its font-size. */
+  width: 1.2em;
+  height: 1.2em;
+  /* Paths and strokes that overflow the viewBox can show in IE11. */
+  //overflow: hidden;
+  align-self: center;
+  transition: 0.2s;
+
+  &__access-label {
+    // Visually hidden accessible label
+    // Using styles that do not hide the text in screen readers
+    // We use !important because we should not apply other styles to this hidden alternative text
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+  }
+}

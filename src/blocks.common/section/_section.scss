@@ -21,29 +21,25 @@
 
   &__header {
     display: flex;
-    flex-flow: column nowrap;
-
-    @media screen and (min-width: $glob_screen-xl) {
-      flex-flow: row wrap;
-      justify-content: space-between;
-    }
+    flex-flow: row wrap;
   }
 
   &__header_vertical-align_top {
     display: flex;
+    flex-flow: row wrap;
     align-items: flex-start;
   }
 
   &__text {
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
+    flex: 1 1 60%;
     margin-bottom: 1em;
   }
 
   &__tech-stack {
-    font-size: $glob_font-size_base / 1.5;
+    font-size: $glob_font-size_base / 1.4;
     letter-spacing: 0.1em;
-    //max-width: 18em;
   }
 
   &:not(:last-child) {

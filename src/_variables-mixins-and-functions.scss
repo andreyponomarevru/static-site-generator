@@ -39,8 +39,7 @@ $glob_screen-xxl: 1800px !default;
 $glob_border-radius: 6px;
 $glob_transition-time: 0.3s;
 
-$blank-space: 6%;
-$margin-left: 6%;
+$margin: 7%;
 
 // MIXINS ****************************************************
 
@@ -48,12 +47,6 @@ $margin-left: 6%;
   border: 1px solid red;
   background: #eee;
   color: red;
-}
-
-@mixin glob_blank-margins {
-  padding-left: $blank-space;
-  padding-right: $margin-left + $blank-space;
-  margin-left: $margin-left;
 }
 
 // FUNCTIONS *************************************************

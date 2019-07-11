@@ -1,7 +1,7 @@
 // css reset
 import './_reset.scss';
 
-// *** BLOCKS ***
+// *** IMPORT BLOCKS ***
 
 // link
 import './blocks.common/link/_link.scss';
@@ -19,11 +19,14 @@ import './blocks.common/button/_button.scss';
 // logo
 import './blocks.common/logo/_logo.scss';
 import './blocks.common/logo/logo.js';
-// logo
-import './blocks.common/icon/_icon.scss';
+// icon
+import './blocks.common/icons/_icons.scss';
+// horizontal rule
+import './blocks.common/horizontal-rule/_horizontal-rule.scss';
 
 // page
 import './blocks.common/page/_page.scss';
+import './blocks.common/page/page.js';
 // page-header
 import './blocks.common/page-header/_page-header.scss';
 import './blocks.common/page-header/page-header.js';
@@ -32,5 +35,13 @@ import './blocks.common/page-main/_page-main.scss';
 // page-footer
 import './blocks.common/page-footer/_page-footer.scss';
 
-// *** FAVICONS ***
-import './favicon/favicon';
+// IMPORT GRAPHICS
+function requireAllFiles(r) {
+  r.keys().forEach(r);
+}
+// require favicons
+requireAllFiles(
+  require.context('./favicon/', true, /\.(svg|png|ico|xml|json)$/)
+);
+// require icons
+requireAllFiles(require.context('./img/', true, /\.svg$/));

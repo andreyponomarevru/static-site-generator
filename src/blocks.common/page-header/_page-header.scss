@@ -1,5 +1,6 @@
 .page-header {
   //@include glob_blank-margins;
+  /*
   padding-left: $blank-space;
   padding-right: $margin-left + $blank-space;
   margin-left: $margin-left;
@@ -7,10 +8,11 @@
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-
+*/
   &__link:link {
     text-decoration: none;
     color: $glob_mine_shaft;
+    transition: color 0.3s linear;
   }
 
   &__link:visited {
@@ -21,21 +23,15 @@
   &__link:focus {
     text-decoration: none;
     color: $glob_dove_gray;
-    padding: 0;
-    border: 0;
   }
   &__link:hover {
     text-decoration: none;
     color: $glob_dove_gray;
-    padding: 0;
-    border: 0;
   }
 
   &__link:active {
     text-decoration: none;
     color: $glob_dove_gray;
-    padding: 0;
-    border: 0;
   }
 
   &__heading {

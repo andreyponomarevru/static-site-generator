@@ -2,6 +2,7 @@
   &:link {
     color: $glob_flesh;
     text-decoration: none;
+    transition: color 0.2s linear;
   }
 
   &:visited {
@@ -12,18 +13,25 @@
   &:focus {
     color: $glob_atomic_tangerine;
     text-decoration: none;
-    border-bottom: 1px solid $glob_atomic_tangerine;
   }
 
   &:hover {
     color: $glob_atomic_tangerine;
     text-decoration: none;
-    border-bottom: 1px solid $glob_atomic_tangerine;
-    padding-bottom: 4px;
   }
 
   &:active {
     color: $glob_atomic_tangerine;
     text-decoration: none;
+  }
+}
+
+.link__icon {
+  &:link,
+  &:visited,
+  &:focus,
+  &:hover,
+  &:active {
+    fill: $glob_flesh;
   }
 }

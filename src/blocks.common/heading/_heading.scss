@@ -3,28 +3,34 @@
   font-weight: normal;
   font-style: normal;
   letter-spacing: $glob_letter-spacing_sm;
-}
+  display: flex;
+  justify-content: space-between;
 
-.heading_size_h1 {
-  font-size: $glob_font-size_h1;
-}
+  &_size_h1 {
+    font-size: $glob_font-size_h1;
+  }
 
-.heading_size_h2 {
-  font-size: $glob_font-size_h2;
-}
+  &_size_h2 {
+    font-size: $glob_font-size_h2;
+  }
 
-.heading_size_h3 {
-  font-size: $glob_font-size_h3;
-}
+  &_size_h3 {
+    font-size: $glob_font-size_h3;
+  }
 
-.heading_size_h4 {
-  font-size: $glob_font-size_h4;
-}
+  &_size_h4 {
+    font-size: $glob_font-size_h4;
+  }
 
-.heading_size_h5 {
-  font-size: $glob_font-size_h5;
-}
+  &_size_h5 {
+    font-size: $glob_font-size_h5;
+  }
 
-.heading_size_h6 {
-  font-size: $glob_font-size_h6;
+  &_size_h6 {
+    font-size: $glob_font-size_h6;
+  }
+
+  &__icon {
+    display: flex;
+  }
 }
