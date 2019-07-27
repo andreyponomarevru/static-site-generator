@@ -1,14 +1,11 @@
 .page-header {
-  //@include glob_blank-margins;
-  /*
-  padding-left: $blank-space;
-  padding-right: $margin-left + $blank-space;
-  margin-left: $margin-left;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: center;
-*/
+  text-align: center;
+  padding: 2em 4%;
+
+  @media screen and (min-width: $glob_screen-md) {
+    padding: 2em 14%;
+  }
+
   &__link:link {
     text-decoration: none;
     color: $glob_mine_shaft;
@@ -20,22 +17,18 @@
     color: $glob_mine_shaft;
   }
 
-  &__link:focus {
-    text-decoration: none;
-    color: $glob_dove_gray;
-  }
-  &__link:hover {
-    text-decoration: none;
-    color: $glob_dove_gray;
-  }
-
+  &__link:focus,
+  &__link:hover,
   &__link:active {
     text-decoration: none;
     color: $glob_dove_gray;
   }
 
-  &__heading {
-    letter-spacing: $glob_letter-spacing_lg;
-    margin: 0.67em 0;
+  &__avatar {
+    border-radius: 50%;
+    vertical-align: middle;
+    width: 8em;
+    margin-bottom: 2em;
+    //filter: grayscale(100%);
   }
 }

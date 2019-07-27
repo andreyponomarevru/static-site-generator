@@ -3,8 +3,6 @@
   font-weight: normal;
   font-style: normal;
   letter-spacing: $glob_letter-spacing_sm;
-  display: flex;
-  justify-content: space-between;
 
   &_size_h1 {
     font-size: $glob_font-size_h1;
@@ -16,6 +14,11 @@
 
   &_size_h3 {
     font-size: $glob_font-size_h3;
+
+    @media screen and (min-width: $glob_screen-md) {
+      font-size: $glob_font-size_h1;
+      line-height: 1.5;
+    }
   }
 
   &_size_h4 {
@@ -31,6 +34,7 @@
   }
 
   &__icon {
-    display: flex;
+    display: inline-flex;
+    align-items: baseline;
   }
 }

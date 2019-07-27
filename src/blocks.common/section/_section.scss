@@ -1,48 +1,43 @@
 .section {
-  flex: 1 1 30%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 2%;
 
-  &__item {
-    margin-bottom: 2em;
+  @media screen and (min-width: $glob_screen-md) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 0;
   }
 
-  &__heading {
-    margin: 0;
+  &__page-main {
+    padding: 0 4% 4em 4%;
+
+    @media screen and (min-width: $glob_screen-md) {
+      padding: 0 7% 2em 7%;
+    }
+  }
+}
+
+.section__link {
+  font-family: Lato;
+  font-style: normal;
+  color: $glob_dove_gray;
+
+  &:link,
+  &:visited,
+  &:focus,
+  &:hover,
+  &:active {
+    color: $glob_dove_gray;
+  }
+}
+
+.section__item {
+  @media screen and (min-width: $glob_screen-md) {
+    padding: 4%;
   }
 
-  &__buttons {
-    display: flex;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
-  }
-
-  &__button:not(:last-child) {
-    margin-right: 1em;
-  }
-
-  &__header {
-    display: flex;
-    flex-flow: row wrap;
-  }
-
-  &__header_vertical-align_top {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: flex-start;
-  }
-
-  &__text {
-    display: flex;
-    flex-flow: column wrap;
-    flex: 1 1 60%;
-    margin-bottom: 1em;
-  }
-
-  &__tech-stack {
-    font-size: $glob_font-size_base / 1.4;
-    letter-spacing: 0.1em;
-  }
-
-  &:not(:last-child) {
-    margin-right: 3em;
+  &:hover {
+    opacity: 0.9;
+    background-color: #fff0e6;
   }
 }

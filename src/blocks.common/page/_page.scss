@@ -1,38 +1,24 @@
+// apply to <html>
 .page {
   font-size: $glob_font-size_base;
-  color: $glob_white;
+  color: $glob_black;
   height: 100%;
-  background: #003380;
+  scroll-behavior: smooth;
 
-  @media screen and (min-width: $glob_screen-sm) {
-    font-size: 18px;
-  }
-
-  @media screen and (min-width: $glob_screen-lg) {
-    font-size: 16px;
-  }
-
+  // apply to <body>
   &__body {
     line-height: $glob_line-height;
-    font-family: $glob_font-stack_serif;
+    font-family: $glob_font-stack_sans-serif;
     height: 100%;
   }
-  /*
-  &__page-layout {
-    height: 100%;
-  }
-*/
+
+  /* Chrome transition fires on page load, 
+   * fix this bug by applying transition: none to all descendant of <body>
+   */
   &__preload * {
     transition: none !important;
   }
 
-  &__page-layout {
-    display: grid;
-    grid-gap: 1.2em 1.2em;
-    grid-template-areas:
-      '. header  header  footer  .'
-      '. content content content .'
-      '. footer  footer  footer  .';
-    grid-template-columns: minmax(1em, 0.1fr) 1fr minmax(1em, 0.1fr);
-  }
+  /* helper class (wrapper), enable if needed
+  &__page-layout {} */
 }

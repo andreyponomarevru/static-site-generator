@@ -2,7 +2,7 @@
   background-size: cover;
   border: 0 solid red;
   /* Use the current text color as the icon’s fill color. */
-  fill: white; //currentColor;
+  fill: $glob_buddha-gold;
   /* Inherit the text’s size too. Also allows sizing the icon by changing its font-size. */
   width: 1.2em;
   height: 1.2em;
@@ -11,14 +11,30 @@
   align-self: center;
   transition: 0.2s;
 
+  &__link {
+    &:link,
+    &:visited {
+      fill: $glob_buddha-gold;
+    }
+
+    &:focus,
+    &:hover,
+    &:active {
+      fill: #b38f00;
+    }
+  }
+
   &__access-label {
     // Visually hidden accessible label
     // Using styles that do not hide the text in screen readers
     // We use !important because we should not apply other styles to this hidden alternative text
+    /*
     position: absolute !important;
     width: 1px !important;
     height: 1px !important;
     overflow: hidden !important;
     white-space: nowrap !important;
+    */
+    margin-right: 0.2em;
   }
 }

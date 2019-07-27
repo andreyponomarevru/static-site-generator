@@ -1,17 +1,9 @@
-/*
 .page-footer {
-  //@include glob_blank-margins;
-  padding-left: $blank-space;
-  padding-right: $margin-left + $blank-space;
-  margin-left: $margin-left;
-
   display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
-  background: $glob_resolution_blue;
-  padding-bottom: $blank-space - 2%;
+  justify-content: center;
+  margin: 2em 0;
 
   &__heading {
-    color: $glob_white;
+    color: $glob_dove-gray;
   }
-}*/
+}

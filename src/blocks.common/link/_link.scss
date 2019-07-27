@@ -1,37 +1,20 @@
 .link {
+  text-decoration: none;
+  font-family: Georgia;
+  font-style: italic;
+
+  &:link,
+  &:visited {
+    color: $glob_buddha-gold;
+  }
+
   &:link {
-    color: $glob_flesh;
-    text-decoration: none;
     transition: color 0.2s linear;
   }
 
-  &:visited {
-    color: $glob_flesh;
-    text-decoration: none;
-  }
-
-  &:focus {
-    color: $glob_atomic_tangerine;
-    text-decoration: none;
-  }
-
-  &:hover {
-    color: $glob_atomic_tangerine;
-    text-decoration: none;
-  }
-
-  &:active {
-    color: $glob_atomic_tangerine;
-    text-decoration: none;
-  }
-}
-
-.link__icon {
-  &:link,
-  &:visited,
   &:focus,
   &:hover,
   &:active {
-    fill: $glob_flesh;
+    color: #b38f00;
   }
 }
