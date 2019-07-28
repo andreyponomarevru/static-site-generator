@@ -1,12 +1,7 @@
 .section {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
   grid-row-gap: 2%;
-
-  @media screen and (min-width: $glob_screen-md) {
-    grid-template-columns: repeat(2, 1fr);
-    grid-row-gap: 0;
-  }
 
   &__page-main {
     padding: 0 4% 4em 4%;
