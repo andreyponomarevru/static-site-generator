@@ -138,9 +138,9 @@ module.exports = (env, options) => {
         test: /\.(woff|woff2|eot|ttf)$/, 
         use: [ 
           { 
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: { 
-              limit: 5000 
+              name: 'fonts/[name].[ext]',
             } 
           } 
         ]

@@ -52,6 +52,30 @@ $glob_transition-time: 0.3s;
   color: red;
 }
 
+@mixin font-face-regular {
+  font-family: Lato;
+  src: url('../../fonts/Lato-Regular.woff2') format('woff2'),
+    url('../../fonts/Lato-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin font-face-italic {
+  font-family: Lato;
+  src: url('../../fonts/Lato-Italic.woff2') format('woff2'),
+    url('../../fonts/Lato-Italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@mixin font-face-bold {
+  font-family: Lato;
+  src: url('../../fonts/Lato-Heavy.woff2') format('woff2'),
+    url('../../fonts/Lato-Heavy.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
+
 // *************
 // * FUNCTIONS *
 // *************
