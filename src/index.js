@@ -32,6 +32,11 @@ import './blocks.common/page-footer/_page-footer.scss';
 import './blocks.common/page/_page.scss';
 import './blocks.common/page/page.js';
 
+// Redefinition Levels
+// Ex: import './blocks.desktop/page/_page.scss';
+// Ex: import './blocks.ru/page/_page.scss';
+// ...
+
 /************
  * GRAPHICS *
  ************/

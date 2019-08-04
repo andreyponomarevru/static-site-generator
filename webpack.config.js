@@ -1,10 +1,9 @@
 const path = require('path');
 
-// Installed plugins:
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const PrettierPlugin = require("prettier-webpack-plugin"); // prettier.io/docs/en/options.html
+const PrettierPlugin = require("prettier-webpack-plugin"); 
 const TerserPlugin = require('terser-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -67,7 +66,7 @@ module.exports = (env, options) => {
   module: {
     rules: [
 
-      { 
+      { // CSS (SASS) LOADER
         test: /\.(sa|sc|c)ss$/,
         use: [     
           { loader: MiniCssExtractPlugin.loader },   
@@ -82,8 +81,7 @@ module.exports = (env, options) => {
           // this is the reason why css nano doesnt merge and optimize duplicated code 
           // from different SCSS files. Should be fixed
           // https://stackoverflow.com/questions/52564625/cssnano-doesnt-remove-duplicates
-          // https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/63#issuecomment-100493459
-       /*
+          // https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/63#issuecomment-100493459       
           { loader: 'postcss-loader', 
             options: { 
               config: { 
@@ -91,7 +89,7 @@ module.exports = (env, options) => {
               },
             }, 
           },
-         */ 
+         
           { 
             loader: 'sass-loader', 
             options: { 
@@ -103,7 +101,7 @@ module.exports = (env, options) => {
         ],
       },    
         
-      { // IMAGE LOADER https://webpack.js.org/loaders/file-loader/
+      { // IMAGE LOADER 
         test: /\.(jpe?g|png|gif|ico|svg)$/,
         use: [ 
           { 
@@ -116,7 +114,7 @@ module.exports = (env, options) => {
                 // `context` is directory where stored asset (`rootContext`) or `context` option
                 // To get relative path you can use
                 // const relativePath = path.relative(context, resourcePath);
-                //if (/favicon/.test(resourcePath)) return `favicon/${url}`;
+                // Another example: if (/favicon/.test(resourcePath)) return `favicon/${url}`;
                 return `${url}`;
               }
             },
@@ -124,24 +122,19 @@ module.exports = (env, options) => {
         ]
       },
 
-      { 
+      { // HTML (PUG) LOADER
         test: /\.pug$/, 
         use: [ 
-          { loader: 'html-loader',
-            options: {
-              //attrs: ['img:src','xlink:href','image:xlink:href'] 
-            }
-          }, 
+          { loader: 'html-loader' }, 
           { loader: 'pug-html-loader',
             options: { 
               "pretty": true,
-
             } 
           } 
         ] 
       },         
         
-      {
+      { // FONT LOADER
         test: /\.(woff|woff2|eot|ttf)$/, 
         use: [ 
           { 
@@ -200,6 +193,6 @@ module.exports = (env, options) => {
    
   ]
 
-  } // end of return
+  }
 };  
    

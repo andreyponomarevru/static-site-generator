@@ -1,6 +1,6 @@
-/*************
- * VARIABLES *
- *************/
+// *************
+// * VARIABLES *
+// *************
 
 // Typography
 $glob_font-stack_sans-serif: Lato, Arial, Verdana, sans-serif;
@@ -42,9 +42,9 @@ $glob_screen-xxl: 1800px !default;
 $glob_border-radius: 6px;
 $glob_transition-time: 0.3s;
 
-/**********
- * MIXINS *
- **********/
+// **********
+// * MIXINS *
+// **********
 
 @mixin glob_debugger {
   border: 1px solid red;
@@ -52,6 +52,6 @@ $glob_transition-time: 0.3s;
   color: red;
 }
 
-/*************
- * FUNCTIONS *
- *************/
+// *************
+// * FUNCTIONS *
+// *************
