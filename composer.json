@@ -1,0 +1,14 @@
+{
+    "name": "andreyponomarev/andreyponomarev.ru",
+    "description": "New project",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Andrey Ponomarev",
+            "email": "info@andreyponomarev.ru"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.0"
+    }
+}
