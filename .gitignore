@@ -1,22 +1,13 @@
-text-for-site.md
+######################
+####### Docker ####### 
+######################
 
-# ignore vim session and temp files
+postgres-db/volume/
+redis_data/
 
-*.vim
-*.swo
-*.swp
-
-
-
-# ignore log files and databases
-
-*.log
-*.sql
-*.sqlite
-
-
-
-# ignore compiled files
+######################
+### Compiled files ###
+######################
 
 *.com
 *.class
@@ -25,9 +16,24 @@ text-for-site.md
 *.o
 *.so
 
+##################################
+### Vim session and temp files ###
+##################################
 
+*.vim
+*.swo
+*.swp
 
-# ignore packaged files
+################################
+### Visual Studio Code files ###
+################################
+
+.vscode/*
+*.code-workspace
+
+######################
+### Packaged files ###
+######################
 
 *.7z
 *.dmg
@@ -38,40 +44,37 @@ text-for-site.md
 *.tar
 *.zip
 
+#############
+### Other ###
+#############
 
-
-# VS Code
-.vscode/                       
-*.code-workspace        
-
-# all project source files (docs, graphics, audio, video, ...)           
-_source/                        
-dist/
-
-
-
-# NPM
-
-node_modules/
-package-lock.json
-
-
-
-# PHP
-composer.phar
-/vendor/
-
-
-
-# other
+*.env
+*.log
 *~
 ~*
 .*
+package-lock.json
+.goutputstream-*
+node_modules/
+dist/
+log/
+_source/
 
-
-
-# Whitelisted Files (track these files, if they exist)
+###########################################################
+### Whitelisted Files (track these files if they exist) ###
+###########################################################
 
 !.gitignore
+!.gitattributes
 
+!.prettierrc
 
+!.eslintrc.js
+!.eslintignore
+
+!.dockerignore
+
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
