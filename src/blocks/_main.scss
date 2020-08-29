@@ -1,0 +1,502 @@
+//
+// Page
+//
+
+.page {
+  height: 100%;
+  background-color: white;
+
+  font-size: $font-size_root;
+  color: $color_gray-darken;
+
+  scroll-behavior: smooth;
+  background-attachment: fixed;
+
+  &__body {
+    height: 100%;
+
+    color: $color_gray-darken;
+    line-height: 1.5;
+
+    background-attachment: fixed;
+  }
+}
+
+//
+// Header
+//
+
+.header {
+  transition: 0.4s ease;
+  padding: 0.5em 4vw 0 4vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  font-size: 2rem;
+  grid-row-gap: 0.4rem;
+  align-items: center;
+  overflow: hidden;
+
+  @media screen and (min-width: $screen-lg) {
+    padding-top: 3rem;
+    grid-column-gap: 1rem;
+    grid-template-areas: "photo logo empty menu";
+    grid-template-columns: 80px 1fr 0.5fr auto;
+  }
+}
+
+//
+// My photo
+//
+
+.my-photo {
+  grid-area: "photo";
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 100000px;
+  overflow: hidden;
+
+  &__img {
+    width: auto;
+    height: 80px;
+    margin-left: -5px;
+    object-fit: cover;
+    transform: scale(1.3);
+  }
+}
+
+//
+// Logo
+//
+
+.logo {
+  font-family: $font-stack_tahoma;
+  font-weight: bold;
+  grid-area: "logo";
+  font-size: 2rem;
+}
+
+//
+// Menu
+//
+
+.menu {
+  grid-area: "menu";
+  display: flex;
+  align-items: right;
+  align-content: right;
+  justify-items: right;
+  justify-content: center;
+  width: 100%;
+
+  &__text {
+    font-family: "Tahoma";
+    font-size: 1.563rem;
+    line-height: 1.3;
+  }
+}
+
+//
+// Main
+//
+
+.main {
+  padding: 4em 4vw 4em 4vw;
+  display: grid;
+  grid-row-gap: 5em;
+}
+
+//
+// Projects
+//
+
+.projects {
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1.5rem 0 1.5rem 0;
+    grid-row-gap: 0.5rem;
+    border-top: 1px solid $color_gray-darken;
+
+    transition: all 0.4s ease;
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    &:last-child {
+      border-bottom: 1px solid $color_gray-darken;
+    }
+
+    @media only screen and (min-width: $screen-sm) {
+      border-top: 1px solid $color_gray-darken;
+      padding: 0.7rem 1rem 0.7rem 1rem;
+      grid-column-gap: 2%;
+      align-content: center;
+      grid-template-areas: "name buttons";
+      grid-template-columns: 1fr auto;
+
+      &:hover {
+        background-color: $color_dark-yellow;
+      }
+    }
+
+    @media only screen and (min-width: $screen-md) {
+      grid-template-areas: "name about buttons";
+      grid-template-columns: minmax(100px, 0.4fr) 1fr auto;
+    }
+
+    @media only screen and (min-width: $screen-xl) {
+      grid-template-areas: "name tags about buttons";
+      grid-template-columns: minmax(100px, 0.4fr) 0.6fr 1fr auto;
+    }
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 1.2rem;
+
+    @media screen and (min-width: $screen-sm) {
+      font-size: 1rem;
+    }
+  }
+
+  &__tags {
+    margin-top: -6px;
+    grid-area: "tags";
+    display: none;
+
+    @media screen and (min-width: $screen-xs) {
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    @media only screen and (min-width: $screen-sm) {
+      display: none;
+    }
+
+    @media only screen and (min-width: $screen-xl) {
+      display: flex;
+      flex-flow: row wrap;
+      align-content: flex-start;
+      align-items: flex-start;
+    }
+  }
+
+  &__tag {
+    position: relative;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em; /* always use `em` */
+    line-height: 1.6rem;
+    color: $color_gray-darken;
+    font-family: "Tahoma", "Arial";
+    border-radius: 100000px;
+    display: inline;
+    padding: 0 10px;
+    background-color: darken($color_gray-lightest, 3%);
+    margin: 6px 6px 0 0;
+    justify-content: flex-start;
+  }
+
+  &__about {
+    display: block;
+    font-size: 1rem;
+
+    @media only screen and (min-width: $screen-sm) {
+      display: none;
+    }
+
+    @media only screen and (min-width: $screen-md) {
+      display: block;
+    }
+  }
+}
+
+//
+// Buttons Column
+///
+
+.buttons-col {
+  display: grid;
+  align-items: start;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+
+//
+// Button
+//
+
+.button {
+  display: flex;
+  min-width: 50px;
+  line-height: 1.6rem;
+
+  align-items: center;
+  justify-content: center;
+  padding: 5px 15px 8px 15px;
+
+  font-size: 1rem;
+  line-height: 1.6rem;
+  font-family: "Tahoma";
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+
+  background-color: $color_gray-darken;
+  border-radius: 6px;
+  transition: 0.35s ease;
+
+  &:link {
+    color: white;
+    transition: all 0.4s linear;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: white;
+  }
+
+  &:hover {
+    color: white;
+    background-color: $color_link;
+  }
+
+  &:focus,
+  &:active {
+    color: white;
+  }
+
+  @media only screen and (min-width: $screen-sm) {
+    padding: 0px 15px 2px 15px;
+  }
+}
+
+//
+// Column header
+///
+
+.col-header {
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0 0.8rem 0;
+  border-bottom: 3px solid $color_gray-darken;
+
+  transition: all 0.4s ease;
+
+  @media only screen and (min-width: $screen-sm) {
+    padding: 0.8rem 1rem 0.8rem 1rem;
+  }
+}
+
+//
+// Various ( About, Tools, Articles )
+//
+
+.various {
+  &__content {
+    padding: 1rem 0 1rem 0;
+
+    @media only screen and (min-width: $screen-sm) {
+      padding: 1rem 1rem 1rem 1rem;
+    }
+  }
+
+  &__multi-col-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 4rem;
+    grid-auto-flow: row;
+
+    padding: 1rem 0 1rem 0;
+
+    font-size: 1rem;
+
+    transition: all 0.4s ease;
+
+    @media only screen and (min-width: $screen-sm) {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      padding: 0;
+    }
+
+    @media only screen and (min-width: 900px) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    @media only screen and (min-width: 1300px) {
+      grid-template-columns: minmax(300px, 1fr) minmax(200px, 1fr) minmax(
+          0,
+          1fr
+        );
+    }
+  }
+}
+
+//
+// Articles
+//
+
+.articles {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  &__item {
+    padding: 0 0 1rem 0;
+    border-bottom: 0px solid $color_gray-darken;
+  }
+}
+
+//
+// Footer
+///
+
+.footer {
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 2rem;
+
+  font-size: 1rem;
+}
+
+//
+// Typography
+//
+
+.text {
+  font-family: "Georgia";
+  line-height: 1.6rem;
+
+  // display as regular text
+  &_display_inline {
+    display: inline;
+  }
+  // display as paragraph
+  &_display_block {
+    display: block;
+    margin-bottom: 1em; /* space between paragraphs */
+
+    text-indent: 0;
+  }
+
+  &_style_bold {
+    font-weight: bold;
+  }
+
+  &_type_article {
+    font-family: "Georgia";
+    line-height: 1.6em;
+    font-size: 1rem;
+  }
+}
+
+//
+// List
+//
+
+.list {
+  list-style-position: inside;
+
+  @media only screen and (min-width: $screen-sm) {
+    list-style-position: outside;
+  }
+
+  &__item {
+    margin-left: 0;
+  }
+}
+
+//
+// Link
+//
+
+.link {
+  &:link {
+    color: $color_link;
+    transition: all 0.4s linear;
+    text-decoration: none;
+  }
+
+  &:visited {
+    color: $color_link;
+  }
+
+  &:hover {
+    color: $color_gray-darken;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    color: $color_gray-darken;
+  }
+
+  &:active {
+    color: $color_gray-darken;
+  }
+}
+
+//
+// Heading
+//
+
+.heading {
+  @include font-face__georgia-regular;
+  display: block;
+
+  font-size: 1rem;
+  font-style: normal;
+
+  &_size_h1 {
+    font-size: $font-size_h1;
+    line-height: 1.2;
+  }
+
+  &_size_h2 {
+    font-size: $font-size_h2;
+    line-height: 1.2;
+  }
+
+  &_size_h3 {
+    font-size: $font-size_h3;
+    line-height: 1.3;
+  }
+
+  &_size_h4 {
+    font-size: $font-size_h4;
+    line-height: 1.3;
+  }
+
+  &_size_h5 {
+    font-size: $font-size_h5;
+    line-height: 1.4;
+  }
+
+  &_size_h6 {
+    font-size: $font-size_h6;
+    line-height: 1.5;
+  }
+}
+
+//
+// Image
+//
+/*
+.img {
+  &__image {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 7px;
+
+    &_background_shadow {
+      background-color: black;
+      box-shadow: 0 20px 50px #888;
+    }
+  }
+}
+*/
