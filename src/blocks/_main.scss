@@ -137,7 +137,7 @@
       grid-template-columns: 1fr auto;
 
       &:hover {
-        background-color: $color_dark-yellow;
+        background-color: darken($color_gray-lightest, 3%);
       }
     }
 
