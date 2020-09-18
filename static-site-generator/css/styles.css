@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+
+  font-size: 16px;
+  color: #333;
+
+  scroll-behavior: smooth;
+  background-attachment: fixed;
+}
+
+body {
+  height: 100%;
+
+  color: #333;
+  line-height: 1.5;
+  background-color: #f7f2ee;
+}
+
+header {
+}
+
+nav {
+  margin: 1rem 0;
+}
+
+main {
+  padding: 3rem 5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+footer {
+  max-width: 100px;
+  margin: 2rem auto 1rem auto;
+  padding: 1rem;
+}
+
+/* Typography */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #333;
+  padding: 0.5rem 0 0.5rem 0;
+  font-family: "Tahoma";
+  font-weight: bold;
+  margin: 4rem 0 1rem 0;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+h1:first-child {
+  margin-top: 0;
+}
+
+blockquote {
+  background-color: #efe5dc;
+  border-left: 10px solid #d6bda8;
+  padding: 1rem 3rem 1rem 3rem;
+  margin: 1rem 0 1rem 0;
+}
+
+blockquote > p {
+  margin-bottom: 0;
+}
+
+p {
+  font-family: "Tahoma";
+  line-height: 1.8rem;
+
+  display: block;
+  margin-bottom: 1em; /* space between paragraphs */
+
+  text-indent: 0;
+}
+
+ul {
+  margin-bottom: 1rem;
+}
+
+li {
+  font-family: "Tahoma";
+  line-height: 1.6rem;
+  list-style-type: disc;
+}
+
+li > ul {
+  padding-left: 1.3rem;
+}
+
+li > ul > li > ul {
+  padding-left: 2.6rem;
+}
+
+li p {
+  margin-bottom: 0;
+}
+
+code {
+  font-family: "PT Mono";
+  background-color: #e7d7cb;
+  padding: 3px 6px;
+  border-radius: 6px;
+}
+
+pre {
+  overflow: hidden;
+}
+
+pre > code {
+  font-family: "PT Mono";
+  display: block;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  padding: 1rem;
+  background-color: #eee;
+}
+
+img {
+  display: block;
+  margin: 2rem auto;
+  max-width: 100%;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 4px;
+}
+
+hr {
+  margin: 2rem 0 2rem 0;
+  border-bottom: 0;
+}
+
+/* Links */
+
+a {
+  font-family: "Tahoma";
+  line-height: 1.6rem;
+  color: #997300;
+  text-decoration: none;
+}
