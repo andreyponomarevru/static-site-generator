@@ -60,7 +60,7 @@ try {
       : {};
     metaData.title = metaData.title || pageName;
     const pageContent = page[1];
-    console.log(pageContent);
+    //console.log(pageContent);
     fs.writeFileSync(
       path.join(outputPath, HTMLfileName),
       pageTemplate.generatePage(pageContent, metaData)

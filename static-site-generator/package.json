@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@octokit/core": "^3.1.2",
     "concurrently": "^5.3.0",
     "fs-extra": "^9.0.1",
     "live-server": "^1.2.1",
