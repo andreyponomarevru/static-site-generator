@@ -42,7 +42,7 @@ In a more technical words: a JavaScript engine is a program that translates (aka
 
 The engine is a container in which you run your program.
 
-![](./../../../img/engine.svg)
+![](./../img/engine.svg)
 
 The cool thing is the *JavaScript engine implementation is totally independent of the Runtime Environment*. Engines aren’t developed with any particular environment in mind. There’s a real-life example which demonstrates this approach is working. You can find the V8 engine both in Chrome browser and NodeJS. One engine successfully utilized in two environments created for totally different uses.
 
@@ -92,7 +92,7 @@ Note that although both Chrome browser and Node.js use the same engine (V8), the
 - Event Loop Implementation
 - some other stuff, that I'll explain below
 
-![](./../../../img/engine-vs-runtime.svg)
+![](./../img/engine-vs-runtime.svg)
 
 **ILLUSTRATION NOTE 1:** there is no "Worker Pool" in browser, it just creates threads by itself or somehow else, there is no info on Internet how it manages its threads)
 **ILLUSTRATION NOTE 2:** as your remember we have Native Objects aka JS built-ins and Host Objects. So here is the mental model note: Native Objects (all JavaScript native objects/methods) are supplied by JavaScript Engine itself i.e. it provides them to the Runtime Environment, which then takes them and exposes through its main Host Object `window`/`global`/...
@@ -134,7 +134,7 @@ For example when we schedule some timers or add event listener, Web APIs/Node.js
   * with some limitations, we can achive a real concurrency (multi-threadening) by utilizing WebWorkers ([`webworker-threads`](https://www.npmjs.org/package/webworker-threads)) or through built-in [`cluster`](http://nodejs.org/api/cluster.html) module 
   * Also we can *imitate*(to fake)* concurrency (multi-threaded behavior) by implementing some way of chunking up your work and manually using `setTimeout` or `setImmediate` or `process.nextTick` to pause your work and continue it in a later loop to let other processes complete (but that's not recommended). 
 
-![](./../../../img/eventloop.svg)
+![](./../img/eventloop.svg)
 
 
  

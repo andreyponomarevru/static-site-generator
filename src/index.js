@@ -15,3 +15,4 @@ require("./blocks/_main.scss");
 // `file-loader`):
 require("./img/002.jpg");
 require("./img/003.png");
+require("./img/icon_refresh.svg");

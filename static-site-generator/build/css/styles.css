@@ -7,8 +7,8 @@
 html {
   height: 100%;
 
-  font-size: 16px;
-  color: #333;
+  font-size: 15px;
+  color: #3c4144;
 
   scroll-behavior: smooth;
   background-attachment: fixed;
@@ -19,7 +19,7 @@ body {
 
   color: #333;
   line-height: 1.5;
-  background-color: #f7f2ee;
+  background-color: #f0f1f2;
 }
 
 header {
@@ -30,16 +30,18 @@ nav {
 }
 
 main {
-  padding: 3rem 5rem;
-  max-width: 800px;
+  padding: 3rem 12rem;
+  max-width: 1100px;
   margin: 0 auto;
   overflow: hidden;
+  background-color: #f0f1f2;
 }
 
 footer {
   max-width: 100px;
   margin: 2rem auto 1rem auto;
   padding: 1rem;
+  font-family: "Open Sans", sans-serif;s
 }
 
 /* Typography */
@@ -50,12 +52,12 @@ h3,
 h4,
 h5,
 h6 {
-  color: #333;
+  color: #3c4144;
   padding: 0.5rem 0 0.5rem 0;
-  font-family: "Tahoma";
-  font-weight: bold;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 800;
   margin: 4rem 0 1rem 0;
-  border-bottom: 1px solid #e3e3e3;
+  border-bottom: 4px solid #3c4144;
 }
 
 h1:first-child {
@@ -63,9 +65,9 @@ h1:first-child {
 }
 
 blockquote {
-  background-color: #efe5dc;
-  border-left: 10px solid #d6bda8;
-  padding: 1rem 3rem 1rem 3rem;
+  background-color: #d6d9db;
+  border-left: 10px solid #788187;
+  padding: 2rem 3rem 2rem 3rem;
   margin: 1rem 0 1rem 0;
 }
 
@@ -74,7 +76,7 @@ blockquote > p {
 }
 
 p {
-  font-family: "Tahoma";
+  font-family: "Open Sans", sans-serif;
   line-height: 1.8rem;
 
   display: block;
@@ -88,7 +90,7 @@ ul {
 }
 
 li {
-  font-family: "Tahoma";
+  font-family: "Open Sans", sans-serif;
   line-height: 1.6rem;
   list-style-type: disc;
 }
@@ -107,8 +109,9 @@ li p {
 
 code {
   font-family: "PT Mono";
-  background-color: #e7d7cb;
-  padding: 3px 6px;
+  background-color: #d6d9db;
+  color: #3c4144;
+  padding: 2px 5px;
   border-radius: 6px;
 }
 
@@ -142,8 +145,8 @@ hr {
 /* Links */
 
 a {
-  font-family: "Tahoma";
+  font-family: "Open Sans", sans-serif;
   line-height: 1.6rem;
-  color: #997300;
+  color: #1969b8;
   text-decoration: none;
 }

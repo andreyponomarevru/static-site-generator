@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./css/styles.css"><link rel="stylesheet" href="./css/prism.css">
     <script src="./js/main.js"></script><script src="./js/prism.js"></script>
     <link href="themes/prism.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/png" href="./img/favicon.png">
   </head>
   <body>
@@ -65,7 +66,7 @@ Just read the documentation for the function you are using, there will be the in
 <p>In simple words: the Engine handles interpreting and running your JavaScript code.</p>
 <p>In a more technical words: a JavaScript engine is a program that translates (aka compiles) your script's source code into runnable machine code instructions so it can be executed by the CPU of the host machine. The engine translates scripts at runtime on the fly. Your code won’t be compiled unless you run it.</p>
 <p>The engine is a container in which you run your program.</p>
-<p><img src="./../../../img/engine.svg" alt=""></p>
+<p><img src="./../img/engine.svg" alt=""></p>
 <p>The cool thing is the <em>JavaScript engine implementation is totally independent of the Runtime Environment</em>. Engines aren’t developed with any particular environment in mind. There’s a real-life example which demonstrates this approach is working. You can find the V8 engine both in Chrome browser and NodeJS. One engine successfully utilized in two environments created for totally different uses.</p>
 <p><strong>The Engine consists of:</strong></p>
 <ul>
@@ -110,7 +111,7 @@ Just read the documentation for the function you are using, there will be the in
 <li>Event Loop Implementation</li>
 <li>some other stuff, that I'll explain below</li>
 </ul>
-<p><img src="./../../../img/engine-vs-runtime.svg" alt=""></p>
+<p><img src="./../img/engine-vs-runtime.svg" alt=""></p>
 <p><strong>ILLUSTRATION NOTE 1:</strong> there is no &quot;Worker Pool&quot; in browser, it just creates threads by itself or somehow else, there is no info on Internet how it manages its threads)
 <strong>ILLUSTRATION NOTE 2:</strong> as your remember we have Native Objects aka JS built-ins and Host Objects. So here is the mental model note: Native Objects (all JavaScript native objects/methods) are supplied by JavaScript Engine itself i.e. it provides them to the Runtime Environment, which then takes them and exposes through its main Host Object <code>window</code>/<code>global</code>/...</p>
 <p>Now, lets take a step back and discuss what is threadening.</p>
@@ -146,7 +147,7 @@ So, <strong>it's best to imagine that in both browser and Node.js Runtime Enviro
 <li>with some limitations, we can achive a real concurrency (multi-threadening) by utilizing WebWorkers (<a href="https://www.npmjs.org/package/webworker-threads"><code>webworker-threads</code></a>) or through built-in <a href="http://nodejs.org/api/cluster.html"><code>cluster</code></a> module</li>
 <li>Also we can <em>imitate</em>(to fake)* concurrency (multi-threaded behavior) by implementing some way of chunking up your work and manually using <code>setTimeout</code> or <code>setImmediate</code> or <code>process.nextTick</code> to pause your work and continue it in a later loop to let other processes complete (but that's not recommended).</li>
 </ul>
-<p><img src="./../../../img/eventloop.svg" alt=""></p>
+<p><img src="./../img/eventloop.svg" alt=""></p>
 <h4>Browser Runtime Environment</h4>
 <p>Consists of (only most important parts):</p>
 <ul>
