@@ -313,7 +313,7 @@
 
 .various {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: 1fr;
   grid-auto-flow: row;
   grid-row-gap: 5rem;
 
@@ -323,22 +323,14 @@
 
   transition: all 0.3s ease;
 
-  @media only screen and (min-width: $screen-sm) {
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  @media only screen and (min-width: $screen-md) {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     padding: 0 0 5rem 0;
-  }
-
-  @media only screen and (min-width: 900px) {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media only screen and (min-width: 1300px) {
-    grid-template-columns: minmax(400px, 1fr) minmax(400px, 1fr);
   }
 
   &__content {
     color: $color_gray-lighten;
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 1rem;
 
     @media only screen and (min-width: $screen-sm) {
       padding: 1rem 2rem 1rem 2rem;
@@ -348,7 +340,7 @@
   &__row {
     display: grid;
     grid-template-columns: 1fr;
-    padding: 1.5rem 1rem 1.5rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
     grid-row-gap: 0.5rem;
     border-top: 1px solid $color_gray-darken;
     color: white;
@@ -359,6 +351,11 @@
     transition: all 0.1s ease;
 
     @media only screen and (min-width: $screen-sm) {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    @media only screen and (min-width: $screen-md) {
       border-top: 1px solid $color_gray-darken;
       padding: 1rem 2rem 1rem 2rem;
       grid-column-gap: 2rem;
@@ -394,7 +391,7 @@
   grid-template-columns: auto;
 
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1.5rem 2rem 2rem 2rem;
   color: black;
   background-color: white;
 
@@ -545,3 +542,12 @@
   }
 }
 */
+
+//
+// Misc
+//
+
+.gradient {
+  height: 2em;
+  background-image: linear-gradient(black, white);
+}
