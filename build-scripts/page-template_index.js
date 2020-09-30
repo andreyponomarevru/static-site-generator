@@ -1,10 +1,93 @@
-<!--
-   "eslint": "^7.7.0",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.1.1"
-  -->
-<!DOCTYPE html>
+const github = require("./github-api.js");
+
+const defaultMeta = {
+  lang: "en",
+  title: "A Page",
+  stylesheets: ["./styles.css"],
+  scripts: ["./js/main.js", "./js/prism.js"],
+  charset: "utf-8",
+  description: "This is a page",
+  keywords: "page, simple",
+  author: "Andrey Ponomarev",
+  favicon: "./img/favicon.png",
+  viewport: "width=device-width, initial-scale=1",
+  extra: [],
+};
+
+async function generatePage(pageContent, pageMeta = defaultMeta) {
+  const lastUpdate = await github.getGithubData();
+
+  const lang = pageMeta.lang || defaultMeta.lang;
+  const title = pageMeta.title || defaultMeta.title;
+  const charset = pageMeta.charset || defaultMeta.charset;
+  const description = pageMeta.description || defaultMeta.description;
+  const keywords = pageMeta.keywords || defaultMeta.keywords;
+  const author = pageMeta.author || defaultMeta.author;
+
+  const extra = pageMeta.hasOwnProperty("extra")
+    ? pageMeta.extra.length
+      ? pageMeta.extra.map((value) => `<meta ${value}>`)
+      : ""
+    : "";
+
+  const stylesheets = (() => {
+    if (pageMeta.hasOwnProperty("stylesheets")) {
+      if (pageMeta.stylesheets.length) {
+        return pageMeta.stylesheets
+          .map((value) => `<link rel="stylesheet" href="${value}">`)
+          .join("");
+      } else {
+        return "";
+      }
+    } else {
+      return defaultMeta.stylesheets
+        .map((value) => `<link rel="stylesheet" href="${value}">`)
+        .join("");
+    }
+  })();
+
+  const scripts = pageMeta.hasOwnProperty("scripts")
+    ? pageMeta.scripts.length
+      ? pageMeta.scripts
+          .map((value) => `<script src="${value}"></script>`)
+          .join("")
+      : ""
+    : defaultMeta.scripts
+        .map((value) => `<script src="${value}"></script>`)
+        .join("");
+
+  const icon = pageMeta.favicon || defaultMeta.favicon;
+
+  const html0 = `<!DOCTYPE html>
+<html lang="${lang}" class="md-page">
+  <head>
+  <title>${title}</title>
+  <meta charset="${charset}">
+  <meta name="description" content="${description}">
+  <meta name="keywords" content="${keywords}">
+  <meta name="author" content="${author}">
+  ${extra}
+  ${stylesheets}
+  ${scripts}
+  <link rel="icon" type="image/png" href="${icon}">
+  </head>
+  <body class="md-page__body">
+    <header class="md-header">
+        <nav class="md-nav">
+          <a href="http://andreyponomarev.ru">HOME</a>
+        </nav>
+    </header>
+    <main class="md-main">
+      ${md.render(pageContent)}
+    </main>
+    <footer class="md-footer">
+      <div class="gradient-bottom"></div>
+      <div>${lastUpdate.date} ${lastUpdate.month} ${lastUpdate.year}</div>
+    </footer>
+  </body>
+</html>`;
+
+  const html = `<!DOCTYPE html>
 <html class="page" lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -298,27 +381,6 @@
           </div>
         </div>
       </div>
-      <!-- TOOLS 
-        <div>
-          <div class="col-header">
-            <a id="tools">TOOLS</a>
-          </div>
-          <div class="various__content">
-            <p class="text paragraph">
-              My main tools that I use on a daily bases:
-            </p>
-            <ul class="text paragraph list">
-              <li class="list__item">JavaScript (Node.js) (Express.js)</li>
-              <li class="list__item">PostgreSQL</li>
-              <li class="list__item">Nginx</li>
-              <li class="list__item">Docker</li>
-              <li class="list__item">Git</li>
-              <li class="list__item">Linux, Bash scripting</li>
-            </ul>
-          </div>
-        </div>
-        -->
-      <!-- -->
     </main>
 
     <div class="gradient"></div>
@@ -339,4 +401,9 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
-</html>
+</html>`;
+
+  return html;
+}
+
+module.exports.generatePage = generatePage;
