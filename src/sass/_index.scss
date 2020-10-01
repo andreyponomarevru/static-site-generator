@@ -201,6 +201,7 @@
 
   &__title {
     font-weight: 800;
+    overflow: hidden;
   }
 
   &__tags {
@@ -261,7 +262,7 @@
   display: grid;
   align-items: start;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1.3rem;
+  grid-gap: 1rem;
 }
 
 //
