@@ -1,5 +1,5 @@
 const md = require("markdown-it")();
-const github = require("./github-api.js");
+const github = require("./../github-api.js");
 
 const defaultMeta = {
   lang: "en",
@@ -16,7 +16,7 @@ const defaultMeta = {
 };
 
 async function generatePage(pageContent, pageMeta = defaultMeta) {
-  const lastUpdate = await github.getGithubData();
+  const lastUpdate = await github.getRepository("andreyponomarev");
 
   const lang = pageMeta.lang || defaultMeta.lang;
   const title = pageMeta.title || defaultMeta.title;

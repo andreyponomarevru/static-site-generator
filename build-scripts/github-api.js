@@ -1,29 +1,78 @@
-const { Octokit } = require("@octokit/core");
+const request = require("superagent");
+const { encodeToBase64 } = require("./../utility.js");
 
-async function getGithubData() {
-  // https://docs.github.com/en/rest/reference/repos#get-a-repository
-  const octokit = new Octokit({ auth: process.env.GITHUB });
+const USER_AGENT = "Mozilla/5.0";
+const API_BASEURL = "https://api.github.com";
+const API_TOKEN = process.env.GITHUB;
+const REPO_OWNER = "ponomarevandrey";
+const credentials = encodeToBase64(`${REPO_OWNER}:${API_TOKEN}`);
 
-  const res = await octokit.request(`GET /repos/{owner}/{repo}`, {
-    owner: "ponomarevandrey",
-    repo: "andreyponomarev",
-  });
-
-  let isoUpdDate = res.data.updated_at;
-  isoUpdDate = new Date(isoUpdDate).toDateString();
-  //Mon Sep 14 2020
-  const str1 = isoUpdDate.match(/\b[A-Za-z]{3,3}\b/g);
-  const str2 = isoUpdDate.match(/\b\d{1,2}\b/);
-  const str3 = isoUpdDate.match(/\b\d{4,4}\b/);
-  const month = str1[1];
-  const date = str2[0];
-  const year = str3[0];
-  //formattedUpdDate = `${isoUpdDate.getFullYear()} ${
-  //isoUpdDate.getMonth() + 1
-  // } ${isoUpdDate.getDate()}`;
-  const result = { date, month, year };
-  console.log(result);
-  return result;
+function handleRequestError(err) {
+  console.error(err);
 }
 
-module.exports.getGithubData = getGithubData;
+// Doc: https://docs.github.com/en/rest/reference/repos#get-a-repository
+async function getRepository(repo) {
+  const res = await request
+    .get(`${API_BASEURL}/repos/${REPO_OWNER}/${repo}`)
+    .set("user-agent", USER_AGENT)
+    .set("authorization", `Basic ${credentials}`)
+    .on("error", handleRequestError);
+
+  return res.body;
+}
+// getRepository("musicbox").then(console.log).catch(console.error);
+
+/*
+// Doc: https://docs.github.com/en/free-pro-team@latest/rest/reference/git#trees
+async function getFileLastModificationDate(repo, filePath) {
+  const res = await request
+    .get(`${API_BASEURL}/repos/${REPO_OWNER}/${repo}`)
+    .set("user-agent", USER_AGENT)
+    .set("authorization", `Basic ${credentials}`)
+    .query({
+      accept: "application/vnd.github.v3+json",
+      owner: REPO_OWNER,
+      repo,
+      tree_sha: "cb563b3db1d938c0b611cc68b9bc47ea07105bdc",
+    })
+    .on("error", handleRequestError);
+
+  return res.body;
+  
+  //const res = await octokit.request(
+  //  `GET /repos/{owner}/{repo}/git/trees/{tree_sha}`,
+  //  {
+   //   owner: REPO_OWNER,
+   //   repo: repo,
+   //   tree_sha: "cb563b3db1d938c0b611cc68b9bc47ea07105bdc",
+   //   //recursive: "",
+   // }
+  //);
+}
+*/
+async function getFileLastModificationData(repo, filePath) {
+  const res = await request
+    .get(
+      `${API_BASEURL}/repos/${REPO_OWNER}/${repo}/commits?path=${filePath}&page=1&per_page=1`
+    )
+    .set("user-agent", USER_AGENT)
+    .set("authorization", `Basic ${credentials}`)
+    .query({
+      accept: "application/vnd.github.v3+json",
+      owner: REPO_OWNER,
+      repo,
+      tree_sha: "cb563b3db1d938c0b611cc68b9bc47ea07105bdc",
+    })
+    .on("error", handleRequestError);
+
+  //const commiterDate = formatISOstr(res.body[0].commit.comitter.date);
+
+  return {
+    upd: res.body[0].commit.committer.date,
+    msg: res.body[0].commit.message,
+  };
+}
+
+module.exports.getRepository = getRepository;
+module.exports.getFileLastModificationData = getFileLastModificationData;

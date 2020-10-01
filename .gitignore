@@ -57,6 +57,7 @@ package-lock.json
 .goutputstream-*
 node_modules/
 dist/
+build/
 log/
 _source/
 

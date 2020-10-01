@@ -236,7 +236,7 @@
     border-radius: 10000px;
     display: inline;
     padding: 0 10px;
-    margin: 6px 6px 0 0;
+    margin: 10px 6px 0 0;
     justify-content: flex-start;
   }
 
@@ -261,7 +261,7 @@
   display: grid;
   align-items: start;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
+  grid-gap: 1.3rem;
 }
 
 //

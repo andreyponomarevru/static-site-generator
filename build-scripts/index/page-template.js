@@ -1,4 +1,78 @@
+const fs = require("fs-extra");
+const articlesSection = require("./page-template_section_articles.js");
+const projectsSection = require("./page-template_section_projects.js");
 
+const projects = [
+  {
+    repo: "musicbox",
+    tech: [
+      "Docker",
+      "Node.js",
+      "JavaScript",
+      "Express.js",
+      "PostgreSQL",
+      "React.js",
+      "SCSS",
+      "Pug",
+      "Webpack",
+    ],
+  },
+  {
+    repo: "biscuit-components",
+    tech: ["SCSS", "CSS", "JavaScript", "Webpack", "BEM", "Pug"],
+  },
+  {
+    repo: "automation-scripts",
+    tech: ["Shell", "Linux"],
+  },
+  {
+    repo: "configs",
+    tech: [
+      "JavaScript",
+      "Webpack",
+      "ESLint",
+      "VSCode",
+      "Git",
+      "SQL",
+      "SCSS",
+      "Shell",
+      "Pug",
+      "Docker",
+      "Docker Compose",
+      "Linux",
+    ],
+  },
+  {
+    repo: "andreyponomarev",
+    tech: ["JavaScript, HTML, SCSS"],
+  },
+];
+
+const articles = [
+  {
+    repo: "programming-sandbox",
+    filePath: "text/programming/javascript/async-programming.md",
+    url:
+      "https://github.com/ponomarevandrey/programming-sandbox/blob/master/text/programming/javascript/async-programming.md",
+  },
+  {
+    repo: "programming-sandbox",
+    filePath: "text/index.md",
+    url:
+      "https://github.com/ponomarevandrey/programming-sandbox/blob/master/text/index.md",
+  },
+  {
+    repo: "programming-sandbox",
+    filePath: "text/authentication/token-based-authentication.md",
+    url:
+      "https://github.com/ponomarevandrey/programming-sandbox/blob/master/text/authentication/token-based-authentication.md",
+  },
+];
+
+async function generatePage(pageContent, pageMeta = defaultMeta) {
+  // const articles = await fs.readdir("./src/md");
+
+  const html = `
 <!DOCTYPE html>
 <html class="page" lang="en">
   <head>
@@ -80,57 +154,13 @@
           <a id="projects">PROJECTS</a>
         </div>
         <div class="projects__content">
-          
-    <div class="projects__row">
-      <span class="projects__title">musicbox</span>
-      <p class="projects__tags"><span class="projects__tag">Docker</span><span class="projects__tag">Node.js</span><span class="projects__tag">JavaScript</span><span class="projects__tag">Express.js</span><span class="projects__tag">PostgreSQL</span><span class="projects__tag">React.js</span><span class="projects__tag">SCSS</span><span class="projects__tag">Pug</span><span class="projects__tag">Webpack</span></p>
-      <p class="projects__about">Web-based music library manager, facilitating the navigation around large audio collections</p>
-      <div class="buttons-col">
-        <a href="https://github.com/ponomarevandrey/musicbox" class="button">Github</a>
-        <a href="http://andreyponomarev.ru/demo/musicbox" class="button">Demo</a>
-      </div>
-    </div>  
-  
-    <div class="projects__row">
-      <span class="projects__title">biscuit-components</span>
-      <p class="projects__tags"><span class="projects__tag">SCSS</span><span class="projects__tag">CSS</span><span class="projects__tag">JavaScript</span><span class="projects__tag">Webpack</span><span class="projects__tag">BEM</span><span class="projects__tag">Pug</span></p>
-      <p class="projects__about">UI components/code snippets library for developing websites based on BEM methodology and a mobile-first approach.</p>
-      <div class="buttons-col">
-        <a href="https://github.com/ponomarevandrey/biscuit-components" class="button">Github</a>
-        <a href="https://andreyponomarev.ru/biscuit-components/" class="button">Demo</a>
-      </div>
-    </div>  
-  
-    <div class="projects__row">
-      <span class="projects__title">automation-scripts</span>
-      <p class="projects__tags"><span class="projects__tag">Shell</span><span class="projects__tag">Linux</span></p>
-      <p class="projects__about">—</p>
-      <div class="buttons-col">
-        <a href="https://github.com/ponomarevandrey/automation-scripts" class="button">Github</a>
-        
-      </div>
-    </div>  
-  
-    <div class="projects__row">
-      <span class="projects__title">configs</span>
-      <p class="projects__tags"><span class="projects__tag">JavaScript</span><span class="projects__tag">Webpack</span><span class="projects__tag">ESLint</span><span class="projects__tag">VSCode</span><span class="projects__tag">Git</span><span class="projects__tag">SQL</span><span class="projects__tag">SCSS</span><span class="projects__tag">Shell</span><span class="projects__tag">Pug</span><span class="projects__tag">Docker</span><span class="projects__tag">Docker Compose</span><span class="projects__tag">Linux</span></p>
-      <p class="projects__about">Template projects, initialization files and configs for Bash, Docker, SQL, Webpack, Git, VS Code, ...</p>
-      <div class="buttons-col">
-        <a href="https://github.com/ponomarevandrey/configs" class="button">Github</a>
-        
-      </div>
-    </div>  
-  
-    <div class="projects__row">
-      <span class="projects__title">andreyponomarev</span>
-      <p class="projects__tags"><span class="projects__tag">JavaScript, HTML, SCSS</span></p>
-      <p class="projects__about">Custom static site generator built from scratch for personal website</p>
-      <div class="buttons-col">
-        <a href="https://github.com/ponomarevandrey/andreyponomarev" class="button">Github</a>
-        <a href="http://andreyponomarev.ru" class="button">Demo</a>
-      </div>
-    </div>  
-  
+          ${(
+            await Promise.all(
+              projects.map(({ repo, tech }) =>
+                projectsSection.buildProjectRow({ repo, tech })
+              )
+            )
+          ).join("")}
         </div>
       </div>
 
@@ -143,43 +173,13 @@
             <a id="articles">ARTICLES</a>
           </div>
           <div class="various__articles">
-            
-    <div class="text various__row">
-      <a href="https://github.com/ponomarevandrey/programming-sandbox/blob/master/text/programming/javascript/async-programming.md" class="link">Async programming</a>
-      <div class="various__updated">
-        <img
-          src="./img/icon_refresh.svg"
-          alt="Biscuit Logo"
-          class="img-svg"
-        />
-        <span class="update_time">18 Sep 2020</span>
-      </div>
-    </div>
-  
-    <div class="text various__row">
-      <a href="https://github.com/ponomarevandrey/programming-sandbox/blob/master/text/index.md" class="link">Index</a>
-      <div class="various__updated">
-        <img
-          src="./img/icon_refresh.svg"
-          alt="Biscuit Logo"
-          class="img-svg"
-        />
-        <span class="update_time">01 Oct 2020</span>
-      </div>
-    </div>
-  
-    <div class="text various__row">
-      <a href="https://github.com/ponomarevandrey/programming-sandbox/blob/master/text/authentication/token-based-authentication.md" class="link">Token based-authentication</a>
-      <div class="various__updated">
-        <img
-          src="./img/icon_refresh.svg"
-          alt="Biscuit Logo"
-          class="img-svg"
-        />
-        <span class="update_time">25 Jun 2020</span>
-      </div>
-    </div>
-  
+            ${(
+              await Promise.all(
+                articles.map(({ repo, filePath, url }) =>
+                  articlesSection.buildArticleRow({ repo, filePath, url })
+                )
+              )
+            ).join("")}
             <div class="text various__row">
               <a href="#" class="link">SOLID in javascript</a>
               <div class="various__updated">
@@ -274,4 +274,9 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
-</html>
+</html>`;
+
+  return html;
+}
+
+module.exports.generatePage = generatePage;
