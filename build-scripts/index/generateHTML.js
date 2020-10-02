@@ -178,7 +178,7 @@ async function generateHTML({ projects, articles }) {
               I wrote my first lines of code back in 2003, and since 2006 I'm doing web development professionally, as an independent contractor. 
               
               <p class="text text_display_block">
-                The period from the mid-2000s to the mid-2010s, I've mostly been working as a web designer and front-end developer but in recent years I've moved to the server side and primarily do backend development.
+                The period from the mid-2000s to the mid-2010s, I've mostly been working as a web designer and front-end developer but in recent years have moved to the server side and primarily do backend stuff.
               </p>
             </p>
 
