@@ -1,15 +1,15 @@
 const fs = require("fs-extra");
 const path = require("path");
-const sass = require("./../utility.js");
+const sass = require("./../utility/sassPromiseWrapper.js");
 
 async function compileSass({ from, to }) {
   try {
     console.log("Compiling Sass to CSS...");
-    const { css: cssString } = await sass.render({ file: from });
+    const { css } = await sass.render({ file: from });
     await fs.ensureDir(path.dirname(to));
-    await fs.writeFile(to, cssString);
+    await fs.writeFile(to, css);
   } catch (err) {
-    console.error(err);
+    console.error(err.stack);
     process.exit(1);
   }
 }
