@@ -1,10 +1,9 @@
 const fs = require("fs-extra");
 const path = require("path");
-const template = require("./page-template.js");
+const { generateHTML } = require("./generateHTML.js");
 
-// Read everything in the pages and pages_meta directories.
 async function loadMarkdown(dir) {
-  console.log("Loading pages...");
+  console.log(`Loading Markdown from /${dir}...`);
 
   const pages = {};
 
@@ -14,13 +13,15 @@ async function loadMarkdown(dir) {
     }
     return pages;
   } catch (err) {
-    console.error(`Error during page loading: ${err}`);
+    console.error(
+      `Error during reading Markdown loading from ${dir}: ${err.stack}`
+    );
     process.exit(1);
   }
 }
 
 async function loadMarkdownMetadata(pagesMetaPath) {
-  console.log("Loading pages metadata...");
+  console.log("Loading Markdown metadata...");
 
   const pagesMeta = {};
 
@@ -33,14 +34,15 @@ async function loadMarkdownMetadata(pagesMetaPath) {
     }
     return pagesMeta;
   } catch (err) {
-    console.error(`Error during metadata loading: ${err}`);
+    console.error(`Error during Markdown metadata loading: ${err.stack}`);
     process.exit(1);
   }
 }
 
-// Generate each page from the data provided, using the template.
-async function generateHTML(pages, pagesMeta, outputDir) {
-  console.log("Generating pages...");
+async function writeHTML(pages, pagesMeta, outputDir) {
+  console.log(
+    "Writing HTML from Markdown using the JSON and template provided..."
+  );
 
   try {
     for (const [key, pageContent] of Object.entries(pages)) {
@@ -55,11 +57,11 @@ async function generateHTML(pages, pagesMeta, outputDir) {
       await fs.ensureDir(outputDir);
       await fs.writeFile(
         path.join(outputDir, HTMLfileName),
-        await template.generatePage(pageContent, metaData)
+        await generateHTML(pageContent, metaData)
       );
     }
   } catch (err) {
-    console.error(`Error during page generation: ${err}`);
+    console.error(`Error during writing HTML from Markdown: ${err.stack}`);
     process.exit(1);
   }
 }
@@ -67,7 +69,7 @@ async function generateHTML(pages, pagesMeta, outputDir) {
 async function compilePages({ inputDir, outputDir, metadataDir }) {
   const pages = await loadMarkdown(inputDir);
   const pagesMeta = await loadMarkdownMetadata(metadataDir);
-  await generateHTML(pages, pagesMeta, outputDir);
+  await writeHTML(pages, pagesMeta, outputDir);
 }
 
 module.exports.compilePages = compilePages;
