@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-md": "node ./build-scripts/builder.js",
-    "start": "concurrently --kill-others \"nodemon -e js,json,css,md -i build -x \\\"npm run build-md\\\"\" \"live-server ./build\""
+    "start": "concurrently --kill-others \"nodemon -e js,json,scss,md -i build -x \\\"npm run build-md\\\"\" \"live-server ./build\""
   },
   "keywords": [],
   "author": "",
