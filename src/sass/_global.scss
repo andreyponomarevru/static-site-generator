@@ -5,11 +5,12 @@
 // *************
 
 // font-family
-$font-stack_tahoma: "Tahoma", "Arial", "Verdana", "Helvetica", sans-serif;
+$font-stack_opensans: "Open Sans", "Tahoma", "Arial", "Verdana", "Helvetica",
+  sans-serif;
 $font-stack_georgia: "Georgia", "Big Caslon", "Hoefler Text", "Garamond",
   "Baskerville", "Palatino Linotype", "Times New Roman", "Times", serif;
-$font-stack_consolas: "Consolas", "Lucida Console", "Lucida Sans Typewriter",
-  "Courier New", "Courier", monospace;
+$font-stack_consolas: "Consolas", "PT Mono", "Lucida Console",
+  "Lucida Sans Typewriter", "Courier New", "Courier", monospace;
 
 // font size
 $font-size_root: 16px;
@@ -50,9 +51,9 @@ $color_danger: #d40000;
 $color_info: #3ca8c3;
 $color_disabled: #939dac;
 
-$color_link: #000;
+$color_link: #0099ff;
 $color_code-text: #333;
-$color_code-bg: #f3e5d8;
+$color_code-bg: #eee;
 
 $color_skin: #ecdcc6;
 $color_sand: #d4992a;
@@ -97,33 +98,3 @@ $zindex-tooltip: 1070 !default;
 
 // other
 $border_radius: 0.5em !default;
-
-// **********
-// * MIXINS *
-// **********
-
-// typography
-@mixin font-face__georgia-regular {
-  font-family: "Georgia";
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@mixin font-face__georgia-italic {
-  font-family: "Georgia";
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@mixin font-face__georgia-bold {
-  font-family: "Georgia";
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-// *************
-// * FUNCTIONS *
-// *************
