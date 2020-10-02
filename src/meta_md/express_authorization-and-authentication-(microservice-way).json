@@ -1,6 +1,6 @@
 {
   "title": "Express Authorization & Authentication the Microservice Way (Express.js)",
-  "description": "Asynchronous Programming Fundamentals",
-  "keywords": "javascript, asynchronous, programming, node.js",
+  "description": "How to perform Authorization & Authentication in Microservice Architecture (Express.js)",
+  "keywords": "javascript, authentication, authorization, microservices, node.js",
   "url": "https://github.com/ponomarevandrey/programming-sandbox/blob/master/code/nodejs/express_authorization-and-authentication-(microservice-way)/README.md"
 }
