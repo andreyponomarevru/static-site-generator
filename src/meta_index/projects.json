@@ -1,0 +1,21 @@
+[{
+		"repo": "musicbox",
+		"tech": ["Docker", "Node.js", "Express.js", "PostgreSQL", "React.js", "SCSS", "Pug", "Webpack"]
+	},
+	{
+		"repo": "biscuit-components",
+		"tech": ["SCSS", "JavaScript", "Webpack"]
+	},
+	{
+		"repo": "automation-scripts",
+		"tech": ["Shell", "Linux"]
+	},
+	{
+		"repo": "configs",
+		"tech": ["Webpack", "ESLint", "VSCode", "Git", "SQL", "Shell", "Docker"]
+	},
+	{
+		"repo": "andreyponomarev",
+		"tech": ["Node.js", "SCSS"]
+	}
+]
