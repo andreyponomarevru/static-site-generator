@@ -1,26 +1,31 @@
 //
-// Static site generator
+// Styles for pages generated from Markdown
 //
 
 .md-page {
   height: 100%;
-
-  font-size: 15px;
-  color: #3c4144;
 
   scroll-behavior: smooth;
   background-attachment: fixed;
 }
 
 .md-page__body {
+  position: relative;
+
   height: 100%;
 
-  color: #333;
+  color: $color_gray-dark;
+  font-size: 15px;
   line-height: 1.5;
 }
 
 .md-header {
-  background-color: black;
+  border-bottom: 1px solid $color_gray-light;
+  background-color: white;
+
+  @media only screen and (min-width: $screen-md) {
+    margin: 0 0 0 5rem;
+  }
 }
 
 .md-nav {
@@ -28,41 +33,111 @@
   grid-template-columns: repeat(3, 1fr);
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 3rem;
-  color: white;
-  font-family: "Open Sans", sans-serif;
+  padding: 0.8rem 2rem;
+
+  font-family: $font-stack_opensans;
   font-weight: 800;
   letter-spacing: 4px;
   font-size: 1.2rem;
-  margin: 0 auto;
-  background-color: black;
 }
 
 .md-main {
-  position: relative;
-  padding: 2rem 3rem;
-  // max-width: 800px;
+  padding: 2rem;
   margin: 0 auto;
+  max-width: 800px;
   overflow: hidden;
-  // background-color: #fff0ff;
+
+  @media only screen and (min-width: $screen-md) {
+    padding: 2rem 2rem 2rem 8rem;
+  }
 }
 
 .md-footer {
-  margin: 2rem auto 1rem auto;
-  padding: 1rem;
-  font-family: "Open Sans", sans-serif;
-  background-color: black;
   padding: 0 0 2rem 0;
   margin: 0 auto;
+
+  font-family: $font-stack_opensans;
+  background-color: black;
+
   color: white;
   text-align: right;
+}
+
+.md-last-update {
+  &__text {
+    color: $color_gray;
+  }
 }
 
 .md-footer > div {
   padding: 1rem 3rem 0 0;
 }
 
+.gradient-bottom {
+  height: 2em;
+  background-image: linear-gradient(white, black);
+}
+
+.sidebar {
+  display: none;
+
+  @media only screen and (min-width: $screen-md) {
+    position: fixed;
+    z-index: $zindex-fixed;
+
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vh;
+    height: 6em;
+
+    font-family: $font-stack_opensans;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.7rem;
+
+    transform-origin: left top;
+    transform: rotate(-90deg) translateX(-100%);
+    border-bottom: 1px solid $color_gray-light;
+    background-color: white;
+  }
+}
+
 // Typography
+
+.md-page {
+  h1 {
+    font-size: $font-size_h1;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: $font-size_h2;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: $font-size_h3;
+    line-height: 1.3;
+  }
+
+  h4 {
+    font-size: $font-size_h4;
+    line-height: 1.3;
+  }
+
+  h5 {
+    font-size: $font-size_h5;
+    line-height: 1.4;
+  }
+
+  h6 {
+    font-size: $font-size_h6;
+    line-height: 1.5;
+  }
+}
 
 .md-page h1,
 .md-page h2,
@@ -72,7 +147,7 @@
 .md-page h6 {
   color: #3c4144;
   padding: 0.5rem 0 0.5rem 0;
-  font-family: "Open Sans", sans-serif;
+  font-family: $font-stack_opensans;
   font-weight: 800;
   margin: 3rem 0 1rem 0;
   padding: 0rem 3rem 0 3rem;
@@ -87,8 +162,7 @@
 }
 
 .md-page blockquote {
-  width: 100%;
-  background-color: #ecdcc6;
+  background-color: #e6f5ff;
   padding: 2rem 3rem 2rem 3rem;
   margin: 0 0 1em 0;
 }
@@ -99,7 +173,7 @@
 }
 
 .md-page p {
-  font-family: "Open Sans", sans-serif;
+  font-family: $font-stack_opensans;
   line-height: 1.8rem;
 
   display: block;
@@ -113,7 +187,7 @@
 }
 
 .md-page li {
-  font-family: "Open Sans", sans-serif;
+  font-family: $font-stack_opensans;
   line-height: 1.6rem;
   list-style-type: disc;
 }
@@ -130,49 +204,38 @@
   margin-bottom: 0;
 }
 
-/*
 .md-page p code {
-  font-family: "PT Mono";
-  background-color: #dfc59f;
-  color: black;
   padding: 2px 5px;
+
+  font-family: $font-stack_consolas;
+  color: $color_code-text;
+
   border-radius: 6px;
+  background-color: $color_code-bg;
 }
 
 .md-page pre {
   overflow: hidden;
 }
-*/
+
 .md-page img {
   display: block;
   margin: 2rem auto;
   max-width: 100%;
+  padding: 2rem 0;
+
   background-color: white;
-  padding: 2rem;
   border-radius: 4px;
 }
 
 .md-page hr {
-  margin: 2rem 0 2rem 0;
+  margin: 2rem 0;
   border-bottom: 0;
 }
 
-// Links
-
 .md-page a {
-  font-family: "Open Sans", sans-serif;
+  font-family: $font-stack_opensans;
   line-height: 1.6rem;
-  color: white;
   text-decoration: none;
-}
-
-.md-page a {
-  color: blue;
-}
-
-// Other
-
-.gradient-bottom {
-  height: 2em;
-  background-image: linear-gradient(#f0f1f2, black);
+  color: $color_link;
 }
