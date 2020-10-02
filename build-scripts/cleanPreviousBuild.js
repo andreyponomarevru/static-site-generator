@@ -9,7 +9,7 @@ async function cleanPreviousBuild(rootOutputPath) {
       await fs.remove(path.join(rootOutputPath, file));
     }
   } catch (err) {
-    console.error(`Error during cleanup: ${err}`);
+    console.error(`Error during cleanup: ${err.stack}`);
     process.exit(1);
   }
 }
