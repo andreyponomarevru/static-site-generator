@@ -1,6 +1,6 @@
 const md = require("markdown-it")();
-const github = require("./../githubAPIClient.js");
-const { formatISOstr } = require("./../../utility/formatISOstr.js");
+const github = require("../githubAPIClient.js");
+const { formatISOstr } = require("../../utility/formatISOstr.js");
 
 const defaultMeta = {
   lang: "en",
