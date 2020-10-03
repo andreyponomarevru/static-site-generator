@@ -2,10 +2,10 @@ const path = require("path");
 const github = require("./../githubAPIClient.js");
 const { formatISOstr } = require("./../../utility/formatISOstr.js");
 
-async function buildProjectRow({ repo, tech }) {
+async function buildProjectRow({ repo, tech, branch }) {
   try {
     const r = await github.getRepository(repo);
-    const { date, message } = await github.getRepoLastCommit(repo);
+    const { date, message } = await github.getRepoLastCommit(repo, branch);
     tech = tech.map((v) => `<span class="projects__tag">${v}</span>`).join("");
     const { day, month, year } = formatISOstr(date);
 
@@ -140,11 +140,7 @@ async function generateHTML({ projects, articles }) {
           <a id="projects">PROJECTS</a>
         </div>
         <div class="projects__content">
-          ${(
-            await Promise.all(
-              projects.map(({ repo, tech }) => buildProjectRow({ repo, tech }))
-            )
-          ).join("")}
+          ${(await Promise.all(projects.map(buildProjectRow))).join("")}
         </div>
       </div>
 
@@ -157,11 +153,7 @@ async function generateHTML({ projects, articles }) {
             <a id="articles">ARTICLES</a>
           </div>
           <div class="various__articles">
-            ${(
-              await Promise.all(
-                articles.map((article) => buildArticleRow(article))
-              )
-            ).join("")}
+            ${(await Promise.all(articles.map(buildArticleRow))).join("")}
           </div>
         </div>
 

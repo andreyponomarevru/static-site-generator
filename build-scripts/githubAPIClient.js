@@ -25,8 +25,8 @@ async function getRepository(repo) {
   return res.body;
 }
 
-async function getRepoLastCommit(repo) {
-  const endpoint = `${API_BASEURL}/repos/${REPO_OWNER}/${repo}/commits/master`;
+async function getRepoLastCommit(repo, branch) {
+  const endpoint = `${API_BASEURL}/repos/${REPO_OWNER}/${repo}/commits/${branch}`;
 
   const res = await request
     .get(endpoint)

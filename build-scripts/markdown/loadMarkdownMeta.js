@@ -1,7 +1,7 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-async function loadMarkdownMetadata(pagesMetaPath) {
+async function loadMarkdownMeta(pagesMetaPath) {
   console.log("Loading Markdown metadata...");
 
   const pagesMeta = {};
@@ -20,4 +20,4 @@ async function loadMarkdownMetadata(pagesMetaPath) {
   }
 }
 
-module.exports.loadMarkdownMetadata = loadMarkdownMetadata;
+module.exports.loadMarkdownMeta = loadMarkdownMeta;
