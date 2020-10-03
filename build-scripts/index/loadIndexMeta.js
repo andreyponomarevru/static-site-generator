@@ -1,7 +1,7 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-async function loadIndexMetadata(indexMetadataDir, mdMetadataDir) {
+async function loadIndexMeta(indexMetadataDir, mdMetadataDir) {
   console.log("Loading index page secion's metadata...");
 
   const sectionsMeta = {
@@ -31,4 +31,4 @@ async function loadIndexMetadata(indexMetadataDir, mdMetadataDir) {
   }
 }
 
-module.exports.loadIndexMetadata = loadIndexMetadata;
+module.exports.loadIndexMeta = loadIndexMeta;
