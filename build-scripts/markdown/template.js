@@ -17,7 +17,7 @@ const defaultMeta = {
   favicon: "",
   viewport: "width=device-width, initial-scale=1",
   url:
-    "https://github.com/ponomarevandrey/programming-sandbox/blob/master/text/programming/javascript/async-programming.md",
+    "https://github.com/ponomarevandrey/programming-sandbox/blob/master/text/index.md",
   extra: [],
 };
 
