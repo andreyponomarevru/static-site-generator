@@ -15,7 +15,6 @@ function handleRequestError(err) {
 // Doc: https://docs.github.com/en/rest/reference/repos#get-a-repository
 async function getRepository(repo) {
   const endpoint = `${API_BASEURL}/repos/${REPO_OWNER}/${repo}`;
-  console.log(`Getting repository from ${endpoint}...`);
 
   const res = await request
     .get(endpoint)
@@ -28,7 +27,6 @@ async function getRepository(repo) {
 
 async function getRepoLastCommit(repo) {
   const endpoint = `${API_BASEURL}/repos/${REPO_OWNER}/${repo}/commits/master`;
-  console.log(`Getting repository last commit from ${endpoint}...`);
 
   const res = await request
     .get(endpoint)
@@ -53,7 +51,6 @@ async function getFileLastCommit(url) {
   const repo = url.split("/")[4];
   const filePath = url.split("blob/master")[1];
   const endpoint = `${API_BASEURL}/repos/${REPO_OWNER}/${repo}/commits?path=${filePath}&page=1&per_page=1`;
-  console.log(`Getting file's last commit from ${endpoint}...`);
 
   const res = await request
     .get(endpoint)
