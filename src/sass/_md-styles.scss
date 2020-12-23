@@ -7,6 +7,7 @@
 
   scroll-behavior: smooth;
   background-attachment: fixed;
+  background-color: $color_gray-lightest;
 }
 
 .md-page__body {
@@ -14,68 +15,69 @@
 
   height: 100%;
 
-  color: $color_gray-dark;
+  color: $color_gray-darkest;
   font-size: 15px;
   line-height: 1.5;
 }
 
 .md-header {
-  border-bottom: 1px solid $color_gray-light;
-  background-color: white;
+  position: fixed;
+  z-index: $zindex-fixed;
+
+  width: 100%;
 
   @media only screen and (min-width: $screen-md) {
-    margin: 0 0 0 5rem;
+    margin: 0 0 0 0;
   }
 }
 
 .md-nav {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, auto);
   justify-content: space-between;
   align-items: center;
   padding: 0.8rem 2rem;
+  column-gap: 1rem;
+
+  background-color: white;
 
   font-family: $font-stack_opensans;
   font-weight: 800;
-  letter-spacing: 4px;
+  text-transform: uppercase;
   font-size: 1.2rem;
 }
 
 .md-main {
+  position: relative;
+  top: 4rem;
+
   padding: 2rem;
-  margin: 0 auto;
-  max-width: 800px;
   overflow: hidden;
 
-  @media only screen and (min-width: $screen-md) {
-    padding: 2rem 2rem 2rem 8rem;
+  @media only screen and (min-width: $screen-lg) {
+    padding: 4rem;
   }
 }
 
 .md-footer {
-  padding: 0 0 2rem 0;
+  padding: 0 0 1rem 0;
   margin: 0 auto;
 
   font-family: $font-stack_opensans;
-  background-color: black;
-
-  color: white;
+  color: $color_gray-dark;
   text-align: right;
+
+  background-color: white;
 }
 
 .md-last-update {
   &__text {
-    color: $color_gray;
+    color: $color_gray-light;
   }
 }
 
 .md-footer > div {
   padding: 1rem 3rem 0 0;
-}
-
-.gradient-bottom {
-  height: 2em;
-  background-image: linear-gradient(white, black);
 }
 
 .sidebar {
@@ -145,16 +147,23 @@
 .md-page h4,
 .md-page h5,
 .md-page h6 {
-  color: #3c4144;
-  padding: 0.5rem 0 0.5rem 0;
+  color: black;
   font-family: $font-stack_opensans;
-  font-weight: 800;
-  margin: 3rem 0 1rem 0;
-  padding: 0rem 3rem 0 3rem;
+  font-weight: 600;
+
+  margin: 3rem 0 1rem -1rem;
+  padding: 0 4rem;
 
   position: relative;
   left: -3rem;
-  width: calc(100% + 3rem + 3rem);
+  width: 100%;
+}
+
+.md-page h1 {
+  color: white;
+  background-color: black;
+
+  padding: 4rem 4rem;
 }
 
 .md-page h1:first-child {
@@ -162,14 +171,15 @@
 }
 
 .md-page blockquote {
-  background-color: #e6f5ff;
-  padding: 2rem 3rem 2rem 3rem;
+  background-color: #005ce6;
+  padding: 0.3rem 1.5rem;
   margin: 0 0 1em 0;
 }
 
 .md-page blockquote > p {
   margin-bottom: 0;
   margin: 0.5rem 0 0.6rem 0;
+  color: white;
 }
 
 .md-page p {
@@ -190,6 +200,7 @@
   font-family: $font-stack_opensans;
   line-height: 1.6rem;
   list-style-type: disc;
+  margin-left: 0;
 }
 
 .md-page li > ul {
@@ -205,13 +216,12 @@
 }
 
 .md-page p code {
-  padding: 2px 5px;
+  padding: 2px 5px 1px 5px;
 
   font-family: $font-stack_consolas;
   color: $color_code-text;
 
-  border-radius: 6px;
-  background-color: $color_code-bg;
+  background-color: lighten($color_gray-lighten, 7%);
 }
 
 .md-page pre {
@@ -231,11 +241,27 @@
 .md-page hr {
   margin: 2rem 0;
   border-bottom: 0;
+  border-top: 2px dashed $color_gray-dark;
 }
 
 .md-page a {
   font-family: $font-stack_opensans;
   line-height: 1.6rem;
-  text-decoration: none;
-  color: $color_link;
+  color: $color_gray-dark;
+}
+
+.md-gradient {
+  height: 2em;
+
+  &_header {
+    background-image: linear-gradient(
+      white,
+      $color_gray-lightest,
+      rgba(255, 255, 255, 0)
+    );
+  }
+
+  &_footer {
+    background-image: linear-gradient($color_gray-lightest, white);
+  }
 }

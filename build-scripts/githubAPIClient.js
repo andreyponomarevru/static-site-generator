@@ -8,6 +8,8 @@ const REPO_OWNER = "ponomarevandrey";
 
 const credentials = encodeToBase64(`${REPO_OWNER}:${API_TOKEN}`);
 
+console.log(API_TOKEN)
+
 function handleRequestError(err) {
   console.error(err);
 }

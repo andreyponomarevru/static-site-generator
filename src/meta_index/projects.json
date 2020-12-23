@@ -15,22 +15,18 @@
   },
   {
     "repo": "biscuit-components",
-    "tech": ["SCSS", "JavaScript", "Webpack"],
     "branch": "master"
   },
   {
     "repo": "automation-scripts",
-    "tech": ["Shell", "Linux"],
     "branch": "master"
   },
   {
     "repo": "configs",
-    "tech": ["Webpack", "ESLint", "VSCode", "Git", "SQL", "Shell", "Docker"],
     "branch": "master"
   },
   {
     "repo": "andreyponomarev",
-    "tech": ["Node.js", "SCSS"],
     "branch": "dev"
   }
 ]

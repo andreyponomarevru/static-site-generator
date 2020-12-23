@@ -15,7 +15,8 @@ const defaultMeta = {
   keywords: "default, page",
   author: "Andrey Ponomarev",
   favicon: "",
-  viewport: "width=device-width, initial-scale=1",
+  viewport:
+    "width=device-width,initial-scale=1,viewport-fit=cover,shrink-to-fit=no",
   url:
     "https://github.com/ponomarevandrey/programming-sandbox/blob/master/text/index.md",
   extra: [],
@@ -31,6 +32,7 @@ async function generateHTML(pageContent, pageMeta = defaultMeta) {
   const description = pageMeta.description || defaultMeta.description;
   const keywords = pageMeta.keywords || defaultMeta.keywords;
   const author = pageMeta.author || defaultMeta.author;
+  const viewport = pageMeta.viewport || defaultMeta.viewport;
 
   const extra = (() => {
     if (pageMeta.hasOwnProperty("extra")) {
@@ -73,6 +75,7 @@ async function generateHTML(pageContent, pageMeta = defaultMeta) {
   <head>
   <title>${title}</title>
   <meta charset="${charset}">
+  <meta name="viewport" content="${viewport}">
   <meta name="description" content="${description}">
   <meta name="keywords" content="${keywords}">
   <meta name="author" content="${author}">
@@ -82,17 +85,22 @@ async function generateHTML(pageContent, pageMeta = defaultMeta) {
   <link rel="icon" type="image/png" href="./../favicon.png">
   </head>
   <body class="md-page__body">
-    <div class="sidebar">Andrey Ponomarev</div>
+    <!-- <div class="sidebar"></div> -->
     <header class="md-header">
         <nav class="md-nav">
-          <a href="http://andreyponomarev.ru">HOME</a>
+          <a href="http://andreyponomarev.ru">home</a>
+          <a href="https://github.com/ponomarevandrey">github</a>
+          <a href="mailto:info@andreyponomarev.ru">email</a>
         </nav>
+        <div class="md-gradient md-gradient_header"></div>
     </header>
+    
+    
     <main class="md-main">
       ${md.render(pageContent)}
     </main>
     <footer class="md-footer">
-      <div class="gradient-bottom"></div>
+      <div class="md-gradient md-gradient_footer"></div>
       <div class="md-last-update">
         <span class="md-last-update__text">Last update:</span>
         <span class="md-last-update__date">${day} ${month} ${year}</span>

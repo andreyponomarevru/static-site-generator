@@ -2,11 +2,10 @@ const path = require("path");
 const github = require("./../githubAPIClient.js");
 const { formatISOstr } = require("./../../utility/formatISOstr.js");
 
-async function buildProjectRow({ repo, tech, branch }) {
+async function buildProjectRow({ repo, branch }) {
   try {
     const r = await github.getRepository(repo);
     const { date, message } = await github.getRepoLastCommit(repo, branch);
-    tech = tech.map((v) => `<span class="projects__tag">${v}</span>`).join("");
     const { day, month, year } = formatISOstr(date);
 
     return `
@@ -24,7 +23,6 @@ async function buildProjectRow({ repo, tech, branch }) {
           </span>
         </div>
     </div>
-      <p class="projects__tags">${tech}</p>
       <p class="projects__about">${r.description || "—"}</p>
       <div class="buttons-col">
         <a href="${r.html_url}" class="button">Github</a>
@@ -43,9 +41,9 @@ async function buildArticleRow({ title, url }) {
   const fileName = path.basename(url).replace("md", "html");
 
   return `
-    <div class="text various__row">
+    <div class="text content__row">
       <a href="./pages/${fileName}" class="link">${title}</a>
-      <div class="various__updated">
+      <div class="content__updated">
         <img
           src="./img/icon_refresh.svg"
           alt="Last commit"
@@ -114,12 +112,12 @@ async function generateHTML({ projects, articles }) {
   <body class="page__body">
     <!-- HEADER -->
     <header class="header">
-      <div class="my-photo">
+      <a href="http://andreyponomarev.ru" class="my-photo">
         <img
           src="https://sun9-52.userapi.com/c850520/v850520824/148c19/BC4V9wrvBvo.jpg"
           class="my-photo__img"
         />
-      </div>
+      </a>
 
       <nav class="nav">
         <a
@@ -145,33 +143,37 @@ async function generateHTML({ projects, articles }) {
       </div>
 
       <!-- CONTENT -->
-      <div class="various">
+      <div class="content">
 
         <!-- ARTICLES -->
-        <div class="various__articles">
-          <div class="col-header col-header_type_articles">
+        <div class="content__column">
+          <h1 class="col-header col-header_type_articles">
             <a id="articles">ARTICLES</a>
-          </div>
-          <div class="various__articles">
+          </h1>
+          <div class="content__articles">
             ${(await Promise.all(articles.map(buildArticleRow))).join("")}
           </div>
         </div>
 
         <!-- ABOUT -->
-        <div class="various__about">
-          <div class="col-header col-header_type_about">
+        <div class="content__column">
+          <h1 class="col-header col-header_type_about">
             <a id="about">ABOUT</a>
-          </div>
-          <div class="various__content">
+          </h1>
+          <div class="content__text">
             <p class="text text_display_block">
-              Hi, my name is Andrey, I'm a web developer.
+              Hi, my name is Andrey, I'm a web developer specializing in the  back-end (Node.js).
             </p>
             <p class="text text_display_block">
               I wrote my first lines of code back in 2003, and since 2006 I'm doing web development professionally, as an independent contractor. 
-              
-              <p class="text text_display_block">
-                The period from the mid-2000s to the mid-2010s, I've mostly been working as a web designer and front-end developer but in recent years have moved to the server side and primarily do backend stuff.
-              </p>
+            </p>
+
+            <p class="text text_display_block">
+              If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>.
+            </p>
+
+            <p class="text text_display_block">
+              <a href="./about.html" class="link">Read more about me</a>
             </p>
 
           </div>

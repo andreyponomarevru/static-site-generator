@@ -4,3 +4,159 @@
 @import "_prism.scss";
 @import "_md-styles.scss";
 @import "_index.scss";
+
+// Typography
+
+.text {
+  font-size: $font-size_lg;
+  font-family: $font-stack_opensans;
+  line-height: $line-height_lg;
+
+  &_display_inline {
+    display: inline;
+  }
+
+  &_display_block {
+    display: block;
+    margin-bottom: 1em; /* space between paragraphs */
+
+    text-indent: 0;
+  }
+
+  &_style_bold {
+    font-weight: 800;
+  }
+
+  &_type_article {
+    font-family: $font-stack_opensans;
+  }
+
+  &_size_md {
+    font-size: 1rem;
+    letter-spacing: 0.02rem;
+    line-height: $line-height_xl;
+  }
+}
+
+.list {
+  list-style-position: inside;
+
+  @media only screen and (min-width: $screen-md) {
+    list-style-position: outside;
+  }
+
+  &__item {
+    margin-left: 0;
+  }
+}
+
+.link {
+  &:link {
+    color: $color_skin;
+    text-decoration: none;
+
+    transition: color 0.35s ease-out, background 0.15s ease-in;
+  }
+
+  &:visited {
+    color: $color_skin;
+  }
+
+  &:hover {
+    color: white;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    color: whute;
+  }
+
+  &:active {
+    color: white;
+  }
+}
+
+.heading {
+  display: block;
+  width: 100%;
+
+  font-family: $font-stack_opensans;
+  font-size: 1rem;
+  font-style: normal;
+
+  &_size_h1 {
+    font-size: $font-size_h1;
+    line-height: 1.2;
+  }
+
+  &_size_h2 {
+    font-size: $font-size_h2;
+    line-height: 1.2;
+  }
+
+  &_size_h3 {
+    font-size: $font-size_h3;
+    line-height: 1.3;
+  }
+
+  &_size_h4 {
+    font-size: $font-size_h4;
+    line-height: 1.3;
+  }
+
+  &_size_h5 {
+    font-size: $font-size_h5;
+    line-height: 1.4;
+  }
+
+  &_size_h6 {
+    font-size: $font-size_h6;
+    line-height: 1.5;
+  }
+}
+
+.img-svg {
+  box-sizing: border-box;
+  width: 1rem;
+}
+
+.gradient {
+  height: 2em;
+  background-image: linear-gradient(black, white);
+}
+
+// Layout
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-flow: row;
+  row-gap: 5rem;
+
+  padding: 1rem 0;
+
+  font-size: 1rem;
+
+  @media only screen and (min-width: $screen-md) {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    padding: 0 0 5rem 0;
+  }
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: auto;
+  justify-content: space-between;
+  padding: 1.5rem 2rem 2rem 2rem;
+
+  font-size: 1rem;
+  color: black;
+
+  background-color: white;
+
+  @media only screen and (min-width: $screen-sm) {
+    grid-template-columns: auto auto;
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
+}

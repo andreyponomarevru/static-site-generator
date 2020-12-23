@@ -3,8 +3,9 @@ const { cleanPreviousBuild } = require("./cleanPreviousBuild.js");
 const { compileSass } = require("./compileSass.js");
 const { copyAssets } = require("./copyAssets.js");
 const indexTemplate = require("./index/template.js");
+const aboutTemplate = require("./about/template.js");
 const markdownTemplate = require("./markdown/template.js");
-const { writeHTML: writeIndexHTML } = require("./index/writeHTML.js");
+const { writeHTML } = require("./writeHTML.js");
 const { writeHTML: writeMarkdownHTML } = require("./markdown/writeHTML.js");
 const { loadMarkdown } = require("./markdown/loadMarkdown.js");
 const { loadMarkdownMeta } = require("./markdown/loadMarkdownMeta.js");
@@ -36,7 +37,18 @@ const MD_OUTPUT_PATH = `${ROOT_OUTPUT_PATH}/pages`;
     await writeMarkdownHTML(pages, pagesMeta, MD_OUTPUT_PATH, markdownTemplate);
 
     const sectionsMeta = await loadIndexMeta(INDEX_META_PATH, MD_META_PATH);
-    await writeIndexHTML(sectionsMeta, ROOT_OUTPUT_PATH, indexTemplate);
+    await writeHTML({
+      sectionsMeta: sectionsMeta,
+      outputDir: ROOT_OUTPUT_PATH,
+      template: indexTemplate,
+      fileName: "index.html",
+    });
+    await writeHTML({
+      sectionsMeta: {},
+      outputDir: ROOT_OUTPUT_PATH,
+      template: aboutTemplate,
+      fileName: "about.html",
+    });
   } catch (err) {
     console.error(err);
   }

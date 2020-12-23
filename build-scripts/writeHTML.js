@@ -1,13 +1,13 @@
 const fs = require("fs-extra");
 const path = require("path");
 
-async function writeHTML(sectionsMeta, outputDir, template) {
+async function writeHTML({ sectionsMeta, outputDir, template, fileName }) {
   console.log("Writing HTML...");
 
   try {
     await fs.ensureDir(outputDir);
     await fs.writeFile(
-      path.join(outputDir, `index.html`),
+      path.join(outputDir, fileName),
       await template.generateHTML(sectionsMeta)
     );
   } catch (err) {
