@@ -84,10 +84,9 @@ async function generateHTML(pageContent, pageMeta = defaultMeta) {
   ${scripts}
   <link rel="icon" type="image/png" href="./../favicon.png">
   </head>
-  <body class="md-page__body">
-    <!-- <div class="sidebar"></div> -->
-    <header class="md-header">
-        <nav class="md-nav">
+  <body>
+    <header>
+        <nav>
           <a href="http://andreyponomarev.ru">home</a>
           <a href="https://github.com/ponomarevandrey">github</a>
           <a href="mailto:info@andreyponomarev.ru">email</a>
@@ -96,16 +95,10 @@ async function generateHTML(pageContent, pageMeta = defaultMeta) {
     </header>
     
     
-    <main class="md-main">
+    <main>
+      <time datetime="${year}">Last update: ${day} ${month} ${year}</time>
       ${md.render(pageContent)}
     </main>
-    <footer class="md-footer">
-      <div class="md-gradient md-gradient_footer"></div>
-      <div class="md-last-update">
-        <span class="md-last-update__text">Last update:</span>
-        <span class="md-last-update__date">${day} ${month} ${year}</span>
-      </div>
-    </footer>
   </body>
 </html>`;
 
