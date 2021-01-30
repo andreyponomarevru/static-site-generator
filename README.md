@@ -10,12 +10,8 @@ Node.js static site generator built from scratch for personal website
 # Requirements
 
 * Node.js
-* Set your GitHub API token in `GITHUB` environment variable. Example:
-  ```shell
-  sudo vim /etc/environment # or ~/.bashrc
-  GITHUB="yourApiToken"
-  ```
-* Set you GitHub account name in `REPO_OWNER` environment variable (in `nodemon.json`)
+* Set your GitHub API token in `GITHUB` environment variable (in `/etc/environment` or `~/.bashrc`)
+* Set GitHub repository owner name in `REPO_OWNER` environment variable (in `nodemon.json`)
 
 # Structure
 
@@ -23,7 +19,7 @@ Node.js static site generator built from scratch for personal website
   * `dns/` - DNS settings
   * `favicon/`
   * `img/` - images used on index page and in markdown articles
-  * `js/`
+  * `js/` - scripts
   * `md/` - markdown articles
   * `meta_index/projects.json` - metadata for portfolio projects ("Portfolio" section on index page)
   * `meta_md/` - metadata for markdown articles ("Articles" section on index page)
@@ -48,4 +44,4 @@ git push --set-upstream https://github.com/ponomarevandrey/my-website master --f
 
 # How to change the domain name
 1. Change the domain name in `/src/dns/CNAME` 
-2. https://github.com/ponomarevandrey/my-website/settings > GitHub Pages > Custom Domain (add new domain)
+2. [Repository settings](https://github.com/ponomarevandrey/my-website/settings) > GitHub Pages > Custom Domain (add new domain)
