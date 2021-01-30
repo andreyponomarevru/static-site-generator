@@ -3,7 +3,6 @@ const { cleanPreviousBuild } = require("./cleanPreviousBuild.js");
 const { compileSass } = require("./compileSass.js");
 const { copyAssets } = require("./copyAssets.js");
 const indexTemplate = require("./index/template.js");
-const aboutTemplate = require("./about/template.js");
 const markdownTemplate = require("./markdown/template.js");
 const { writeHTML } = require("./writeHTML.js");
 const { writeHTML: writeMarkdownHTML } = require("./markdown/writeHTML.js");
