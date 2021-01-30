@@ -28,18 +28,15 @@ Node.js static site generator built from scratch for personal website
   * `index/template.js` - index page template
   * `mardown/template.js` - markdown articles template
   * `githubAPIClient.js` - GitHub API client
+* `update-website` - Shell-script for updating the website
 
 # How to update the website
 
 ```shell
-# 1. Build (the script builds the index page as well as all markdown articles pages)
+# 1. Build. The script builds the index page as well as all markdown articles pages
 npm run start
 
-# 2. Push updated build files to https://github.com/ponomarevandrey/my-website, for example:
-cd build
-git init
-git add --all && git commit -m "Update"
-git push --set-upstream https://github.com/ponomarevandrey/my-website master --force
+# 2. Push to GitHub. Run `update-website` script from the root dir. The script pushes all files from `build` dir to https://github.com/ponomarevandrey/my-website, replacing all repository content with new files
 ```
 
 # How to change the domain name
