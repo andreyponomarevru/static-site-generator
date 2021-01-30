@@ -4,11 +4,12 @@ const { encodeToBase64 } = require("./../utility/encodeToBase64.js");
 const USER_AGENT = "Mozilla/5.0";
 const API_BASEURL = "https://api.github.com";
 const API_TOKEN = process.env.GITHUB;
-const REPO_OWNER = "ponomarevandrey";
+const REPO_OWNER = process.env.REPO_OWNER;
 
 const credentials = encodeToBase64(`${REPO_OWNER}:${API_TOKEN}`);
 
 console.log(API_TOKEN)
+console.log(process.env.test)
 
 function handleRequestError(err) {
   console.error(err);
