@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" class="md-page">
+  <head>
+  <title>Express Authorization & Authentication the Microservice Way (Express.js)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,shrink-to-fit=no">
+  <meta name="description" content="How to perform Authorization & Authentication in Microservice Architecture (Express.js)">
+  <meta name="keywords" content="javascript, authentication, authorization, microservices, node.js">
+  <meta name="author" content="Andrey Ponomarev">
+  
+  <link rel="stylesheet" href="./../main.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400&display=swap">
+  <script src="./../js/prism.js"></script>
+  <link rel="icon" type="image/png" href="./../favicon.png">
+  </head>
+  <body>
+    <header>
+        <nav>
+          <a href="http://andreyponomarev.ru">home</a>
+          <a href="https://github.com/ponomarevandrey">github</a>
+          <a href="mailto:info@andreyponomarev.ru">email</a>
+        </nav>
+        <div class="md-gradient md-gradient_header"></div>
+    </header>
+    
+    
+    <main>
+      <time datetime="2020">Last update: 25 Aug 2020</time>
+      <h1>Authorization + Authentication (session-based + token-based) in Microservice Architecture</h1>
+<ul>
+<li>References
+<ul>
+<li><a href="https://stackoverflow.com/questions/26038191/protecting-user-sign-up-api">How to protect /signup API route from spam bots? Rate limiting, ...</a></li>
+<li><a href="https://alphacoder.xyz/microservices-architecture-authentication/">Authentication strategies in microservices architecture</a></li>
+</ul>
+</li>
+<li>What you should do next
+<ul>
+<li>protect you API from spam bots that automatically create empty accounts:
+<ul>
+<li>implement rate limiting for API (in API gateway on better in Nginx)</li>
+<li>implement reCaptcha for web users (much more important then rate limiting!)</li>
+<li>do smth else</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>To verify is everything secure, post the authentication flow you describe in this article to https://security.stackexchange.com/</p>
+</blockquote>
+<h2>About project</h2>
+<p>This project implements authorization and authentication in application based on Microservice Architecture.</p>
+<p><strong>Authentication:</strong> the project uses session-based authentication for web browser users and token-based authentication for API users.</p>
+<p><strong>Authorization:</strong> as authorization doesn't need neither sessions nor tokens it is fundamentally the same in any architecture and in any approach</p>
+<hr>
+<p><strong>Don't worry about these architectural details too much, read more about Microservice Architecture and you'll understand how to organize it properly. Maybe the stuff I write below is wrong yadayadayad, it's just a rough temporary plan. With experience you'll we know how to organiez it better.</strong> Read this, btw: https://stackoverflow.com/questions/59289909/how-to-hide-multiple-websockets-services-behind-an-api-gateway</p>
+<p>In this project I build everything as distributed system. We have several Docker containers, each deployed on a separate server; two of these servers put into one network and two other servers in another network. We do this to decrease the attack surface: &quot;AUTHNET&quot; network is hidden and not publicly available):</p>
+<ul>
+<li>FRONTNET: main app/API gateway container</li>
+<li>FRONTNET: database storing the stuff related to the application itself like text of notes in &quot;Notes App&quot; (we don't create this container, I mention it just as a reminder)</li>
+<li>FRONTNET: Redis for storing session data (we could have Redis on the same server as main app/API Gateway but we won't be able to scale the app. Imagine 3 servers all running instances of main app/API Gateway. All of them need access to the same session data, this we move Redis to separate server which will handle requests from all other 3 servers)</li>
+<li>AUTHNET: Authentication Microservice container</li>
+<li>AUTHNET: Users Database (stores registered users and their data + API tokens of signed in users)</li>
+</ul>
+<blockquote>
+<p>But if you deploy to your own server, forget about &quot;FRONTNET&quot; and &quot;AUTHNET&quot;, everything will be on your single server and you will use a single database for storing both application data (like notes text in &quot;Notes App&quot;) and Authentication Microservice data (users data including login/pass).</p>
+</blockquote>
+<hr>
+<p><img src="./../../../img/microservice_architecture.svg" alt=""></p>
+<ul>
+<li>all communication is handled through HTTPS</li>
+<li>for tokens I use randomly generated unique strings (not JWT) (random string generation is using a cryptographically secure random function)</li>
+<li>I use microservice architecture</li>
+</ul>
+<h2>Sign up</h2>
+<p><img src="./../../../img/authentication_session-and-token_signup.png" alt=""></p>
+<h2>Sign in</h2>
+<p><img src="./../../../img/authentication_session-and-token_signin.png" alt=""></p>
+<ol>
+<li>When a user logs in, the backend app sends the provided username/pass to my Authentication microservice</li>
+<li>Auth. microservice verifies username/pass, generates token, saves it in its Users db (+associates the token with the current user). Then it returns the token to backend app.</li>
+<li>Backend app creates a session (stores it in some in-memory db), saves this token in session, and responds to browser with a cookie.</li>
+<li>On every subsequent request user sends cookie &gt; backend app retrieves token from session data &gt; sends it to Auth. microservice which verifies token and grants access.</li>
+</ol>
+<h2>Upon each subsequent request (i.e. signed in user)</h2>
+<p><img src="./../../../img/authentication_session-and-token_subsequent.png" alt=""></p>
+<p><strong>Note.</strong> In step 5, Authentication Microservice returns the object with <code>is_authenticated</code> property - we never save it in session, we use it in code just to verify if the user is allowed to call API, something like <code>if (is_authenticated) createUser();</code></p>
+<p>Don't confuse this property with the same property <code>is_authenticated</code> that is stored in session (check it above in &quot;Sign in&quot; flow at step 7) - the <code>is_authenticated</code> stored in session reflects the state of Web browser user, whether he is signed in or not, it has nothing to do with API authentication</p>
+<h2>Sign out</h2>
+<p><img src="./../../../img/authentication_session-and-token_signout.png" alt=""></p>
+
+    </main>
+  </body>
+</html>
