@@ -120,65 +120,109 @@ async function generateHTML({ projects, articles }) {
       </a>
 
       <nav class="nav">
-        <a
-          href="mailto:info@andreyponomarev.ru"
-          id="header"
-          class="header__link"
-          >info@andreyponomarev.ru</a
-        >
+        <a href="#projects" class="link">Projects</a>
+        <a href="#articles" class="link">Articles</a>
+        <a href="#about" class="link">About me</a>
       </nav>
     </header>
 
     <!-- MAIN -->
-    <main class="main">
+
+    <main class="main">   
+      <div class="about">
+        <div class="content">
+          <p class="text text_display_block">
+            Hi, my name is Andrey, I'm a web developer specializing in the  back-end (Node.js).
+          </p>
+          <p class="text text_display_block">
+            I wrote my first lines of code back in 2003, and since 2006 I'm doing web development professionally, as an independent contractor. 
+          </p>
+          <p class="text text_display_block">
+            My tools:
+          </p>
+          <p class="text text_display_block">
+            <strong>frontend:</strong> React.js, Webpack, CSS (SASS)<br>
+            <strong>backend:</strong> JavaScript/TypeScript (Node.js), PostgreSQL, Nginx, Docker, Linux, Shell scripting
+          </p>
+          <p class="text text_display_block">
+            If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>. I will reply within 24 hours.
+          </p>
+          <div class="contacts"> 
+            <a href="https://github.com/ponomarevandrey" class="contacts__link">GitHub</a>
+            <a href="https://www.linkedin.com/in/andrey-ponomarev-438bb8140/" class="contacts__link">LinkedIn</a>
+          </div>
+        </div>
+      </div>
 
       <!-- PROJECTS -->
-      <div class="projects">
-        <div class="col-header col-header_type_projects">
-          <a id="projects">PROJECTS</a>
-        </div>
+
+      <div class="projects" id="projects">
+        <div class="col-header col-header_h1">PROJECTS</div>
         <div class="projects__content">
           ${(await Promise.all(projects.map(buildProjectRow))).join("")}
         </div>
       </div>
 
-      <!-- CONTENT -->
-      <div class="content">
+      <!-- ARTICLES -->
+      <!--
+      <div class="articles" id="articles">
+        <h1 class="col-header col-header_h1">ARTICLES</h1>
+        <h2 class="col-header col-header_h2">JavaScript</h2>
+        <div>
+          ${(await Promise.all(articles.map(buildArticleRow))).join("")}
+        </div>
+        
+      </div>
 
-        <!-- ARTICLES -->
-        <div class="content__column">
-          <h1 class="col-header col-header_type_articles">
-            <a id="articles">ARTICLES</a>
-          </h1>
-          <div class="content__articles">
-            ${(await Promise.all(articles.map(buildArticleRow))).join("")}
-          </div>
+      -->
+
+      <!-- ABOUT -->
+
+      <div class="about" id="about">
+        <h1 class="col-header col-header_h1">ABOUT</h1>
+
+        <div class="lang">
+          <a href="#en" class="lang__link">EN</a>
+          <a href="#ru" class="lang__link">RU</a>
         </div>
 
-        <!-- ABOUT -->
-        <div class="content__column">
-          <h1 class="col-header col-header_type_about">
-            <a id="about">ABOUT</a>
-          </h1>
-          <div class="content__text">
-            <p class="text text_display_block">
-              Hi, my name is Andrey, I'm a web developer specializing in the  back-end (Node.js).
-            </p>
-            <p class="text text_display_block">
-              I wrote my first lines of code back in 2003, and since 2006 I'm doing web development professionally, as an independent contractor. 
-            </p>
+        <div class="content">
+          <p class="text text_display_block" id="en">
+          The beginning of my story is pretty ordinary. In 2001, when I was 12, my parents bought a computer. Surfing the Internet, I found a book teaching HTML and CSS and built my first website. Then got interested in programming and started to learn C++ using a textbook by Paulo Franca. Afterward, I've spent some time playing around with other programming languages, messing around the command line, and learning about computer hardware by disassembling and rebuilding my PC. Parallel to this, I finished school and then <a href="http://www.mstu.edu.ru/" class="link">Murmansk State Technical University</a>.
+          </p>
 
-            <p class="text text_display_block">
-              If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>.
-            </p>
+          <p class="text text_display_block">
+            During my first year at university, I started building websites for small businesses. Soon enough, I got an internship as a web designer at the local agency <a href="http://arcticmedia.ru/" class="link">Arctic Media Group</a>. After this, I started to work with various web studios and individuals as a freelancer/independent contractor. I've been doing mostly frontend and CMS-integration stuff.
+          </p>
 
-            <p class="text text_display_block">
-              <a href="./about.html" class="link">Read more about me</a>
-            </p>
+          <p class="text text_display_block">
+            In 2014, due to the accumulated fatigue, I made a decision to quit web development and try myself in a field unrelated to IT. 
+          </p>
 
-          </div>
+          <p class="text text_display_block">
+            In 2018 I returned to programming but decided I want to transition into backend development. Since then, I started "rebooting" myself professionally, learning new things every day, and still do this.
+          </p>
+
+          <p class="text text_display_block" id="ru">—</p>
+
+          <p class="text text_display_block">
+            Начало моей истории довольно стандартное: в 2001-м родители купили компьютер. Я нашёл в интернете учебник по HTML и CSS, сделал свой первый сайт, затем заинтересовался программированием и купил книгу Paulo Franca по C++. После этого ещё какое-то время я тыкал палкой в другие языки, с отвёрткой в руках ковырялся в системном блоке и возился в командной строке. Параллельно этому я закончил школу, а затем <a href="http://www.mstu.edu.ru/" class="link">«Мурманский Государственный Технический Университет»</a>.
+          </p>
+
+          <p class="text text_display_block">             
+            Учась на 1-м курсе постепенно начал делать сайты на заказ. Немного позже устроился web-дизайнером-стажёром в <a href="http://arcticmedia.ru/" class="link">Arctic Media Group</a>, но спустя несколько месяцев всё накрылось кризисом 2008-го и я снова отправился в свободное плавание. Затем была контрактная работа с разными агентствами, после чего я ушёл во фриланс. Занимался в основном вёрсткой и интеграцией с CMS.
+          </p>
+          
+          <p class="text text_display_block">
+            В 2014-м из-за накопившейся усталости решил на некоторое время уйти из всего связанного с IT. 
+          </p>
+
+          <p class="text text_display_block">
+            В 2018-м вернулся и постепенно «перезагружаю» себя в профессиональном смысле, занимаясь в основном backend-разработкой.
+          </p>
         </div>
       </div>
+    
     </main>
 
     <div class="gradient"></div>
