@@ -42,12 +42,6 @@ const MD_OUTPUT_PATH = `${ROOT_OUTPUT_PATH}/pages`;
       template: indexTemplate,
       fileName: "index.html",
     });
-    await writeHTML({
-      sectionsMeta: {},
-      outputDir: ROOT_OUTPUT_PATH,
-      template: aboutTemplate,
-      fileName: "about.html",
-    });
   } catch (err) {
     console.error(err);
   }
