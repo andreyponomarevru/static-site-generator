@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd build && \
+git init && \
+git add --all && \
+git commit -m "Update website"
+ 
+git remote add origin https://github.com/ponomarevandrey/my-website
+git push --force --set-upstream origin master
