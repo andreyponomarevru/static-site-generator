@@ -7,10 +7,16 @@
 
 // Typography
 
+.arrow {
+  color: $color_gray-darken;
+  font-weight: bold;
+}
+
 .text {
   font-size: $font-size_lg;
   font-family: $font-stack_opensans;
   line-height: $line-height_lg;
+  color: $color_gray-lighten;
 
   &_display_inline {
     display: inline;
@@ -42,7 +48,7 @@
   list-style-position: inside;
 
   @media only screen and (min-width: $screen-md) {
-    list-style-position: outside;
+    list-style-position: ins;
   }
 
   &__item {
@@ -68,7 +74,7 @@
   }
 
   &:focus {
-    color: whute;
+    color: white;
   }
 
   &:active {
@@ -126,22 +132,6 @@
 }
 
 // Layout
-
-.content {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-flow: row;
-  row-gap: 5rem;
-
-  padding: 1rem 0;
-
-  font-size: 1rem;
-
-  @media only screen and (min-width: $screen-md) {
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    padding: 0 0 5rem 0;
-  }
-}
 
 .footer {
   display: grid;
