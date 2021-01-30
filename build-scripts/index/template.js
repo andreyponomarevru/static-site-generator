@@ -132,7 +132,7 @@ async function generateHTML({ projects, articles }) {
       <div class="about">
         <div class="content">
           <p class="text text_display_block">
-            !!!!Hi, my name is Andrey, I'm a web developer specializing in the  back-end (Node.js).
+            Hi, my name is Andrey, I'm a web developer specializing in the  back-end (Node.js).
           </p>
           <p class="text text_display_block">
             I wrote my first lines of code back in 2003, and since 2006 I'm doing web development professionally, as an independent contractor. 
