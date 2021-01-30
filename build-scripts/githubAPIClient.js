@@ -9,7 +9,6 @@ const REPO_OWNER = process.env.REPO_OWNER;
 const credentials = encodeToBase64(`${REPO_OWNER}:${API_TOKEN}`);
 
 console.log(API_TOKEN)
-console.log(process.env.test)
 
 function handleRequestError(err) {
   console.error(err);
