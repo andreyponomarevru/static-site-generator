@@ -1,6 +1,22 @@
 # About
 Node.js static site generator built from scratch for personal website
 
+# Features
+
+* Takes Markdown and JSON-metadata files, combines them using JavaScript-template and outputs HTML files
+* Imports projects metadata from your GitHub account 
+* Uses SASS for styling
+
+# Requirements
+
+* Node.js
+* Set your GitHub API token in `GITHUB` environment variable. Example:
+  ```shell
+  sudo vim /etc/environment # or ~/.bashrc
+  GITHUB="yourApiToken"
+  ```
+* Set you GitHub account name in `REPO_OWNER` environment variable (in `nodemon.json`)
+
 # Structure
 
 * `src/`
@@ -15,17 +31,15 @@ Node.js static site generator built from scratch for personal website
 * `build-scripts/`
   * `index/template.js` - index page template
   * `mardown/template.js` - markdown articles template
+  * `githubAPIClient.js` - GitHub API client
 
 # How to update the website
 
 ```shell
-# 1. Build index page 
+# 1. Build (the script builds the index page as well as all markdown articles pages)
 npm run start
 
-# 2. Build article pages 
-npm run build-md
-
-# 3. Push updated build files to https://github.com/ponomarevandrey/my-website, for example:
+# 2. Push updated build files to https://github.com/ponomarevandrey/my-website, for example:
 cd build
 git init
 git add --all && git commit -m "Update"
