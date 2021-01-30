@@ -58,6 +58,7 @@ package-lock.json
 node_modules/
 dist/
 log/
+build/
 _source/
 
 ###########################################################
