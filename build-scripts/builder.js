@@ -25,6 +25,7 @@ const MD_OUTPUT_PATH = `${ROOT_OUTPUT_PATH}/pages`;
       { from: "./src/img", to: `${ROOT_OUTPUT_PATH}/img` },
       { from: "./src/favicon", to: `${ROOT_OUTPUT_PATH}/` },
       { from: "./src/js/", to: `${ROOT_OUTPUT_PATH}/js` },
+      { from: "./src/dns", to: `${ROOT_OUTPUT_PATH}/` }
     ]);
     await compileSass({
       from: "./src/sass/main.scss",
