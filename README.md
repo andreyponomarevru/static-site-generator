@@ -37,7 +37,8 @@ Node.js static site generator built from scratch for personal website
    npm run start
    ```
 
-2. **Push to GitHub** (run the script from the root dir). The script pushes all files from `build` dir to https://github.com/ponomarevandrey/my-website, replacing all repository content with new files
+2. **Push to GitHub** (run the script from the root dir). The script pushes all files from `build` dir to https://github.com/ponomarevandrey/my-website, replacing all repository content with 
+   new files
    ```shell
    ./update-website
    ```
