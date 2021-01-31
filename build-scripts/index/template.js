@@ -1,61 +1,7 @@
-const path = require("path");
-const github = require("./../githubAPIClient.js");
-const { formatISOstr } = require("./../../utility/formatISOstr.js");
+const { buildProjects } = require("./template/buildProjects.js");
+const { buildArticles } = require("./template/buildArticles.js");
 
-async function buildProjectRow({ repo, branch }) {
-  try {
-    const r = await github.getRepository(repo);
-    const { date, message } = await github.getRepoLastCommit(repo, branch);
-    const { day, month, year } = formatISOstr(date);
-
-    return `
-    <div class="projects__row">
-      <div class="projects__header">
-        <div class="projects__title">${r.name}</div>
-        <div class="projects__commit"> 
-          <img
-            src="./img/icon_refresh.svg"
-            alt="Last commit"
-            class="img-svg projects__img-svg"
-          />
-          <span class="projects__commit-text">
-            ${day} ${month} ${year} — ${message}
-          </span>
-        </div>
-    </div>
-      <p class="projects__about">${r.description || "—"}</p>
-      <div class="buttons-col">
-        <a href="${r.html_url}" class="button">Github</a>
-        ${r.homepage ? `<a href="${r.homepage}" class="button">Demo</a>` : ""}
-      </div>
-    </div>  
-  `;
-  } catch (err) {
-    console.error(`Error in "getRepository()": ${err}`);
-  }
-}
-
-async function buildArticleRow({ title, url }) {
-  const { date } = await github.getFileLastCommit(url);
-  const { day, month, year } = formatISOstr(date);
-  const fileName = path.basename(url).replace("md", "html");
-
-  return `
-    <div class="text content__row">
-      <a href="./pages/${fileName}" class="link">${title}</a>
-      <div class="content__updated">
-        <img
-          src="./img/icon_refresh.svg"
-          alt="Last commit"
-          class="img-svg"
-        />
-        <span class="update_time">${day} ${month} ${year}</span>
-      </div>
-    </div>
-  `;
-}
-
-async function generateHTML({ projects, articles }) {
+async function generateHTML(metadata) {
   const html = `
 <!DOCTYPE html>
 <html class="page" lang="en">
@@ -109,6 +55,7 @@ async function generateHTML({ projects, articles }) {
       rel="stylesheet"
     />
   </head>
+
   <body class="page__body">
     <!-- HEADER -->
     <header class="header">
@@ -129,66 +76,44 @@ async function generateHTML({ projects, articles }) {
     <!-- MAIN -->
 
     <main class="main">   
-      <div class="about">
-        <div class="content">
-          <p class="text text_display_block">
-            Hi, my name is Andrey, I'm a web developer specializing in the  back-end (Node.js).
-          </p>
-          <p class="text text_display_block">
-            I wrote my first lines of code back in 2003, and since 2006 I'm doing web development professionally, as an independent contractor. 
-          </p>
-          <p class="text text_display_block">
-            My tools:
-          </p>
-          <p class="text text_display_block">
-            <strong>frontend:</strong> React.js, Webpack, CSS (SASS)<br>
-            <strong>backend:</strong> JavaScript/TypeScript (Node.js), PostgreSQL, Nginx, Docker, Linux, Shell scripting
-          </p>
-          <p class="text text_display_block">
-            If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>. I will reply within 24 hours.
-          </p>
-          <div class="contacts"> 
-            <a href="https://github.com/ponomarevandrey" class="contacts__link">GitHub</a>
-            <a href="https://www.linkedin.com/in/andrey-ponomarev-438bb8140/" class="contacts__link">LinkedIn</a>
-          </div>
+      <section class="about content">
+        <p class="text text_display_block">
+          Hi, my name is Andrey, I'm a web developer specializing in the  back-end (Node.js).
+        </p>
+        <p class="text text_display_block">
+          I wrote my first lines of code back in 2003, and since 2006 I'm doing web development professionally, as an independent contractor. 
+        </p>
+        <p class="text text_display_block">
+          My tools:
+        </p>
+        <p class="text text_display_block">
+          <strong>frontend:</strong> React.js, Webpack, CSS (SASS)<br>
+          <strong>backend:</strong> JavaScript/TypeScript (Node.js), PostgreSQL, Nginx, Docker, Linux, Shell scripting
+        </p>
+        <p class="text text_display_block">
+          If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>. I will reply within 24 hours.
+        </p>
+        <div class="contacts"> 
+          <a href="https://github.com/ponomarevandrey" class="contacts__link">GitHub</a>
+          <a href="https://www.linkedin.com/in/andrey-ponomarev-438bb8140/" class="contacts__link">LinkedIn</a>
         </div>
-      </div>
+      </section>
 
-      <!-- PROJECTS -->
-
-      <div class="projects" id="projects">
-        <div class="col-header col-header_h1">PROJECTS</div>
-        <div class="projects__content">
-          ${(await Promise.all(projects.map(buildProjectRow))).join("")}
-        </div>
-      </div>
-
-      <!-- ARTICLES -->
-      <!--
-      <div class="articles" id="articles">
-        <h1 class="col-header col-header_h1">ARTICLES</h1>
-        <h2 class="col-header col-header_h2">JavaScript</h2>
-        <div>
-          ${(await Promise.all(articles.map(buildArticleRow))).join("")}
-        </div>
-        
-      </div>
-
-      -->
-
+      <!-- PROJECTS -->${await buildProjects(metadata.projects)}
+      <!-- ARTICLES ${await buildArticles(metadata.articles)}-->
       <!-- ABOUT -->
 
-      <div class="about" id="about">
-        <h1 class="col-header col-header_h1">ABOUT</h1>
+      <section class="about" id="about">
+        <h1 class="section-header section-header_h1">ABOUT</h1>
 
         <div class="lang">
           <a href="#en" class="lang__link">EN</a>
           <a href="#ru" class="lang__link">RU</a>
         </div>
 
-        <div class="content">
+        <article class="content">
           <p class="text text_display_block" id="en">
-          The beginning of my story is pretty ordinary. In 2001, when I was 12, my parents bought a computer. Surfing the Internet, I found a book teaching HTML and CSS and built my first website. Then got interested in programming and started to learn C++ using a textbook by Paulo Franca. Afterward, I've spent some time playing around with other programming languages, messing around the command line, and learning about computer hardware by disassembling and rebuilding my PC. Parallel to this, I finished school and then <a href="http://www.mstu.edu.ru/" class="link">Murmansk State Technical University</a>.
+            The beginning of my story is pretty ordinary. In 2001, when I was 12, my parents bought a computer. Surfing the Internet, I found a book teaching HTML and CSS and built my first website. Then got interested in programming and started to learn C++ using a textbook by Paulo Franca. Afterward, I've spent some time playing around with other programming languages, messing around the command line, and learning about computer hardware by disassembling and rebuilding my PC. Parallel to this, I finished school and then <a href="http://www.mstu.edu.ru/" class="link">Murmansk State Technical University</a>.
           </p>
 
           <p class="text text_display_block">
@@ -206,7 +131,7 @@ async function generateHTML({ projects, articles }) {
           <p class="text text_display_block" id="ru">—</p>
 
           <p class="text text_display_block">
-            Начало моей истории довольно стандартное: в 2001-м родители купили компьютер. Я нашёл в интернете учебник по HTML и CSS, сделал свой первый сайт, затем заинтересовался программированием и купил книгу Paulo Franca по C++. После этого ещё какое-то время я тыкал палкой в другие языки, с отвёрткой в руках ковырялся в системном блоке и возился в командной строке. Параллельно этому я закончил школу, а затем <a href="http://www.mstu.edu.ru/" class="link">«Мурманский Государственный Технический Университет»</a>.
+            Начало моей истории довольно стандартное: в 2001-м родители купили компьютер. Я нашёл в интернете учебник по HTML и CSS, сделал свой первый сайт, затем заинтересовался программированием и купил книгу Paulo Franca по C++. После этого ещё какое-то время тыкал палкой в другие языки, с отвёрткой в руках ковырялся в системном блоке и возился в командной строке. Параллельно этому я закончил школу, а затем <a href="http://www.mstu.edu.ru/" class="link">«Мурманский Государственный Технический Университет»</a>.
           </p>
 
           <p class="text text_display_block">             
@@ -220,8 +145,8 @@ async function generateHTML({ projects, articles }) {
           <p class="text text_display_block">
             В 2018-м вернулся и постепенно «перезагружаю» себя в профессиональном смысле, занимаясь в основном backend-разработкой.
           </p>
-        </div>
-      </div>
+        </article>
+      </section>
     
     </main>
 

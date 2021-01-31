@@ -1,5 +1,5 @@
 const md = require("markdown-it")();
-const github = require("../githubAPIClient.js");
+const github = require("./../../utility/githubAPIClient.js");
 const { formatISOstr } = require("../../utility/formatISOstr.js");
 
 const defaultMeta = {
