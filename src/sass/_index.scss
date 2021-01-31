@@ -1,5 +1,8 @@
-@import "_reset.scss";
-@import "_global.scss";
+@import "_sass-global.scss";
+
+// *********************
+// * Index page styles *
+// *********************
 
 .page {
   height: 100%;
@@ -13,7 +16,6 @@
     display: grid;
     grid-template-rows: auto 1fr auto auto;
     min-height: 100%;
-    background-attachment: fixed;
   }
 }
 
@@ -44,7 +46,6 @@
 .my-photo {
   overflow: hidden;
   object-fit: cover;
-
   border-radius: 100000px;
   width: 40px;
   height: 40px;
@@ -73,6 +74,7 @@
   justify-content: flex-end;
   column-gap: 1rem;
   overflow: hidden;
+  white-space: nowrap;
 
   font-family: $font-stack_opensans;
   font-size: $font-size_sm;
@@ -83,32 +85,6 @@
 
   @media only screen and (min-width: $screen-md) {
     font-size: $font-size_lg;
-  }
-
-  &__link {
-    &:link {
-      color: $color_skin;
-      text-decoration: none;
-
-      transition: color 0.35s ease;
-    }
-
-    &:visited {
-      color: $color_skin;
-    }
-
-    &:hover {
-      color: white;
-      text-decoration: underline;
-    }
-
-    &:focus {
-      color: white;
-    }
-
-    &:active {
-      color: white;
-    }
   }
 }
 
@@ -125,7 +101,7 @@
   row-gap: 4em;
 }
 
-.col-header {
+.section-header {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -143,16 +119,12 @@
   }
 
   &_h1 {
-    border-bottom: 1px solid $color_gray-darken;
-
     font-size: $font-size_h2;
   }
 
   &_h2 {
-    border-bottom: 4px solid $color_gray-darken;
-
-    color: $color_gray;
     font-size: $font-size_h3;
+    color: $color_gray;
   }
 }
 
@@ -171,6 +143,7 @@
     border: 1px solid $color_skin;
     border-radius: 4px;
     padding: 0.3rem 0.45rem;
+    display: inline;
 
     color: $color_skin;
     text-decoration: none;
@@ -207,8 +180,8 @@
     font-family: $font-stack_opensans;
     line-height: $line-height_lg;
 
-    &:first-child {
-      border-top: 0;
+    &:nth-child(2n + 1) {
+      background-color: $color_gray-darkest;
     }
 
     @media only screen and (min-width: $screen-sm) {
@@ -231,11 +204,17 @@
   }
 
   &__header {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0.4rem;
+    align-content: flex-start;
+
     overflow: hidden;
   }
 
   &__title {
     font-weight: 800;
+    line-height: $line-height_md;
   }
 
   &__commit {
@@ -263,7 +242,7 @@
   }
 }
 
-.buttons-col {
+.buttons {
   display: grid;
   align-items: start;
   align-content: start;
@@ -333,24 +312,8 @@
   }
 }
 
-.content {
-  max-width: 800px;
-}
-
-.contacts > .content > .text * {
-  display: block;
-}
-
-.contacts .link {
-  display: inline;
-}
-
-.content {
-  padding: 1rem;
-
-  @media only screen and (min-width: $screen-sm) {
-    padding: 1rem 2rem;
-  }
+.articles {
+  width: 100%;
 
   &__row {
     display: grid;
@@ -375,8 +338,8 @@
       grid-template-columns: 1fr auto;
     }
 
-    &:first-child {
-      border-top: 0;
+    &:nth-child(2n + 1) {
+      background-color: $color_gray-darkest;
     }
   }
 
@@ -391,6 +354,15 @@
   }
 }
 
+.content {
+  padding: 1rem;
+  max-width: 800px;
+
+  @media only screen and (min-width: $screen-sm) {
+    padding: 1rem 2rem;
+  }
+}
+
 .lang {
   display: grid;
   grid-column-gap: 1rem;
@@ -399,9 +371,11 @@
   justify-content: flex-start;
 
   font-weight: bold;
+  font-family: $font-stack_opensans;
+  font-weight: 800;
 
   @media only screen and (min-width: $screen-sm) {
-    padding: 2rem;
+    padding: 0 2rem 2rem 2rem;
   }
 
   &__link {
