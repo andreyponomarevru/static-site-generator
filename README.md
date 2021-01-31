@@ -15,6 +15,8 @@ Node.js static site generator built from scratch for personal website
 
 # Structure
 
+Important files:
+
 * `src/`
   * `dns/` - DNS settings
   * `favicon/`
@@ -27,6 +29,7 @@ Node.js static site generator built from scratch for personal website
 * `build-scripts/`
   * `index/template.js` - index page template
   * `mardown/template.js` - markdown articles template
+* `utility/`
   * `githubAPIClient.js` - GitHub API client
 * `update-website` - Shell-script for updating the website
 
@@ -37,7 +40,8 @@ Node.js static site generator built from scratch for personal website
    npm run start
    ```
 
-2. **Push to GitHub** (run the script from the root dir). The script pushes all files from `build` dir to https://github.com/ponomarevandrey/my-website, replacing all repository content with new files
+2. **Push to GitHub** (run the script from the root dir). The script pushes all files from `build` dir to https://github.com/ponomarevandrey/my-website, replacing all repository content with 
+   new files
    ```shell
    ./update-website
    ```
