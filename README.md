@@ -11,7 +11,7 @@ Node.js static site generator built from scratch for personal website
 
 * Node.js
 * Set your GitHub API token in `GITHUB` environment variable (in `/etc/environment` or `~/.bashrc`)
-* Set GitHub repository owner name in `REPO_OWNER` environment variable (in `nodemon.json`)
+* Set GitHub repository owner name in `REPO_OWNER` environment variable (in `nodemon.json` and in `package.json` > `build` script)
 
 # Structure
 
@@ -34,17 +34,13 @@ Node.js static site generator built from scratch for personal website
 
 1. **Build.**  The script builds the index page as well as all markdown articles pages.
    ```shell
-   npm run start
+   npm run build
    ```
 
-2. **Push to GitHub** (run the script from the root dir). The script pushes all files from `build` dir to https://github.com/ponomarevandrey/my-website, replacing all repository content with 
-   new files
+2. **Push to GitHub** (run the script from the root dir). The script pushes all files from `build` dir to https://github.com/ponomarevandrey/my-website, replacing all repository content with new files
    ```shell
    ./update-website
    ```
-
-   
-
 
 # How to change the domain name
 1. Change the domain name in `/src/dns/CNAME` 
