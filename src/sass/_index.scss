@@ -7,7 +7,7 @@
 .page {
   height: 100%;
 
-  background-color: black;
+  background-color: white;
 
   scroll-behavior: smooth;
   background-attachment: fixed;
@@ -32,9 +32,8 @@
   padding: 1rem;
 
   font-size: 0.85rem;
-  color: white;
 
-  background-color: black;
+  background-color: white;
 
   @media only screen and (min-width: $screen-sm) {
     padding: 2rem;
@@ -108,7 +107,7 @@
   align-items: center;
   padding: 0.8rem 1rem;
 
-  color: white;
+  color: $color_gray-darken;
   font-family: $font-stack_opensans;
   font-weight: 800;
   letter-spacing: 4px;
@@ -124,7 +123,7 @@
 
   &_h2 {
     font-size: $font-size_h3;
-    color: $color_gray;
+    color: $color_gray-darken;
   }
 }
 
@@ -140,12 +139,12 @@
   font-size: $font-size_sm;
 
   &__link {
-    border: 1px solid $color_skin;
+    border: 1px solid $color_sand;
     border-radius: 4px;
     padding: 0.3rem 0.45rem;
     display: inline;
 
-    color: $color_skin;
+    color: $color_sand;
     text-decoration: none;
 
     &:link {
@@ -153,14 +152,14 @@
     }
 
     &:visited {
-      color: $color_skin;
+      color: $color_sand;
     }
 
     &:hover,
     &:focus,
     &:active {
-      color: white;
-      border-color: white;
+      color: $color_gray-darken;
+      border-color: $color_gray-darken;
     }
   }
 }
@@ -168,19 +167,17 @@
 // Projects
 
 .projects {
-
   &__row {
     display: grid;
     grid-template-columns: 1fr;
     padding: 1.5rem 1rem;
     row-gap: 0.6rem;
 
-    color: $color_gray-lighten;
+    color: $color_gray-darken;
     letter-spacing: 0.3px;
-    font-size: $font-size_lg;
+    font-size: .95rem;
     font-family: $font-stack_opensans;
     line-height: $line-height_lg;
-    border-bottom: 1px solid $color_gray-darken;;
 
     @media only screen and (min-width: $screen-sm) {
       padding: 1rem 2rem;
@@ -193,6 +190,8 @@
     @media only screen and (min-width: $screen-md) {
       grid-template-areas: "name about buttons";
       grid-template-columns: minmax(170px, 0.4fr) 1fr auto;
+      font-size: $font-size_lg;
+      letter-spacing: 0.6px;
     }
 
     @media only screen and (min-width: $screen-xl) {
@@ -219,7 +218,7 @@
     font-size: 0.8rem;
     font-weight: 400;
     letter-spacing: 0.05em; /* always use `em` */
-    color: $color_gray-light;
+    color: $color_gray;
   }
 
   &__img-svg {
@@ -281,28 +280,28 @@
   font-weight: 600;
   text-decoration: none;
 
-  background-color: $color_skin;
+  background-color: $color_sand;
   border-radius: 4px;
   transition: color 5s ease;
 
   &:link {
-    color: black;
+    color: white;
     text-decoration: none;
 
     transition: color 0.15s ease-out, background 0.15s ease-in;
   }
 
   &:visited {
-    color: black;
+    color: white;
   }
 
   &:hover {
-    background-color: white;
+    background-color: $color_gray;
   }
 
   &:focus,
   &:active {
-    color: black;
+    color: white;
   }
 
   @media only screen and (min-width: $screen-sm) {
@@ -320,7 +319,7 @@
     row-gap: 0.6rem;
     justify-items: flex-start;
 
-    color: white;
+    color: $color_gray-darken;
     letter-spacing: 0.3px;
 
     @media only screen and (min-width: $screen-sm) {
@@ -334,10 +333,6 @@
       align-content: center;
       align-items: start;
       grid-template-columns: 1fr auto;
-    }
-
-    &:nth-child(2n + 1) {
-      background-color: $color_gray-darkest;
     }
   }
 
@@ -377,7 +372,7 @@
   }
 
   &__link {
-    color: $color_skin;
+    color: $color_gray-darken;
     text-decoration: none;
 
     &:link {
@@ -385,13 +380,13 @@
     }
 
     &:visited {
-      color: $color_skin;
+      color: $color_gray-darken;
     }
 
     &:hover,
     &:focus,
     &:active {
-      color: white;
+      color: $color_gray;
     }
   }
 }

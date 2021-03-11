@@ -12,11 +12,11 @@
 }
 
 .text {
-  font-size: $font-size_lg;
+  font-size: .95rem;
+  letter-spacing: 0.3px;
   font-family: $font-stack_opensans;
   line-height: $line-height_lg;
-  color: $color_gray-lighten;
-  letter-spacing: 0.6px;
+  color: $color_gray-darken;
 
   &_display_inline {
     display: inline;
@@ -42,6 +42,11 @@
     letter-spacing: 0.02rem;
     line-height: $line-height_xl;
   }
+  
+  @media only screen and (min-width: $screen-md) {
+    font-size: $font-size_lg;
+    letter-spacing: 0.6px;
+  }
 }
 
 .list {
@@ -58,27 +63,27 @@
 
 .link {
   &:link {
-    color: $color_skin;
+    color: $color_sand;
     text-decoration: none;
 
     transition: color 0.35s ease-out, background 0.15s ease-in;
   }
 
   &:visited {
-    color: $color_skin;
+    color: $color_sand;
   }
 
   &:hover {
-    color: white;
+    color: $color_gray-darken;
     text-decoration: underline;
   }
 
   &:focus {
-    color: white;
+    color: $color_gray-darken;
   }
 
   &:active {
-    color: white;
+    color: $color_gray-darken;
   }
 }
 
@@ -126,10 +131,12 @@
   width: 1rem;
 }
 
+/*
 .gradient {
   height: 2em;
   background-image: linear-gradient(black, white);
 }
+*/
 
 // Layout
 
