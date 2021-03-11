@@ -168,6 +168,7 @@
 // Projects
 
 .projects {
+
   &__row {
     display: grid;
     grid-template-columns: 1fr;
@@ -179,10 +180,7 @@
     font-size: $font-size_lg;
     font-family: $font-stack_opensans;
     line-height: $line-height_lg;
-
-    &:nth-child(2n + 1) {
-      background-color: $color_gray-darkest;
-    }
+    border-bottom: 1px solid $color_gray-darken;;
 
     @media only screen and (min-width: $screen-sm) {
       padding: 1rem 2rem;
