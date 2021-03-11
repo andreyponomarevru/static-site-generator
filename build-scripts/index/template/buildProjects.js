@@ -13,11 +13,6 @@ async function buildProjects(metadata) {
           <div class="projects__header">
             <div class="projects__title">${r.name}</div>
             <div class="projects__commit"> 
-              <img
-                src="./img/icon_refresh.svg"
-                alt="Last commit"
-                class="img-svg projects__img-svg"
-              />
               <span class="projects__commit-text">
                 ${day} ${month} ${year} — ${message}
               </span>
