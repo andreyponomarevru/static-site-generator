@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-md": "node ./build-scripts/builder.js",
+    "build": "REPO_OWNER=ponomarevandrey node ./build-scripts/builder.js",
     "start": "concurrently --kill-others \"nodemon -e js,json,scss,md -i build -x \\\"npm run build-md\\\"\" \"live-server ./build\""
   },
   "keywords": [],
