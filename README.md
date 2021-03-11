@@ -31,16 +31,8 @@ Node.js static site generator built from scratch for personal website
 * `update-website` - Shell-script for updating the website
 
 # How to update the website
-
-1. **Build.**  The script builds the index page as well as all markdown articles pages.
-   ```shell
-   npm run build
-   ```
-
-2. **Push to GitHub** (run the script from the root dir). The script pushes all files from `build` dir to https://github.com/ponomarevandrey/my-website, replacing all repository content with new files
-   ```shell
-   ./update-website
-   ```
+1. `npm run build` - the script builds the index page as well as all markdown articles pages.
+2. `./update-website` - push to GitHub (run the script from the root dir). The script pushes all files from `build` dir to https://github.com/ponomarevandrey/my-website, replacing all repository content with new files
 
 # How to change the domain name
 1. Change the domain name in `/src/dns/CNAME` 
