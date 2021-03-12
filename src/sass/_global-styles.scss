@@ -14,7 +14,7 @@
 .text {
   font-size: .95rem;
   letter-spacing: 0.3px;
-  font-family: $font-stack_opensans;
+  font-family: $font-stack_georgia;
   line-height: $line-height_lg;
   color: $color_gray-darken;
 
@@ -62,7 +62,9 @@
 }
 
 .link {
+
   &:link {
+    font-family: $font-stack_opensans;
     color: $color_sand;
     text-decoration: none;
 
