@@ -85,6 +85,10 @@
   @media only screen and (min-width: $screen-md) {
     font-size: $font-size_lg;
   }
+  
+  &__button {
+    
+  }
 }
 
 .nav > *:not(:last-child) {
@@ -97,7 +101,7 @@
 
 .main {
   display: grid;
-  row-gap: 4em;
+  // row-gap: 4em;
 }
 
 .section-header {
@@ -118,11 +122,11 @@
   }
 
   &_h1 {
-    font-size: $font-size_h2;
+    font-size: $font-size_h1;
   }
 
   &_h2 {
-    font-size: $font-size_h3;
+    font-size: $font-size_h2;
     color: $color_gray-darken;
   }
 }
@@ -138,7 +142,7 @@
   font-family: $font-stack_opensans;
   font-size: $font-size_sm;
 
-  &__link {
+  &__btn {
     border: 1px solid $color_sand;
     border-radius: 4px;
     padding: 0.3rem 0.45rem;
@@ -167,6 +171,12 @@
 // Projects
 
 .projects {
+  padding: 4rem 0;
+
+  &__row:not(:last-child) {
+    border-bottom: 1px solid $color_gray-lighten;
+  }
+
   &__row {
     display: grid;
     grid-template-columns: 1fr;
@@ -203,7 +213,7 @@
   &__header {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 0.4rem;
+    row-gap: 0rem;
     align-content: flex-start;
 
     overflow: hidden;
@@ -214,15 +224,23 @@
     line-height: $line-height_md;
     font-family: $font-stack_opensans;
   }
-
+  
   &__commit {
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.05em; /* always use `em` */
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: flex-start; 
+    column-gap: .3rem;
+    align-content: center;    
+  }
+  
+  &__commit-text {
+    font-size: .8rem;
+    font-family: $font-stack_opensans;
+    line-height: $line-height_xl;
     color: $color_gray;
   }
 
-  &__img-svg {
+  &__icon {
     display: inline-block;
     margin: 0 0.2rem 0 0;
   }
@@ -281,7 +299,7 @@
   font-weight: 600;
   text-decoration: none;
 
-  background-color: $color_sand;
+  background-color: $color_gray-darken;
   border-radius: 4px;
   transition: color 5s ease;
 
@@ -311,7 +329,12 @@
 }
 
 .articles {
+  padding: 4rem 0;
   width: 100%;
+
+  &__row:not(:last-child) {
+    border-bottom: 1px solid $color_gray-lighten;
+  }
 
   &__row {
     display: grid;
@@ -346,6 +369,11 @@
 
     color: $color_gray;
   }
+}
+
+.about {
+    padding: 4rem 0;
+    background-color: #fff2e6;
 }
 
 .content {
@@ -390,4 +418,16 @@
       color: $color_gray;
     }
   }
+}
+
+.icon { 
+  &__projects {
+    letter-spacing: 0.05em; /* always use `em` */
+    color: lighten($color_gray, 25%);
+  }
+}
+
+.stripe {
+  background-color: $color_skin;
+  height: .5rem;
 }

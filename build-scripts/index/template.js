@@ -54,9 +54,12 @@ async function generateHTML(metadata) {
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
 
   <body class="page__body">
+    <span class="stripe"></span>
+    
     <!-- HEADER -->
     <header class="header">
       <a href="http://andreyponomarev.ru" class="my-photo">
@@ -76,7 +79,7 @@ async function generateHTML(metadata) {
     <!-- MAIN -->
 
     <main class="main">   
-      <section class="about content">
+      <section class="intro content">
         <p class="text text_display_block">
           Hi, my name is Andrey, I'm a web developer specializing in the  back-end (Node.js).
         </p>
@@ -86,23 +89,23 @@ async function generateHTML(metadata) {
         </p>
         -->
         <p class="text text_display_block">
-          My tools:
+          My stack/tools:
         </p>
         <p class="text text_display_block">
-          <strong>frontend:</strong> React.js, Webpack, CSS (SASS)<br>
-          <strong>backend:</strong> JavaScript/TypeScript (Node.js), PostgreSQL, Nginx, Docker, Linux, Shell scripting
+          <em>frontend:</em> React.js, Webpack, CSS (SASS)<br>
+          <em>backend:</em> JavaScript/TypeScript (Node.js), PostgreSQL, Nginx, Docker, Linux, Shell scripting
         </p>
         <p class="text text_display_block">
           If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>. I will reply within 24 hours.
         </p>
         <div class="contacts"> 
-          <a href="https://github.com/ponomarevandrey" class="contacts__link">GitHub</a>
-          <a href="https://www.linkedin.com/in/andrey-ponomarev-438bb8140/" class="contacts__link">LinkedIn</a>
+          <a href="https://github.com/ponomarevandrey" class="contacts__btn">GitHub</a>
+          <a href="https://www.linkedin.com/in/andrey-ponomarev-438bb8140/" class="contacts__btn">LinkedIn</a>
         </div>
       </section>
 
       <!-- PROJECTS -->${await buildProjects(metadata.projects)}
-      <!-- ARTICLES ${await buildArticles(metadata.articles)}-->
+      <!-- ARTICLES -->${await buildArticles(metadata.articles)}
       <!-- ABOUT -->
 
       <section class="about" id="about">

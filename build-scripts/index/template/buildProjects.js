@@ -13,8 +13,9 @@ async function buildProjects(metadata) {
           <div class="projects__header">
             <div class="projects__title">${r.name}</div>
             <div class="projects__commit"> 
+              <span class="material-icons icon icon__projects">update</span>
               <span class="projects__commit-text">
-                ${day} ${month} ${year} — ${message}
+                ${day} ${month} ${year}<!-- — ${message} -->
               </span>
             </div>
         </div>
