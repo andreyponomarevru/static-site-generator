@@ -12,7 +12,7 @@
 }
 
 .text {
-  font-size: .95rem;
+  font-size: 1rem;
   letter-spacing: 0.3px;
   font-family: $font-stack_georgia;
   line-height: $line-height_lg;
@@ -42,7 +42,7 @@
     letter-spacing: 0.02rem;
     line-height: $line-height_xl;
   }
-  
+
   @media only screen and (min-width: $screen-md) {
     font-size: $font-size_lg;
     letter-spacing: 0.6px;
@@ -62,7 +62,6 @@
 }
 
 .link {
-
   &:link {
     font-family: $font-stack_opensans;
     color: $color_sand;
@@ -94,7 +93,6 @@
   width: 100%;
 
   font-family: $font-stack_opensans;
-  font-size: 1rem;
   font-style: normal;
 
   &_size_h1 {
@@ -133,27 +131,16 @@
   width: 1rem;
 }
 
-/*
-.gradient {
-  height: 2em;
-  background-image: linear-gradient(black, white);
-}
-*/
-
 // Layout
 
 .footer {
   display: grid;
-  padding: 1rem;
+  grid-template-columns: repeat(2, auto);
+  justify-content: space-between;
+  justify-items: center;
+  padding: 1rem 0.6rem;
 
-  font-size: 1rem;
-  color: black;
-
-  background-color: white;
-
-  @media only screen and (min-width: $screen-sm) {
-    padding: 2rem;
-    grid-template-columns: repeat(2, auto);
-    justify-content: space-between;
+  @media only screen and (min-width: $screen-md) {
+    padding: 1rem 2rem;
   }
 }

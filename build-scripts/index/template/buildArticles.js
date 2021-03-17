@@ -24,7 +24,7 @@ async function buildArticles(metadata) {
     <section class="articles" id="articles">
       <h1 class="section-header section-header_h1">ARTICLES</h1>
       <h2 class="section-header section-header_h2">JavaScript</h2>
-      <div>
+      <div class="articles__list">
         ${(await Promise.all(metadata.map(buildRow))).join("")}
       </div>
     </section>`;

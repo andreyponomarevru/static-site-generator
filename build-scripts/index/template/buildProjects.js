@@ -9,16 +9,13 @@ async function buildProjects(metadata) {
       const { day, month, year } = formatISOstr(date);
 
       return `
-        <div class="projects__row">
+        <div class="projects__module">
           <div class="projects__header">
             <div class="projects__title">${r.name}</div>
             <div class="projects__commit"> 
-              <span class="material-icons icon icon__projects">update</span>
-              <span class="projects__commit-text">
-                ${day} ${month} ${year}<!-- — ${message} -->
-              </span>
+                Updated: ${day} ${month} ${year}<!-- — ${message} -->
             </div>
-        </div>
+          </div>
           <p class="projects__about">${r.description || "—"}</p>
           <div class="buttons">
             <a href="${r.html_url}" class="button">Github</a>
@@ -36,8 +33,8 @@ async function buildProjects(metadata) {
 
   return `
     <section class="projects" id="projects">
-      <div class="section-header section-header_h1">PROJECTS</div>
-      <div>
+      <div class="section-header section-header_h1 section-header_projects">PROJECTS</div>
+      <div class="projects__list">
         ${(await Promise.all(metadata.map(buildRow))).join("")}
       </div>
     </section>`;

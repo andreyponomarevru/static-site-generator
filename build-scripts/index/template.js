@@ -54,11 +54,9 @@ async function generateHTML(metadata) {
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
 
   <body class="page__body">
-    <span class="stripe"></span>
     
     <!-- HEADER -->
     <header class="header">
@@ -79,7 +77,7 @@ async function generateHTML(metadata) {
     <!-- MAIN -->
 
     <main class="main">   
-      <section class="intro content">
+      <section class="intro">
         <p class="text text_display_block">
           Hi, my name is Andrey, I'm a web developer specializing in the  back-end (Node.js).
         </p>
@@ -155,10 +153,9 @@ async function generateHTML(metadata) {
     
     </main>
 
-    <div class="gradient"></div>
-
     <!-- FOOTER -->
     <footer class="footer text">
+    
       <!-- Place this tag where you want the button to render. -->
       <a
         class="github-button"
