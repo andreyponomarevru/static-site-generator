@@ -11,11 +11,6 @@ async function buildArticles(metadata) {
     return `
       <div class="text articles__row">
         <a href="./pages/${fileName}" class="link">${title}</a>
-        <!--
-        <div class="articles__updated">
-           Updated: <span>${day} ${month} ${year}</span>
-        </div>
-        -->
       </div>
     `;
   }
