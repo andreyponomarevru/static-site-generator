@@ -113,7 +113,7 @@ async function generateHTML(metadata) {
       </section>
 
       <!-- PROJECTS -->${await buildProjects(metadata.projects)}
-      <!-- ARTICLES -->${await buildArticles(metadata.articles)}
+      <!-- ARTICLES ${await buildArticles(metadata.articles)} -->
       <!-- ABOUT -->
 
       <section class="about" id="about">
