@@ -1,6 +1,7 @@
 const md = require("markdown-it")();
 const github = require("./../../utility/githubAPIClient.js");
 const { formatISOstr } = require("../../utility/formatISOstr.js");
+const { googleAnalytics } = require("./../common/googleAnalytics.js");
 
 const defaultMeta = {
   lang: "en",
@@ -37,7 +38,7 @@ async function generateHTML(pageContent, pageMeta = defaultMeta) {
   const extra = (() => {
     if (pageMeta.hasOwnProperty("extra")) {
       if (pageMeta.extra.length) {
-        return pageMeta.extra.map((value) => `<meta ${value}>`);
+        return pageMeta.extra.map((value) => `<meta ${value} />`);
       } else return "";
     } else return "";
   })();
@@ -70,19 +71,22 @@ async function generateHTML(pageContent, pageMeta = defaultMeta) {
     }
   })();
 
-  const html = `<!DOCTYPE html>
+  const html = `
+<!DOCTYPE html>
 <html lang="${lang}" class="md-page">
   <head>
-  <title>${title}</title>
-  <meta charset="${charset}">
-  <meta name="viewport" content="${viewport}">
-  <meta name="description" content="${description}">
-  <meta name="keywords" content="${keywords}">
-  <meta name="author" content="${author}">
-  ${extra}
-  ${stylesheets}
-  ${scripts}
-  <link rel="icon" type="image/png" href="./../favicon.png">
+    <title>${title}</title>
+    <meta charset="${charset}" />
+    <meta name="viewport" content="${viewport}" />
+    <meta name="description" content="${description}" />
+    <meta name="keywords" content="${keywords}" />
+    <meta name="author" content="${author}" />
+    ${extra}
+    ${stylesheets}
+    ${googleAnalytics}
+    ${scripts}
+    
+    <link rel="icon" type="image/png" href="./../favicon.png">
   </head>
   <body>
     <header>

@@ -4,7 +4,7 @@ const { buildArticles } = require("./template/buildArticles.js");
 async function generateHTML(metadata) {
   const html = `
 <!DOCTYPE html>
-<html class="page" lang="en">
+<html lang="en" class="page">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -119,10 +119,12 @@ async function generateHTML(metadata) {
       <section class="about" id="about">
         <h1 class="section-header section-header_h1">ABOUT</h1>
 
+        <!--
         <div class="lang">
           <a href="#en" class="lang__link">EN</a>
           <a href="#ru" class="lang__link">RU</a>
         </div>
+        -->
 
         <article class="content">
           <p class="text text_display_block" id="en">
@@ -141,6 +143,7 @@ async function generateHTML(metadata) {
             In 2018 I returned to programming but decided I want to transition into backend development. Since then, I started "rebooting" myself professionally, learning new things every day, and still do this.
           </p>
 
+          <!--
           <p class="text text_display_block" id="ru">—</p>
 
           <p class="text text_display_block">
@@ -158,6 +161,8 @@ async function generateHTML(metadata) {
           <p class="text text_display_block">
             В 2018-м вернулся и постепенно «перезагружаю» себя в профессиональном смысле, занимаясь в основном backend-разработкой.
           </p>
+          -->
+          
         </article>
       </section>
     
