@@ -9,19 +9,24 @@ async function buildArticles(metadata) {
     const fileName = path.basename(url).replace("md", "html");
 
     return `
-      <div class="text articles__row">
-        <a href="./pages/${fileName}" class="link">${title}</a>
-      </div>
+      <li>
+        <a href="./pages/${fileName}">${title}</a>
+      </li>
     `;
   }
 
   return `
-    <section class="articles" id="articles">
-      <h1 class="section-header section-header_h1">ARTICLES</h1>
-      <h2 class="section-header section-header_h2">JavaScript</h2>
-      <div class="articles__list">
+    <section>
+      <h1>Blog</h1>
+      <h2>Programming</h2>
+      <h3>JavaScript</h3>
+      <ul>
         ${(await Promise.all(metadata.map(buildRow))).join("")}
-      </div>
+      </ul>
+      <h2>Databases</h2>
+      <h3>PostgreSQL</h3>
+      <h2>DevOps</h2>
+      <h2>Personal</h2>
     </section>`;
 }
 

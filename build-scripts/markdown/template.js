@@ -98,9 +98,8 @@ async function generateHTML(pageContent, pageMeta = defaultMeta) {
         <div class="md-gradient md-gradient_header"></div>
     </header>
     
-    
+    <time datetime="${year}">Last update: ${day} ${month} ${year}</time>
     <main>
-      <time datetime="${year}">Last update: ${day} ${month} ${year}</time>
       ${md.render(pageContent)}
     </main>
   </body>

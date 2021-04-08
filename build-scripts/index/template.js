@@ -4,7 +4,7 @@ const { buildArticles } = require("./template/buildArticles.js");
 async function generateHTML(metadata) {
   const html = `
 <!DOCTYPE html>
-<html lang="en" class="page">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -66,72 +66,43 @@ async function generateHTML(metadata) {
     />
   </head>
 
-  <body class="page__body">
+  <body>
     
-    <!-- HEADER -->
-    <header class="header">
-      <a href="http://andreyponomarev.ru" class="my-photo">
-        <img
-          src="https://sun9-52.userapi.com/c850520/v850520824/148c19/BC4V9wrvBvo.jpg"
-          class="my-photo__img"
-        />
-      </a>
-
-      <nav class="nav">
-        <a href="#projects" class="link">Projects</a>
-        <a href="#articles" class="link">Articles</a>
-        <a href="#about" class="link">About me</a>
-      </nav>
+    <header class="header">   
+      <img src="https://avatars.githubusercontent.com/u/34704845?v=4" class="my-photo" />
+      <span>Andrey Ponomarev</span>
     </header>
 
     <!-- MAIN -->
 
-    <main class="main">   
+    <main>   
       <section class="intro">
-        <p class="text text_display_block">
-          Hi, my name is Andrey, I'm a web developer specializing in the  back-end (Node.js).
+        <p>Hi, my name is Andrey, I'm a web developer specializing in the back-end (Node.js).</p>
+        <p>
+          <strong>If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>. I will reply within 24 hours.</strong>
         </p>
-        <!--
-        <p class="text text_display_block">
-          I wrote my first lines of code back in 2003, and since 2006 I'm doing web development professionally, as an independent contractor. 
+        <p>
+          My tools:
+          <ul>
+            <li><em>backend:</em> Node.js (JavaScript/TypeScript, Express.js), PostgreSQL, Redis, Nginx, Docker, Linux, Shell scripting</li>
+            <li><em>frontend:</em> React.js, Webpack, CSS (SASS)</li>
+          </ul>
         </p>
-        -->
-        <p class="text text_display_block">
-          My stack/tools:
-        </p>
-        <p class="text text_display_block">
-          <em>frontend:</em> React.js, Webpack, CSS (SASS)<br>
-          <em>backend:</em> JavaScript/TypeScript (Node.js), PostgreSQL, Nginx, Docker, Linux, Shell scripting
-        </p>
-        <p class="text text_display_block">
-          If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>. I will reply within 24 hours.
-        </p>
-        <div class="contacts"> 
-          <a href="https://github.com/ponomarevandrey" class="contacts__btn">GitHub</a>
-          <a href="https://www.linkedin.com/in/andrey-ponomarev-438bb8140/" class="contacts__btn">LinkedIn</a>
-        </div>
       </section>
 
       <!-- PROJECTS -->${await buildProjects(metadata.projects)}
-      <!-- ARTICLES ${await buildArticles(metadata.articles)} -->
+      <!-- BLOG --> ${await buildArticles(metadata.articles)}
       <!-- ABOUT -->
 
-      <section class="about" id="about">
-        <h1 class="section-header section-header_h1">ABOUT</h1>
+      <section>
+        <h1>About</h1>
 
-        <!--
-        <div class="lang">
-          <a href="#en" class="lang__link">EN</a>
-          <a href="#ru" class="lang__link">RU</a>
-        </div>
-        -->
-
-        <article class="content">
-          <p class="text text_display_block" id="en">
-            The beginning of my story is pretty ordinary. In 2001, when I was 12, my parents bought a computer. Surfing the Internet, I found a book teaching HTML and CSS and built my first website. Then got interested in programming and started to learn C++ using a textbook by Paulo Franca. Afterward, I've spent some time playing around with other programming languages, messing around the command line, and learning about computer hardware by disassembling and rebuilding my PC. Parallel to this, I finished school and then <a href="http://www.mstu.edu.ru/" class="link">Murmansk State Technical University</a>.
+        <article>
+          <p>
+            In 2001, when I was 12, my parents bought a computer. Surfing the Internet, I found a book teaching HTML and CSS and built my first website. Then got interested in programming and started to learn C++ using a textbook by Paulo Franca. Afterward, I've spent some time playing around with other programming languages, messing around the command line, and learning about computer hardware by disassembling and rebuilding my PC. Parallel to this, I finished school and then <a href="http://www.mstu.edu.ru/" class="link">Murmansk State Technical University</a>.
           </p>
 
-          <p class="text text_display_block">
+          <p>
             During my first year at university, I started building websites for small businesses. Soon enough, I got an internship as a web designer at the local agency <a href="http://arcticmedia.ru/" class="link">Arctic Media Group</a>. After this, I started to work with various web studios and individuals as a freelancer/independent contractor. I've been doing mostly frontend and CMS-integration stuff.
           </p>
 
@@ -168,22 +139,7 @@ async function generateHTML(metadata) {
     
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer text">
-    
-      <!-- Place this tag where you want the button to render. -->
-      <a
-        class="github-button"
-        href="https://github.com/ponomarevandrey"
-        data-color-scheme="no-preference: dark; light: dark; dark: dark;"
-        data-size="large"
-        aria-label="Follow @ponomarevandrey on GitHub"
-        >Follow @ponomarevandrey</a
-      >
-      <span class="footer__year"> © 1989 </span>
-    </footer>
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <footer class="footer text">© 1989</footer>
   </body>
 </html>`;
 

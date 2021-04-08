@@ -1,26 +1,20 @@
 # Asynchronous Programming Fundamentals
 
-* Contents
-  * [Engine](#engine)
+## References
+* [MND: .../docs/Learn/JavaScript/Asynchronous/Concepts](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Concepts)
+* [MDN: .../docs/Learn/JavaScript/Asynchronous](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
 
-* References:
-  * [MND: .../docs/Learn/JavaScript/Asynchronous/Concepts](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Concepts)
-  * [MDN: .../docs/Learn/JavaScript/Asynchronous](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
+## FAQ
+* *Is Asynchronous and Non-blocking are two different things?*  
 
-* FAQ
-  * *Is Asynchronous and Non-blocking are two different things?*   
-    No, this is the same thing. "blocking code/function" means "synchronous code" and "non-blocking code/function" means asynchronous code. I.e. if the function is not blocking,  it is asynchronous.
+  No, this is the same thing. "blocking code/function" means "synchronous code" and "non-blocking code/function" means asynchronous code. I.e. if the function is not blocking,  it is asynchronous.
+* *What determines which Javascript functions are blocking vs non-blocking?*  
 
-  * *What determines which Javascript functions are blocking vs non-blocking?*  
-    Just read the documentation for the function you are using, there will be the info is the function is blocking or non-blocking. [Details](https://softwareengineering.stackexchange.com/questions/202047/what-determines-which-javascript-functions-are-blocking-vs-non-blocking)
-
-  * Microtasks are used “under the cover” of `await` as well, as it’s another form of promise handling ([source](https://javascript.info/event-loop#macrotasks-and-microtasks))
-
-  * `fetch` responses end up in Macrotask!
-
-  * promises use Microtask Queue
-
-  * Note that the terms *thread worker*, *worker*, and *thread* are often used interchangeably; they all refer to the same thing. Also *Thread Pool* = *Worker Pool* = *`libuv`'s threadpool*
+  Just read the documentation for the function you are using, there will be the info is the function is blocking or non-blocking. [Details](https://softwareengineering.stackexchange.com/questions/202047/what-determines-which-javascript-functions-are-blocking-vs-non-blocking)
+* Microtasks are used “under the cover” of `await` as well, as it’s another form of promise handling ([source](https://javascript.info/event-loop#macrotasks-and-microtasks))
+* `fetch` responses end up in Macrotask!
+* promises use Microtask Queue
+* Note that the terms *thread worker*, *worker*, and *thread* are often used interchangeably; they all refer to the same thing. Also *Thread Pool* = *Worker Pool* = *`libuv`'s threadpool*
 
 ---
 
@@ -49,10 +43,7 @@ The cool thing is the *JavaScript engine implementation is totally independent o
 
 **The Engine consists of:**
 
-* **Heap** 
-  
-  Heap is a large unstructured data structure which stores all the dynamic data like function definitions, objects, arrays etc. Execution context stack just contains their reference or in other words stores their memory addresses where these function definitions, objects and arrays are stored. The memory occupied in the heap continues to exist even after the JavaScript code execution has completed. They are removed by the JavaScript Garbage Collector.
-
+* **Heap** — a large unstructured data structure which stores all the dynamic data like function definitions, objects, arrays etc. Execution context stack just contains their reference or in other words stores their memory addresses where these function definitions, objects and arrays are stored. The memory occupied in the heap continues to exist even after the JavaScript code execution has completed. They are removed by the JavaScript Garbage Collector.
 * **Call Stack**
 
 **These are the main functionalities of the Engine:**
@@ -104,7 +95,7 @@ Now, lets take a step back and discuss what is threadening.
 
 # Threading
 
-* **Threading** is how many operations the interpreter can execute simultaneously (at a single point in time). Programming languages can be divided into:
+**Threading** is how many operations the interpreter can execute simultaneously (at a single point in time). Programming languages can be divided into:
   * **single-threaded** - at a single point in time, the interpreter can run only one operation
   * **multi-threaded** - at a single point in time, the interpreter can run two or more operations
 
@@ -233,13 +224,12 @@ Fields that require complex calculations — such as AI, machine learning, o
 
 # Synchronicity vs Asynchronicity
 
-* **Synchronicity/Asynchronicity** - these terms describe *how* the code in the thread(s) is executed. We can divide all JavaScript code into:
+**Synchronicity/Asynchronicity** - these terms describe *how* the code in the thread(s) is executed. We can divide all JavaScript code into:
 
-  * **synchronous code** (synchronous execution) is the code, which the interpreter runs on the main thread. It is executed *sequentially*, line by line, from top to bottom; all instructions are executed in the same order they appear in your program. When someone says that a programming language is synchronous he means exactly this: a language has only one thread and all the code being executed runs on it sequentially.  
+* **synchronous code** (synchronous execution) is the code, which the interpreter runs on the main thread. It is executed *sequentially*, line by line, from top to bottom; all instructions are executed in the same order they appear in your program. When someone says that a programming language is synchronous he means exactly this: a language has only one thread and all the code being executed runs on it sequentially.  
    
-    When you invoke a synchronous functions, their EC is immediately added to the stack, executes, and removed from it *only when the execution is completely finished*. Such code is a blocking code, it blocks the Event Loop cause it prevents the further execution of a program i.e. if any operation (some function for instance) executes for too long, all other operations suspended, waiting for the current operation being finished. Such situations called "thread blocking" or "Event Loop blocking" or just "blocking" and the code causing them — "blocking code". I.e., the function suspends (blocks) the execution of all the code following right beneath her invocation and as a consequence, all the queued tasks in Macrotask Queue. The blocking lasts until the function is completely executed, and her EC is removed from the stack.
-    
-  * **asynchronous code** (asynchronous execution) - код, который интерпретатор выполняет в параллельном потоке, concurrently i.e. at the same time as the main thread т.е. это код, а если быть более точным, функция/метод, которые разрешают интерпретатору удалять их EC из стека, не дожидаясь окончания их выполнения. Это означает, что эти функции - не блокирующие поток, в отличии от синхронных, иными словами, они — асинхронные. Почему они такие? Потому что они всегда предоставляются Runtime Environment'ом и написаны на C/C++ и внутри реализованы таким образом что они не блокируют Event Loop а спокойно удаляются из стека и затем выполняются в параллельном потоке. Асинхронная функция запускается синхронно т.е. так же как и обычная синхронная функция, но в отличие от синхронной, её EC сразу после запуска удаляется из стека таким образом не блокируя выполнение нижеидущего кода. Интерпретатор идёт выполнять код дальше, а данная функция тем временем выполняется фоном в параллельном потоке т.е. асинхронно. Таким образом блокировки потока не происходит.
+  When you invoke a synchronous functions, their EC is immediately added to the stack, executes, and removed from it *only when the execution is completely finished*. Such code is a blocking code, it blocks the Event Loop cause it prevents the further execution of a program i.e. if any operation (some function for instance) executes for too long, all other operations suspended, waiting for the current operation being finished. Such situations called "thread blocking" or "Event Loop blocking" or just "blocking" and the code causing them — "blocking code". I.e., the function suspends (blocks) the execution of all the code following right beneath her invocation and as a consequence, all the queued tasks in Macrotask Queue. The blocking lasts until the function is completely executed, and her EC is removed from the stack.
+* **asynchronous code** (asynchronous execution) - код, который интерпретатор выполняет в параллельном потоке, concurrently i.e. at the same time as the main thread т.е. это код, а если быть более точным, функция/метод, которые разрешают интерпретатору удалять их EC из стека, не дожидаясь окончания их выполнения. Это означает, что эти функции - не блокирующие поток, в отличии от синхронных, иными словами, они — асинхронные. Почему они такие? Потому что они всегда предоставляются Runtime Environment'ом и написаны на C/C++ и внутри реализованы таким образом что они не блокируют Event Loop а спокойно удаляются из стека и затем выполняются в параллельном потоке. Асинхронная функция запускается синхронно т.е. так же как и обычная синхронная функция, но в отличие от синхронной, её EC сразу после запуска удаляется из стека таким образом не блокируя выполнение нижеидущего кода. Интерпретатор идёт выполнять код дальше, а данная функция тем временем выполняется фоном в параллельном потоке т.е. асинхронно. Таким образом блокировки потока не происходит.
 
 All JavaScript native code (i.e. functions provided by JavaScript itself and not by the Runtime Environment (i.e. some external APIs)) is synchronous. 
 
