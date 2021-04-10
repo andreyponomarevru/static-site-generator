@@ -29,7 +29,6 @@ redis_data/
 ################################
 
 .vscode/*
-*.code-workspace
 
 ######################
 ### Packaged files ###
