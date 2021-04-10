@@ -5,9 +5,8 @@
 // *************
 
 // font-family
-$font-stack_opensans: "Open Sans", "Tahoma", "Arial", "Verdana", "Helvetica",
-  sans-serif;
-$font-stack_georgia: "Georgia", "Big Caslon", "Hoefler Text", "Garamond",
+$font-stack_sans: "Open Sans", "Arial", "Verdana", "Helvetica", sans-serif;
+$font-stack_serif: "Georgia", "Big Caslon", "Hoefler Text", "Garamond",
   "Baskerville", "Palatino Linotype", "Times New Roman", "Times", serif;
 $font-stack_consolas: "Consolas", "PT Mono", "Lucida Console",
   "Lucida Sans Typewriter", "Courier New", "Courier", monospace;
@@ -55,7 +54,7 @@ $color_link: #008000;
 $color_code-text: #333;
 $color_code-bg: #ecdcc6;
 
-$color_skin: #ecdcc6;
+$color_skin: #f7f1e7;
 $color_sand: #b38600;
 
 $form__box-shadow_state_initial: 0 0 0 0.2rem lighten($color_black, 88%);
