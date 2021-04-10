@@ -1,4 +1,4 @@
-const md = require("markdown-it")();
+const md = require("markdown-it")({ html: true });
 const github = require("./../../utility/githubAPIClient.js");
 const { formatISOstr } = require("../../utility/formatISOstr.js");
 const { googleAnalytics } = require("./../common/googleAnalytics.js");
@@ -10,7 +10,7 @@ const defaultMeta = {
     "./../main.css",
     "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400&display=swap",
   ],
-  scripts: ["./../js/prism.js"],
+  scripts: ["./../js/prism.js"], // TODO: get all .js files from src/js/
   charset: "utf-8",
   description: "Default page description",
   keywords: "default, page",
@@ -71,6 +71,8 @@ async function generateHTML(pageContent, pageMeta = defaultMeta) {
     }
   })();
 
+  const markdownHTML = md.render(pageContent);
+
   const html = `
 <!DOCTYPE html>
 <html lang="${lang}" class="md-page">
@@ -88,19 +90,15 @@ async function generateHTML(pageContent, pageMeta = defaultMeta) {
     
     <link rel="icon" type="image/png" href="./../favicon.png">
   </head>
-  <body>
-    <header>
-        <nav>
-          <a href="http://andreyponomarev.ru">home</a>
-          <a href="https://github.com/ponomarevandrey">github</a>
-          <a href="mailto:info@andreyponomarev.ru">email</a>
-        </nav>
-        <div class="md-gradient md-gradient_header"></div>
-    </header>
-    
-    <time datetime="${year}">Last update: ${day} ${month} ${year}</time>
+  <body>    
     <main>
-      ${md.render(pageContent)}
+      <div class="wrapper">
+        <div class="breadcrumbs"><a href="/">/index</a></div>
+        <time datetime="${year}">
+          Last update: <b>${day} ${month} ${year}</b>
+        </time>
+        ${markdownHTML}
+      </div>
     </main>
   </body>
 </html>`;
