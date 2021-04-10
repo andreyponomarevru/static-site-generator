@@ -68,9 +68,11 @@ async function generateHTML(metadata) {
 
   <body>
     
-    <header class="header">   
+    <header>   
       <img src="https://avatars.githubusercontent.com/u/34704845?v=4" class="my-photo" />
-      <span>Andrey Ponomarev</span>
+      <a href="mailto:info@andreyponomarev.ru">Email</a>
+      <a href="https://github.com/ponomarevandrey">GitHub</a>
+      <a href="http://linkedin.com/in/andreyponomareveverywhere">LinkedIn</a>
     </header>
 
     <!-- MAIN -->
@@ -78,9 +80,11 @@ async function generateHTML(metadata) {
     <main>   
       <section class="intro">
         <p>Hi, my name is Andrey, I'm a web developer specializing in the back-end (Node.js).</p>
+        <!--
         <p>
           <strong>If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>. I will reply within 24 hours.</strong>
         </p>
+        -->
         <p>
           My tools:
           <ul>
@@ -91,7 +95,7 @@ async function generateHTML(metadata) {
       </section>
 
       <!-- PROJECTS -->${await buildProjects(metadata.projects)}
-      <!-- BLOG --> ${await buildArticles(metadata.articles)}
+      <!-- BLOG  ${await buildArticles(metadata.articles)} -->
       <!-- ABOUT -->
 
       <section>

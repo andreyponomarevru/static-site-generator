@@ -17,16 +17,10 @@ async function buildArticles(metadata) {
 
   return `
     <section>
-      <h1>Blog</h1>
-      <h2>Programming</h2>
-      <h3>JavaScript</h3>
+      <h1>Articles</h1>
       <ul>
         ${(await Promise.all(metadata.map(buildRow))).join("")}
       </ul>
-      <h2>Databases</h2>
-      <h3>PostgreSQL</h3>
-      <h2>DevOps</h2>
-      <h2>Personal</h2>
     </section>`;
 }
 
