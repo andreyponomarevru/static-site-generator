@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+
+  ssg:
+    container_name: ssg
+    build:
+      context: ./ssg
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./ssg/src:/ssg
+      - ./ssg/tsconfig.json:/ssg/tsconfig.json
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+      - "9229:9229"
+    env_file:
+      - ./ssg.env
+    command: npm start
