@@ -1,6 +1,5 @@
 import * as request from "superagent";
-import { encodeToBase64 } from "./encodeToBase64";
-import https from "https";
+import { encodeToBase64 } from "./utility/encodeToBase64";
 const USER_AGENT = process.env.USER_AGENT!;
 const API_BASEURL = process.env.API_BASEURL!;
 const API_TOKEN = process.env.GITHUB_API_TOKEN!;

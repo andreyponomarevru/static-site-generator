@@ -1,7 +1,7 @@
 import markdown from "markdown-it";
-import * as github from "./../utility/githubAPIClient";
+import * as github from "./../githubAPIClient";
 import { formatISOstr } from "../utility/formatISOstr";
-import { googleAnalytics } from "./../utility/googleAnalytics";
+import { googleAnalytics, favIcons } from "./codeSnippets";
 import { ArticleMeta } from "../types";
 const md = markdown({ html: true });
 
@@ -73,18 +73,21 @@ export async function generateHTML(fileMeta: ArticleMeta, fileContent: string) {
 <!DOCTYPE html>
 <html lang="${metadata.lang}" class="md-page">
   <head>
-    <title>${metadata.title}</title>
     <meta charset="${metadata.charset}" />
     <meta name="viewport" content="${metadata.viewport}" />
     <meta name="description" content="${metadata.description}" />
     <meta name="keywords" content="${metadata.keywords}" />
     <meta name="author" content="${metadata.author}" />
+    
+    <title>${metadata.title}</title>
+    
     ${extra}
     ${stylesheets}
     ${googleAnalytics}
+    ${favIcons}
     ${scripts}
     
-    <link rel="icon" type="image/png" href="./../favicon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
   </head>
   <body>    
     <main>

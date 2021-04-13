@@ -1,6 +1,10 @@
 {
   "projects": [
     {
+      "repo": "static-site-generator",
+      "branch": "dev"
+    },
+    {
       "repo": "musicbox",
       "tech": [],
       "branch": "dev"
@@ -12,14 +16,6 @@
     {
       "repo": "automation-scripts",
       "branch": "master"
-    },
-    {
-      "repo": "configs",
-      "branch": "master"
-    },
-    {
-      "repo": "static-site-generator",
-      "branch": "dev"
     }
   ]
 }
