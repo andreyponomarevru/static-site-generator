@@ -1,5 +1,6 @@
 import * as request from "superagent";
 import { encodeToBase64 } from "./encodeToBase64";
+import https from "https";
 const USER_AGENT = process.env.USER_AGENT!;
 const API_BASEURL = process.env.API_BASEURL!;
 const API_TOKEN = process.env.GITHUB_API_TOKEN!;
@@ -29,6 +30,7 @@ function handleRequestError(err: Error) {
 // Doc: https://docs.github.com/en/rest/reference/repos#get-a-repository
 export async function getRepository(repo: string) {
   const endpoint = `${API_BASEURL}/repos/${REPO_OWNER}/${repo}`;
+
   try {
     const res: GetRepositoryResponse = await request
       .get(endpoint)
