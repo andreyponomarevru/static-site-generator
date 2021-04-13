@@ -1,14 +1,14 @@
-export type ProjectMetadata = {
+export type ProjectMeta = {
   repo: string;
   tech: string[];
   branch: string;
 };
 
-export type IndexMetadata = {
-  projects: ProjectMetadata[];
+export type IndexMeta = {
+  projects: ProjectMeta[];
 };
 
-export type ArticleMetadata = {
+export type ArticleMeta = {
   [key: string]: string;
 };
 

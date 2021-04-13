@@ -1,14 +1,9 @@
 import path from "path";
 import * as github from "./../utility/githubAPIClient";
-import {
-  IndexMetadata,
-  ArticleMetadata,
-  ProjectMetadata,
-  JSON,
-} from "../types";
+import { IndexMeta, ArticleMeta, ProjectMeta, JSON } from "../types";
 // import { formatISOstr } from "./../utility/formatISOstr";
 
-async function getProjectRow({ repo, branch }: ProjectMetadata) {
+async function getProjectRow({ repo, branch }: ProjectMeta) {
   const { html_url, name, description, homepage } = await github.getRepository(
     repo,
   );
@@ -22,7 +17,7 @@ async function getProjectRow({ repo, branch }: ProjectMetadata) {
     </li>`;
 }
 
-async function getProjects(metadata: ProjectMetadata[]) {
+async function getProjects(metadata: ProjectMeta[]) {
   return `
       <section class="projects">
         <h1>Projects</h1>
@@ -35,14 +30,14 @@ async function getProjects(metadata: ProjectMetadata[]) {
       </section>`;
 }
 
-async function getArticleRow({ title, url }: ArticleMetadata) {
+async function getArticleRow({ title, url }: ArticleMeta) {
   //const { date } = await github.getFileLastCommit(url);
   //const { day, month, year } = formatISOstr(date);
   const fileName = path.basename(url).replace("md", "html");
   return `<li><a href="./articles/${fileName}">${title}</a></li>`;
 }
 
-async function getArticles(metadata: JSON<ArticleMetadata>) {
+async function getArticles(metadata: JSON<ArticleMeta>) {
   return `
     <section class="articles">
       <h1>Articles</h1>
@@ -53,8 +48,8 @@ async function getArticles(metadata: JSON<ArticleMetadata>) {
 }
 
 export async function generateHTML(
-  indexMetadata: JSON<IndexMetadata>,
-  articlesMetadata: JSON<ArticleMetadata>,
+  indexMetadata: JSON<IndexMeta>,
+  articlesMetadata: JSON<ArticleMeta>,
 ) {
   const html = `
 <!DOCTYPE html>

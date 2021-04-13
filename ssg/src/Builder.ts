@@ -1,9 +1,9 @@
 import fs from "fs-extra";
 import path from "path";
-import { render as renderSass } from "../utility/sassPromiseWrapper";
+import { render as renderSass } from "./utility/sassPromiseWrapper";
 
 export class Builder {
-  async cleanPreviousBuild(rootOutputPath: string) {
+  static async cleanPreviousBuild(rootOutputPath: string) {
     console.log("Cleaning previous build...");
 
     try {
@@ -16,7 +16,7 @@ export class Builder {
     }
   }
 
-  async compileSass({ from, to }: { from: string; to: string }) {
+  static async compileSass({ from, to }: { from: string; to: string }) {
     try {
       console.log("Compiling Sass to CSS...");
       const { css } = await renderSass({ file: from });
@@ -28,7 +28,7 @@ export class Builder {
     }
   }
 
-  async copyAssets(nodes: { from: string; to: string }[]) {
+  static async copyAssets(nodes: { from: string; to: string }[]) {
     try {
       console.log(`Copying files and folders...`);
       for (const { from, to } of nodes) {
@@ -40,7 +40,7 @@ export class Builder {
     }
   }
 
-  async loadJSON<T>(filesPath: string) {
+  static async loadJSON<T>(filesPath: string) {
     console.log("Loading page metadata from JSON...");
 
     const jsonContent: { [filename: string]: T } = {};
@@ -61,7 +61,7 @@ export class Builder {
     }
   }
 
-  async loadMarkdown(dir: string) {
+  static async loadMD(dir: string) {
     console.log(`Loading Markdown from /${dir}...`);
 
     const pages: { [key: string]: string } = {};
@@ -80,7 +80,7 @@ export class Builder {
     }
   }
 
-  async writeHTML(outputDir: string, filename: string, HTML: string) {
+  static async writeHTML(outputDir: string, filename: string, HTML: string) {
     console.log("Writing HTML...");
 
     try {

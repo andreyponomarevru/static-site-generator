@@ -2,7 +2,7 @@ import markdown from "markdown-it";
 import * as github from "./../utility/githubAPIClient";
 import { formatISOstr } from "../utility/formatISOstr";
 import { googleAnalytics } from "./../utility/googleAnalytics";
-import { ArticleMetadata } from "../types";
+import { ArticleMeta } from "../types";
 const md = markdown({ html: true });
 
 const defaultMeta = {
@@ -25,10 +25,7 @@ const defaultMeta = {
   extra: [],
 };
 
-export async function generateHTML(
-  fileMeta: ArticleMetadata,
-  fileContent: string,
-) {
+export async function generateHTML(fileMeta: ArticleMeta, fileContent: string) {
   const metadata = Object.assign(defaultMeta, fileMeta);
 
   const { date } = await github.getFileLastCommit(metadata.url);
