@@ -6,54 +6,58 @@ import { generateHTML as generateIndexHTML } from "./templates/index";
 import { generateHTML as generateMarkdownHTML } from "./templates/markdown";
 import { writeHTML } from "./build-scripts/writeHTML";
 import { loadMarkdown } from "./build-scripts/loadMarkdown";
-import { loadMeta } from "./build-scripts/loadMeta";
+import { loadJSON } from "./build-scripts/loadJSON";
 import util from "util";
 import { IndexMetadata, ArticleMetadata } from "./types";
 import { getFilenameWithoutExtension } from "./utility/getFilenameWithoutExtension";
+import { Builder } from "./build-scripts/Builder";
 
-const ROOT_OUTPUT_PATH = process.env.ROOT_OUTPUT_PATH!;
+const builder = new Builder();
 
-const INDEX_META_PATH = process.env.INDEX_META_PATH!;
-const MD_META_PATH = process.env.MD_META_PATH!;
-const MD_INPUT_PATH = process.env.MD_INPUT_PATH!;
-const MD_OUTPUT_PATH = `${ROOT_OUTPUT_PATH}/articles`;
-const IMG_DIR_PATH = process.env.IMG_DIR_PATH!;
-const FAVICON_DIR_PATH = process.env.FAVICON_DIR_PATH!;
-const SCRIPTS_DIR_PATH = process.env.SCRIPTS_DIR_PATH!;
-const DNS_CONFIG_DIR_PATH = process.env.DNS_CONFIG_DIR_PATH!;
-const SASS_PATH = process.env.SASS_PATH!;
+// Source paths
+const SRC_INDEX_META_PATH = process.env.SRC_INDEX_META_PATH!;
+const SRC_MD_META_PATH = process.env.SRC_MD_META_PATH!;
+const SRC_MD_PATH = process.env.SRC_MD_PATH!;
+const SRC_IMG_DIR_PATH = process.env.SRC_IMG_DIR_PATH!;
+const SRC_FAVICON_DIR_PATH = process.env.SRC_FAVICON_DIR_PATH!;
+const SRC_SCRIPTS_DIR_PATH = process.env.SRC_SCRIPTS_DIR_PATH!;
+const SRC_DNS_CONFIG_DIR_PATH = process.env.SRC_DNS_CONFIG_DIR_PATH!;
+const SRC_SASS_PATH = process.env.SRC_SASS_PATH!;
+
+// Output paths
+const OUTPUT_ROOT_PATH = process.env.OUTPUT_ROOT_PATH!;
+const OUTPUT_MD_PATH = process.env.OUTPUT_MD_PATH!;
+const OUTPUT_IMG_DIR_PATH = process.env.OUTPUT_IMG_DIR_PATH!;
+const OUTPUT_SCRIPTS_DIR_PATH = process.env.OUTPUT_SCRIPTS_DIR_PATH!;
+const OUTPUT_CSS_PATH = process.env.OUTPUT_CSS_PATH!;
 
 (async () => {
   try {
-    await fs.ensureDir(ROOT_OUTPUT_PATH);
-    await cleanPreviousBuild(ROOT_OUTPUT_PATH);
+    await fs.ensureDir(OUTPUT_ROOT_PATH);
+    await cleanPreviousBuild(OUTPUT_ROOT_PATH);
     await copyAssets([
-      { from: IMG_DIR_PATH, to: `${ROOT_OUTPUT_PATH}/img` },
-      { from: FAVICON_DIR_PATH, to: `${ROOT_OUTPUT_PATH}/` },
-      { from: SCRIPTS_DIR_PATH, to: `${ROOT_OUTPUT_PATH}/js` },
-      { from: DNS_CONFIG_DIR_PATH, to: `${ROOT_OUTPUT_PATH}/` },
+      { from: SRC_IMG_DIR_PATH, to: OUTPUT_IMG_DIR_PATH },
+      { from: SRC_FAVICON_DIR_PATH, to: OUTPUT_ROOT_PATH },
+      { from: SRC_SCRIPTS_DIR_PATH, to: OUTPUT_SCRIPTS_DIR_PATH },
+      { from: SRC_DNS_CONFIG_DIR_PATH, to: OUTPUT_ROOT_PATH },
     ]);
     await compileSass({
-      from: SASS_PATH,
-      to: `${ROOT_OUTPUT_PATH}/main.css`,
+      from: SRC_SASS_PATH,
+      to: OUTPUT_CSS_PATH,
     });
 
-    // NOTE: If you will write to disk first, pages other than index.html (i.e. writeMarkdownHTML before writeHTML), live-server won't be able to correctly perform hot reloading. It will render root dir files instead of index.html cause live-server gets triggered on ANY file change, and usually, it happens before `index.html` had been written to the disk. So, the live-server performs hot reloading but could not find index.html. Hence it just displays all files in root dir (`/build` in our case),
-    const indexMeta = await loadMeta<IndexMetadata>(INDEX_META_PATH);
-    const projectsMeta = indexMeta["index.json"].projects;
-    const articlesMeta = await loadMeta<ArticleMetadata>(MD_META_PATH);
-    const pageHTML = await generateIndexHTML(projectsMeta, articlesMeta);
-    await writeHTML(ROOT_OUTPUT_PATH, "index.html", pageHTML);
+    const indexMeta = await loadJSON<IndexMetadata>(SRC_INDEX_META_PATH);
+    const articlesMeta = await loadJSON<ArticleMetadata>(SRC_MD_META_PATH);
 
-    const pages = await loadMarkdown(MD_INPUT_PATH);
-    for (let [mdFilename, pageContent] of Object.entries(pages)) {
-      const pageName = getFilenameWithoutExtension(mdFilename);
-      const JSONfileName = `${pageName}.json`;
-      const HTMLfileName = `${pageName}.html`;
+    const indexHTML = await generateIndexHTML(indexMeta, articlesMeta);
+    await writeHTML(OUTPUT_ROOT_PATH, "index.html", indexHTML);
 
-      const pageMetadata = articlesMeta[JSONfileName];
-      const pageHTML = await generateMarkdownHTML(pageContent, pageMetadata);
-      await writeHTML(MD_OUTPUT_PATH, HTMLfileName, pageHTML);
+    const articlesContent = Object.entries(await loadMarkdown(SRC_MD_PATH));
+    for (let [articleFilename, articleContent] of articlesContent) {
+      const pageName = getFilenameWithoutExtension(articleFilename);
+      const pageMetadata = articlesMeta[`${pageName}.json`];
+      const pageHTML = await generateMarkdownHTML(pageMetadata, articleContent);
+      await writeHTML(OUTPUT_MD_PATH, `${pageName}.html`, pageHTML);
     }
   } catch (err) {
     console.error(err);

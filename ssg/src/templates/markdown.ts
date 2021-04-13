@@ -12,7 +12,7 @@ const defaultMeta = {
     "./../main.css",
     "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400&display=swap",
   ],
-  scripts: ["./../js/prism.js"], // TODO: get all .js files from src/js/
+  scripts: ["./../js/prism.js"],
   charset: "utf-8",
   description: "Default page description",
   keywords: "default, page",
@@ -26,10 +26,10 @@ const defaultMeta = {
 };
 
 export async function generateHTML(
-  pageContent: string,
-  pageMeta: ArticleMetadata,
+  fileMeta: ArticleMetadata,
+  fileContent: string,
 ) {
-  const metadata = Object.assign(defaultMeta, pageMeta);
+  const metadata = Object.assign(defaultMeta, fileMeta);
 
   const { date } = await github.getFileLastCommit(metadata.url);
   const { day, month, year } = formatISOstr(date);
@@ -70,7 +70,7 @@ export async function generateHTML(
     }
   })();
 
-  const markdownHTML = md.render(pageContent);
+  const markdownHTML = md.render(fileContent);
 
   const html = `
 <!DOCTYPE html>

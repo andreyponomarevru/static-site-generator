@@ -1,27 +1,25 @@
 import path from "path";
 import * as github from "./../utility/githubAPIClient";
-import { IndexMetadata, ArticleMetadata, ProjectMetadata } from "../types";
+import {
+  IndexMetadata,
+  ArticleMetadata,
+  ProjectMetadata,
+  JSON,
+} from "../types";
 // import { formatISOstr } from "./../utility/formatISOstr";
-
-type Metadata = {
-  indexMetadata: IndexMetadata;
-  articlesMetadata: ArticleMetadata;
-};
 
 async function getProjectRow({ repo, branch }: ProjectMetadata) {
   const { html_url, name, description, homepage } = await github.getRepository(
     repo,
   );
-
   // const { date, message } = await github.getRepoLastCommit(repo, branch);
   // const { day, month, year } = formatISOstr(date);
-
   const descriptionHTML = description ? `— ${description || ""}` : "";
   const homepageHTML = homepage ? `— <a href="${homepage}">Demo</a>` : "";
   return `
-            <li>
-              <a href="${html_url}">${name}</a> ${descriptionHTML} ${homepageHTML}
-            </li>`;
+    <li>
+      <a href="${html_url}">${name}</a> ${descriptionHTML} ${homepageHTML}
+    </li>`;
 }
 
 async function getProjects(metadata: ProjectMetadata[]) {
@@ -44,22 +42,20 @@ async function getArticleRow({ title, url }: ArticleMetadata) {
   return `<li><a href="./articles/${fileName}">${title}</a></li>`;
 }
 
-async function getArticles(metadata: { [key: string]: ArticleMetadata }) {
+async function getArticles(metadata: JSON<ArticleMetadata>) {
   return `
-      <section class="articles">
-        <h1>Articles</h1>
-        <ul>${(
-          await Promise.all(Object.values(metadata).map(getArticleRow))
-        ).join("")}</ul>
-      </section>`;
+    <section class="articles">
+      <h1>Articles</h1>
+      <ul>${(
+        await Promise.all(Object.values(metadata).map(getArticleRow))
+      ).join("")}</ul>
+    </section>`;
 }
 
 export async function generateHTML(
-  indexMetadata: ProjectMetadata[],
-  articlesMetadata: { [JSONfilename: string]: ArticleMetadata },
+  indexMetadata: JSON<IndexMetadata>,
+  articlesMetadata: JSON<ArticleMetadata>,
 ) {
-  console.log(indexMetadata);
-
   const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -186,7 +182,7 @@ export async function generateHTML(
     <main>   
 
       <!-- PROJECTS -->
-      ${await getProjects(indexMetadata)}
+      ${await getProjects(indexMetadata["index.json"].projects)}
 
       <!-- ARTICLES --> 
       ${await getArticles(articlesMetadata)}

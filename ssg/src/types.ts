@@ -9,7 +9,9 @@ export type IndexMetadata = {
 };
 
 export type ArticleMetadata = {
-  title: string;
-  url: string;
   [key: string]: string;
+};
+
+export type JSON<Metadata> = {
+  [filename: string]: Metadata;
 };
