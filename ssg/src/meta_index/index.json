@@ -2,16 +2,7 @@
   "projects": [
     {
       "repo": "musicbox",
-      "tech": [
-        "Docker",
-        "Node.js",
-        "Express.js",
-        "PostgreSQL",
-        "React.js",
-        "SCSS",
-        "Pug",
-        "Webpack"
-      ],
+      "tech": [],
       "branch": "dev"
     },
     {
