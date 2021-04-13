@@ -1,9 +1,11 @@
 FROM node:10.15.3-alpine
 
+USER root
+
 WORKDIR /ssg
 
 ADD package*.json ./
 
 RUN npm install
 
-USER node
+CMD npm run start && npm run start-live-server

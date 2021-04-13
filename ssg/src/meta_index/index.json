@@ -1,0 +1,34 @@
+{
+  "projects": [
+    {
+      "repo": "musicbox",
+      "tech": [
+        "Docker",
+        "Node.js",
+        "Express.js",
+        "PostgreSQL",
+        "React.js",
+        "SCSS",
+        "Pug",
+        "Webpack"
+      ],
+      "branch": "dev"
+    },
+    {
+      "repo": "biscuit-components",
+      "branch": "master"
+    },
+    {
+      "repo": "automation-scripts",
+      "branch": "master"
+    },
+    {
+      "repo": "configs",
+      "branch": "master"
+    },
+    {
+      "repo": "static-site-generator",
+      "branch": "dev"
+    }
+  ]
+}

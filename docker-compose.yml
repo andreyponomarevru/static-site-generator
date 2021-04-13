@@ -1,15 +1,16 @@
 version: "3.7"
 
 services:
-
   ssg:
     container_name: ssg
     build:
       context: ./ssg
       dockerfile: Dockerfile.dev
     volumes:
-      - ./ssg/src:/ssg
+      - ./ssg/src:/ssg/src
+      - ./ssg/package.json:/ssg/package.json
       - ./ssg/tsconfig.json:/ssg/tsconfig.json
+      - ./build:/ssg/build
     expose:
       - "8080"
     ports:

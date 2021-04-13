@@ -7,18 +7,16 @@
 //
 
 html {
-  height: 100%;
+  min-height: 100%;
   scroll-behavior: smooth;
-  background-attachment: fixed;
-  padding: 0 0 2rem 0;
 }
 
 body {
   font-family: $font-stack_sans;
-  line-height: $line-height_lg;
+  line-height: 1.6;
   min-height: 100%;
   font-size: 15px;
-  max-width: 680px;
+  margin: 0 auto;
 
   @media only screen and (min-width: $screen-sm) {
     font-size: 16px;
@@ -26,20 +24,83 @@ body {
 }
 
 header {
+  padding: 1rem 1rem 2rem 1rem;
+  background: linear-gradient(45deg, #001a00 0%, #023102 100%);
+  color: white;
+}
+
+.menu {
+  grid-area: menu;
+
   display: grid;
   grid-template-columns: repeat(4, auto);
   column-gap: 1.5rem;
   justify-content: flex-start;
   align-items: center;
-  padding: 1rem 1rem;
-  background-color: white;
-  font-weight: 800;
+  letter-spacing: 0.6px;
+
+  a {
+    &:link {
+      color: $color_sand;
+      text-decoration: none;
+      transition: color 0.35s ease-out, background 0.15s ease-in;
+    }
+
+    &:visited {
+      color: $color_sand;
+    }
+
+    &:hover {
+      color: white;
+      text-decoration: none;
+    }
+
+    &:focus {
+      color: white;
+    }
+
+    &:active {
+      color: white;
+    }
+  }
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(auto, 610px));
+  column-gap: 2rem;
+  row-gap: 2rem;
+
+  &__about {
+    font-weight: 800;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    max-width: 610px;
+
+    @media only screen and (min-width: $screen-sm) {
+      font-size: 2.4rem;
+      line-height: 1.2;
+    }
+  }
+
+  &__knowledge {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 186px);
+    column-gap: 1rem;
+  }
+
+  &__header {
+    font-weight: bold;
+  }
 }
 
 main {
   display: grid;
-  row-gap: 1rem;
-  padding: 0 1rem 2rem 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(0, 610px));
+  grid-auto-flow: row;
+  row-gap: 2rem;
+  column-gap: 2rem;
+  padding: 2rem 1rem 2rem 1rem;
 }
 
 p {
@@ -67,7 +128,7 @@ footer {
 ul,
 ol {
   display: block;
-  list-style-type: disc;
+  list-style-type: square;
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0;
@@ -119,7 +180,7 @@ h6 {
   margin-inline-start: 0;
   margin-inline-end: 0;
   color: black;
-  font-weight: 600;
+  font-weight: 800;
 }
 
 h1 {
@@ -157,30 +218,16 @@ h6 {
 //
 
 .md-page {
-  header {
-    display: grid;
-    grid-template-columns: auto auto 1fr;
-    grid-template-rows: 1fr;
-    column-gap: 1rem;
-    align-items: center;
-    justify-items: flex-end;
-    margin: 0 auto;
-    padding: 1rem 1rem 2rem 1rem;
-    background-color: white;
-    font-weight: 800;
-    text-transform: uppercase;
-  }
-
   body {
     max-width: 800px;
-    background-color: #333;
+    background: #333;
     margin: 0 auto;
     font-size: 15px;
   }
 
   main {
     display: block;
-    padding: 1rem;
+    padding: 0 1rem 1rem 1rem;
     overflow: hidden;
     row-gap: 0;
     width: 100%;
@@ -188,7 +235,7 @@ h6 {
     overflow: hidden;
 
     @media only screen and (min-width: $screen-sm) {
-      padding: 2rem;
+      padding: 0 2rem 2rem 2rem;
     }
 
     img {
@@ -240,18 +287,22 @@ h6 {
     border-top: 3px dashed #bdb09e;
   }
 
+  .meta {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   time {
+    padding: 1rem 2rem;
     display: inline-block;
-    padding: 0.2rem 1rem;
-    font-size: 0.8rem;
     background-color: black;
     color: white;
   }
 
   .breadcrumbs {
-    display: inline-block;
-    padding: 0.2rem 1rem;
-    font-size: 0.8rem;
+    padding: 1rem 2rem;
     background-color: white;
   }
 }

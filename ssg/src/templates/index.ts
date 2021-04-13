@@ -1,7 +1,65 @@
-const { buildProjects } = require("./template/buildProjects.js");
-const { buildArticles } = require("./template/buildArticles.js");
+import path from "path";
+import * as github from "./../utility/githubAPIClient";
+import { IndexMetadata, ArticleMetadata, ProjectMetadata } from "../types";
+// import { formatISOstr } from "./../utility/formatISOstr";
 
-async function generateHTML(metadata) {
+type Metadata = {
+  indexMetadata: IndexMetadata;
+  articlesMetadata: ArticleMetadata;
+};
+
+async function getProjectRow({ repo, branch }: ProjectMetadata) {
+  const { html_url, name, description, homepage } = await github.getRepository(
+    repo,
+  );
+
+  // const { date, message } = await github.getRepoLastCommit(repo, branch);
+  // const { day, month, year } = formatISOstr(date);
+
+  const descriptionHTML = description ? `— ${description || ""}` : "";
+  const homepageHTML = homepage ? `— <a href="${homepage}">Demo</a>` : "";
+  return `
+            <li>
+              <a href="${html_url}">${name}</a> ${descriptionHTML} ${homepageHTML}
+            </li>`;
+}
+
+async function getProjects(metadata: ProjectMetadata[]) {
+  return `
+      <section class="projects">
+        <h1>Projects</h1>
+        <p>
+          Check out my <a href="https://github.com/ponomarevandrey">GitHub</a>.
+        </p>  
+        <ul class="projects__list">
+          ${(await Promise.all(metadata.map(getProjectRow))).join("")}
+        </ul>
+      </section>`;
+}
+
+async function getArticleRow({ title, url }: ArticleMetadata) {
+  //const { date } = await github.getFileLastCommit(url);
+  //const { day, month, year } = formatISOstr(date);
+  const fileName = path.basename(url).replace("md", "html");
+  return `<li><a href="./articles/${fileName}">${title}</a></li>`;
+}
+
+async function getArticles(metadata: { [key: string]: ArticleMetadata }) {
+  return `
+      <section class="articles">
+        <h1>Articles</h1>
+        <ul>${(
+          await Promise.all(Object.values(metadata).map(getArticleRow))
+        ).join("")}</ul>
+      </section>`;
+}
+
+export async function generateHTML(
+  indexMetadata: ProjectMetadata[],
+  articlesMetadata: { [JSONfilename: string]: ArticleMetadata },
+) {
+  console.log(indexMetadata);
+
   const html = `
 <!DOCTYPE html>
 <html lang="en">
@@ -69,36 +127,73 @@ async function generateHTML(metadata) {
   <body>
     
     <header>   
-      <img src="https://avatars.githubusercontent.com/u/34704845?v=4" class="my-photo" />
-      <a href="mailto:info@andreyponomarev.ru">Email</a>
-      <a href="https://github.com/ponomarevandrey">GitHub</a>
-      <a href="http://linkedin.com/in/andreyponomareveverywhere">LinkedIn</a>
+      <nav class="menu">
+        <img src="https://avatars.githubusercontent.com/u/34704845?v=4" class="my-photo" />
+        <a href="mailto:info@andreyponomarev.ru">Email</a>
+        <a href="https://github.com/ponomarevandrey">GitHub</a>
+        <a href="http://linkedin.com/in/andreyponomareveverywhere">LinkedIn</a>
+      </nav>
+
+      <div class="intro">
+        <p class="intro__about">
+          Hi, my name is Andrey, I'm a backend web developer specializing in Node.js.
+        </p>
+      <section class="intro__knowledge">
+        <ul>
+          <span class="intro__header">Languages</span>
+          <li>JavaScript/TypeScript (Node.js)</li>
+          <li>SQL</li>
+          <li>Shell scripting</li>
+          <li>CSS/SASS</li>
+        </ul>
+        <ul>
+          <span class="intro__header">Frameworks/Libs/...</span>
+          <li>express.js</li>
+          <li>superagent</li>
+          <li>joi</li>
+          <li>node-postgres</li>
+          <li>webpack</li>
+          <li>react.js (only fundamentals)</li>
+        </ul>
+        <ul>
+          <span class="intro__header">Databases</span>
+          <li>PostgreSQL</li>
+          <li>Redis</li>
+        </ul>
+        <ul>
+          <span class="intro__header">Infrastructure</span>
+          <li>Linux (Ubuntu)</li>
+          <li>Nginx</li>
+          <li>Docker</li>
+        </ul>
+        <ul>
+          <span class="intro__header">Testing</span>
+          <li>mocha</li>
+          <li>chai</li>
+          <li>sinon</li>
+          <li>supertest</li>
+        </ul>
+      </section>
+      </div>
+
+      <!--
+      <p>
+        <strong>If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>. I will reply within 24 hours.</strong>
+      </p>
+      -->
     </header>
 
-    <!-- MAIN -->
-
     <main>   
-      <section class="intro">
-        <p>Hi, my name is Andrey, I'm a web developer specializing in the back-end (Node.js).</p>
-        <!--
-        <p>
-          <strong>If you need any help with your project, I'd be glad to help you, email me at <a href="mailto:info@andreyponomarev.ru" class="link">info@andreyponomarev.ru</a>. I will reply within 24 hours.</strong>
-        </p>
-        -->
-        <p>
-          My tools:
-          <ul>
-            <li><em>backend:</em> Node.js (JavaScript/TypeScript, Express.js), PostgreSQL, Redis, Nginx, Docker, Linux, Shell scripting</li>
-            <li><em>frontend:</em> React.js, Webpack, CSS (SASS)</li>
-          </ul>
-        </p>
-      </section>
 
-      <!-- PROJECTS -->${await buildProjects(metadata.projects)}
-      <!-- BLOG  ${await buildArticles(metadata.articles)} -->
+      <!-- PROJECTS -->
+      ${await getProjects(indexMetadata)}
+
+      <!-- ARTICLES --> 
+      ${await getArticles(articlesMetadata)}
+
       <!-- ABOUT -->
 
-      <section>
+      <section class="about">
         <h1>About</h1>
 
         <article>
@@ -149,5 +244,3 @@ async function generateHTML(metadata) {
 
   return html;
 }
-
-module.exports.generateHTML = generateHTML;

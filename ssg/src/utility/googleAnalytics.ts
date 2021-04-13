@@ -1,4 +1,4 @@
-const googleAnalytics = `
+export const googleAnalytics = `
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-33652174-2"></script>
   <script>
@@ -9,5 +9,3 @@ const googleAnalytics = `
     gtag('config', 'UA-33652174-2');
   </script>
 `;
-
-module.exports = { googleAnalytics }; 

@@ -1,7 +1,7 @@
-const sass = require("node-sass");
+import sass, { Result } from "node-sass";
 
 // Sass Promise wrapper
-function render(config) {
+function render(config: { file: string }): Promise<Result> {
   return new Promise((resolve, reject) => {
     sass.render(config, (err, result) => {
       if (err) reject(err);
@@ -10,4 +10,4 @@ function render(config) {
   });
 }
 
-module.exports.render = render;
+export { render };

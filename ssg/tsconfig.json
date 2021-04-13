@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "sourceMap": true,
     "outDir": "./build",
-    
+
     "strict": true,
-    
-    "noUnusedLocals": true,
+
+    "noUnusedLocals": false,
     "noImplicitReturns": true,
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "compileOnSave": true,
   "include": ["src/**/*"],

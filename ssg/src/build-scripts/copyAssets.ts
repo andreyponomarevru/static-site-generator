@@ -1,6 +1,6 @@
-const fs = require("fs-extra");
+import fs from "fs-extra";
 
-async function copyAssets(nodes = []) {
+export async function copyAssets(nodes: { from: string; to: string }[]) {
   try {
     console.log(`Copying files and folders...`);
     for (const { from, to } of nodes) {
@@ -11,5 +11,3 @@ async function copyAssets(nodes = []) {
     process.exit(1);
   }
 }
-
-module.exports.copyAssets = copyAssets;
