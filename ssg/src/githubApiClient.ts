@@ -5,17 +5,6 @@ const API_BASEURL = process.env.API_BASEURL!;
 const API_TOKEN = process.env.GITHUB_API_TOKEN!;
 const REPO_OWNER = process.env.REPO_OWNER!;
 
-//
-
-type GetRepositoryResponse = {
-  body: {
-    name: string;
-    description: string;
-    html_url: string;
-    homepage: string;
-  };
-};
-
 type GetLastCommit = { date: string; message: string };
 
 //
@@ -31,13 +20,13 @@ export async function getRepository(repo: string) {
   const endpoint = `${API_BASEURL}/repos/${REPO_OWNER}/${repo}`;
 
   try {
-    const res: GetRepositoryResponse = await request
+    const res: request.Response = await request
       .get(endpoint)
       .set("user-agent", USER_AGENT)
       .set("authorization", `Basic ${credentials}`)
       .on("error", handleRequestError);
 
-    return res.body;
+    return res;
   } catch (err) {
     console.error(`${__filename}: Cat't get repository.\n${err}`);
     process.exit(1);

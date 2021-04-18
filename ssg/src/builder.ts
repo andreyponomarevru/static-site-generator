@@ -1,0 +1,126 @@
+import fs from "fs-extra";
+import path from "path";
+import { render as renderSass } from "./utility/sassPromiseWrapper";
+import { MdArticle } from "./types";
+
+export async function cleanPreviousBuild(dirPath: string) {
+  console.log("Cleaning previous build...");
+
+  try {
+    for (const file of await fs.readdir(dirPath)) {
+      await fs.remove(path.join(dirPath, file));
+    }
+  } catch (err) {
+    console.error(`Error during ${dirPath} cleanup: ${err.stack}`);
+    process.exit(1);
+  }
+}
+
+export async function compileSass({ from, to }: { from: string; to: string }) {
+  console.log("Compiling Sass to CSS...");
+
+  try {
+    const { css } = await renderSass({ file: from });
+    await fs.ensureDir(path.dirname(to));
+    await fs.writeFile(to, css);
+  } catch (err) {
+    console.error(`Error while compiling SASS: ${err.stack}`);
+    process.exit(1);
+  }
+}
+
+export async function copyAssets(nodes: { from: string; to: string }[]) {
+  console.log(`Copying files and folders...`);
+
+  try {
+    for (const { from, to } of nodes) await fs.copy(from, to);
+  } catch (err) {
+    console.error(`Error while copying files and folders: ${err.stack}`);
+    process.exit(1);
+  }
+}
+
+export async function loadJsonDir(filesPath: string) {
+  console.log("Loading page metadata from JSON...");
+
+  try {
+    const dirContent: { [key: string]: { [key: string]: string } } = {};
+    for (const filename of await fs.readdir(filesPath)) {
+      const filePath = path.join(filesPath, filename);
+      dirContent[filename] = JSON.parse(await fs.readFile(filePath, "utf-8"));
+    }
+    return dirContent;
+  } catch (err) {
+    console.error(
+      `${__filename}: Error while loading page metadata: ${err.stack}`,
+    );
+    process.exit(1);
+  }
+}
+
+export async function loadMdDir(dir: string) {
+  console.log(`Loading Markdown files from ${dir}...`);
+
+  try {
+    let md: { [key: string]: MdArticle } = {};
+    for (const page of await fs.readdir(dir)) {
+      md = {
+        [page]: {
+          content: await fs.readFile(path.join(dir, page), "utf-8"),
+          mtime: (await fs.stat(path.join(dir, page))).mtime,
+        },
+      };
+    }
+    return md;
+  } catch (err) {
+    console.error(`Error while loading Markdown from ${dir}: ${err.stack}`);
+    process.exit(1);
+  }
+}
+
+export async function loadJsonFile<T>(filePath: string) {
+  console.log("Loading page metadata from JSON...");
+
+  try {
+    const json: T = JSON.parse(await fs.readFile(filePath, "utf-8"));
+    return json;
+  } catch (err) {
+    console.error(
+      `${__filename}: Error while loading page metadata: ${err.stack}`,
+    );
+    process.exit(1);
+  }
+}
+
+export async function loadMdFile(filePath: string) {
+  console.log(`Loading Markdown file from ${filePath}...`);
+
+  try {
+    return {
+      content: await fs.readFile(filePath, "utf-8"),
+      mtime: (await fs.stat(filePath)).mtime,
+    };
+  } catch (err) {
+    console.error(
+      `Error while loading Markdown file from ${path}: ${err.stack}`,
+    );
+    process.exit(1);
+  }
+}
+
+export async function writeHTML(
+  outputDir: string,
+  filename: string,
+  HTML: string,
+) {
+  console.log("Writing HTML...");
+
+  try {
+    await fs.ensureDir(outputDir);
+    const filePath = path.join(outputDir, filename);
+    await fs.writeFile(filePath, HTML);
+  } catch (err) {
+    console.error(`${__filename}: Error while writing HTML: ${err.stack}`);
+    process.exit(1);
+  }
+}

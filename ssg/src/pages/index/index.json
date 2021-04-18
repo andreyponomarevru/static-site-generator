@@ -1,0 +1,15 @@
+{
+  "lang": "en",
+  "stylesheets": [
+    "/main.css",
+    "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400&display=swap"
+  ],
+  "scripts": [],
+  "charset": "utf-8",
+  "title": "Andrey Ponomarev",
+  "description": "Portfolio",
+  "keywords": "web developmentm, javascript, node.js",
+  "author": "Andrey Ponomarev",
+  "favicon": "",
+  "viewport": "width=device-width,initial-scale=1,viewport-fit=cover,shrink-to-fit=no"
+}
