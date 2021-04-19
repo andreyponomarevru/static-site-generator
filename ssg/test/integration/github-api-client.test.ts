@@ -1,7 +1,7 @@
+import mocha from "mocha";
 import { expect } from "chai";
-
-import { getRepository } from "./../../src/githubApiClient";
-import { gitHubProjects } from "../../src/pages/index/gitHubProjects";
+import { getRepository } from "./../../src/github-api-client";
+import { gitHubProjects } from "../../src/pages/index/github-projects";
 
 describe("gitHubApiClient", function () {
   describe("#getRepository", () => {
