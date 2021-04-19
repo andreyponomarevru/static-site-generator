@@ -13,9 +13,9 @@ html {
 
 body {
   font-family: $font-stack_sans;
+  font-size: 15px;
   line-height: 1.6;
   min-height: 100%;
-  font-size: 15px;
   margin: 0 auto;
 
   @media only screen and (min-width: $screen-sm) {
@@ -25,8 +25,10 @@ body {
 
 header {
   padding: 1rem 1rem 2rem 1rem;
-  background: linear-gradient(45deg, #001a00 0%, #023102 100%);
+  //background: linear-gradient(140deg, #0a140a 0%, #0f310f 100%);
   color: white;
+  background-color: #544922;
+  background-image: linear-gradient(315deg, #544922 0%, #041a0a 100%);
 }
 
 .menu {
@@ -128,22 +130,34 @@ footer {
 ul,
 ol {
   display: block;
-  list-style-type: square;
   margin-block-start: 1em;
   margin-block-end: 1em;
   margin-inline-start: 0;
   margin-inline-end: 0;
   padding-inline-start: 2rem;
 }
-
+/*
 li {
   display: list-item;
 
-  ul {
+  p:first-child,
+  p:last-child {
+    // border: 1px solid red;
+
+    margin-block-start: 0;
+  }
+
+  p:last-child {
+    margin-block-end: 0;
+  }
+
+  ul,
+  ol {
+    margin-block-end: 0;
     margin-block-start: 0;
   }
 }
-
+*/
 a {
   &:link {
     color: $color_sand;
@@ -220,46 +234,72 @@ h6 {
 .md-page {
   body {
     max-width: 800px;
-    background: #333;
     margin: 0 auto;
     font-size: 15px;
+    background-color: #041a0a;
+    background-image: linear-gradient(
+      315deg,
+      #041a0a 0%,
+      #544922 50%,
+      #041a0a 100%
+    );
   }
 
   header {
-    position: absolute;
-    top: 0;
     background: none;
     display: grid;
     grid-template-columns: auto auto;
     justify-content: space-between;
-    //align-items: center;
+    align-items: center;
     padding: 0;
     font-size: 0.75rem;
 
+    a {
+      &:link {
+        color: $color_sand;
+        text-decoration: none;
+        transition: color 0.35s ease-out, background 0.15s ease-in;
+      }
+
+      &:visited {
+        color: $color_sand;
+      }
+
+      &:hover {
+        color: white;
+        text-decoration: none;
+      }
+
+      &:focus {
+        color: white;
+      }
+
+      &:active {
+        color: white;
+      }
+    }
+
     .breadcrumbs {
       padding: 0.7rem 1rem 0.8rem 1rem;
-      background-color: white;
-      margin: 0 0 0 1rem;
     }
 
     time {
       padding: 0.7rem 1rem 0.8rem 1rem;
       display: inline-block;
-      background-color: black;
       color: white;
-      margin: 0 1rem 0 0;
     }
   }
 
   main {
     display: block;
-    margin: 1.5rem 0 0 0;
+    margin: 0 0 1rem 0;
     padding: 0 1rem 1rem 1rem;
     overflow: hidden;
     row-gap: 0;
     width: 100%;
     background-color: $color_skin;
     overflow: hidden;
+    border-radius: 5px;
 
     @media only screen and (min-width: $screen-sm) {
       padding: 0 2rem 2rem 2rem;

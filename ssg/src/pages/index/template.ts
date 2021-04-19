@@ -1,5 +1,5 @@
 import markdown from "markdown-it";
-import * as builder from "../../builder";
+import { loadJsonDir } from "../../build-helpers";
 import { MdArticle, Metadata } from "../../types";
 import {
   googleAnalytics,
@@ -10,7 +10,7 @@ import {
   injectAbout,
   injectStylesheets,
 } from "./../particles";
-import { gitHubProjects } from "./gitHubProjects";
+import { gitHubProjects } from "./github-projects";
 
 const SRC_ARTICLES_JSON_PATH = process.env.SRC_ARTICLES_JSON_PATH!;
 
@@ -26,7 +26,7 @@ const menu = [
 ];
 
 export async function generateHTML(meta: Metadata, article: MdArticle) {
-  let articlesMetadata = await builder.loadJsonDir(SRC_ARTICLES_JSON_PATH);
+  let articlesMetadata = await loadJsonDir(SRC_ARTICLES_JSON_PATH);
 
   const html = `
 <!DOCTYPE html>

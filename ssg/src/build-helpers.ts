@@ -1,6 +1,6 @@
 import fs from "fs-extra";
 import path from "path";
-import { render as renderSass } from "./utility/sassPromiseWrapper";
+import { render as renderSass } from "./utility/sass-promise-wrapper";
 import { MdArticle } from "./types";
 
 export async function cleanPreviousBuild(dirPath: string) {
@@ -11,7 +11,7 @@ export async function cleanPreviousBuild(dirPath: string) {
       await fs.remove(path.join(dirPath, file));
     }
   } catch (err) {
-    console.error(`Error during ${dirPath} cleanup: ${err.stack}`);
+    console.error(`Error during cleanup: ${err.stack}`);
     process.exit(1);
   }
 }
@@ -111,14 +111,14 @@ export async function loadMdFile(filePath: string) {
 export async function writeHTML(
   outputDir: string,
   filename: string,
-  HTML: string,
+  HTMLcontent: string,
 ) {
   console.log("Writing HTML...");
 
   try {
     await fs.ensureDir(outputDir);
     const filePath = path.join(outputDir, filename);
-    await fs.writeFile(filePath, HTML);
+    await fs.writeFile(filePath, HTMLcontent);
   } catch (err) {
     console.error(`${__filename}: Error while writing HTML: ${err.stack}`);
     process.exit(1);
