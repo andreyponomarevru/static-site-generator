@@ -1,8 +1,6 @@
-import util from "util";
-import { buildWebsite } from "./buildWebsite";
+import { onUnhandledRejection } from "./error-handlers";
+import { build } from "./build";
 
-process.on("unhandledRejection", (reason, p) => {
-  console.error(`UnhandledRejection: ${util.inspect(p)}, reason "${reason}"`);
-});
+process.on("unhandledRejection", onUnhandledRejection);
 
-buildWebsite().catch(console.error);
+build().catch(console.error);
