@@ -1,6 +1,6 @@
 import { StringMap } from "../types";
-import { GitHubProject } from "./index/gitHubProjects";
-import * as github from "../githubApiClient";
+import { GitHubProject } from "./index/github-projects";
+import * as github from "../github-api-client";
 
 export const googleAnalytics = `
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -82,6 +82,14 @@ export async function injectProjects(metadata: GitHubProject[]) {
         </p>  
         <ul class="projects__list">
           ${(await Promise.all(metadata.map(buildProjectRow))).join("")}
+        </ul>
+        
+        <br>
+        <b>Old vanilla JavaScript and frontend stuff</b>
+        <ul class="projects__list">
+          <li>
+            <a href="https://github.com/ponomarevandrey/ypen">ypen</a> — Landing page for YPen (front-end only) — <a href="https://ponomarevandrey.github.io/ypen/">Demo</a>
+          </li>
         </ul>
       </section>`;
 }
