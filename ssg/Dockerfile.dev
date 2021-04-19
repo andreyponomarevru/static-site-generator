@@ -1,11 +1,10 @@
 FROM node:10.15.3-alpine
 
 USER root
-
 WORKDIR /ssg
 
-ADD package*.json ./
-
+COPY package*.json ./
 RUN npm install
+COPY . .
 
-CMD npm run start && npm run start-live-server
+CMD npm run start

@@ -3,9 +3,6 @@ const config = {
   parserOptions: {
       ecmaVersion: 2020,
       sourceType: "module", // Allows for the use of imports
-      ecmaFeatures: {
-        jsx: true // Allows for the parsing of JSX
-      }
   },
   settings: {
     react: {
@@ -19,7 +16,6 @@ const config = {
       node: true
   },
   extends: [
-      "plugin:react/recommended",
       "plugin:@typescript-eslint/recommended",
       // Uses eslint-config-prettier to disable ESLint rules from 
       // @typescript-eslint/eslint-plugin that would conflict with prettier
@@ -30,7 +26,6 @@ const config = {
       "plugin:prettier/recommended" 
   ],
   plugins: [
-      "react",
       "prettier"
   ],
   rules: {
