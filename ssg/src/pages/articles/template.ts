@@ -1,5 +1,5 @@
 import markdown from "markdown-it";
-import { formatDateStr } from "../../utility/formatDateStr";
+import { formatDateStr } from "../../utility/format-date-str";
 import {
   googleAnalytics,
   favIcons,
