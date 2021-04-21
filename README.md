@@ -20,6 +20,10 @@ Although there are already tons of carefully built and polished static site gene
 - configuration using JSON files and Docker env vars
 - includes Bash script deploying the website to GitHub Pages
 
+# Requirements
+
+* Docker Compose
+
 # Internals
 
 Some important dirs/files:
@@ -75,7 +79,7 @@ We take metadata from JSON files, articles' text from Markdown files, retrieve s
 
 Then we use a small Bash script that uploads all files contained in `build` dir to GitHub Pages.
 
-## Building process
+# Building process
 
 Although the coding part of the project was straightforward, I can't say the same about the building process - it ended up pretty convoluted so I want to explain (at least for my own self) what happens at each step
 
