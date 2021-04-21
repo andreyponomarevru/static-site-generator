@@ -67,9 +67,13 @@ export async function injectProjects(metadata: GitHubProject[]) {
       body: { html_url, name, description, homepage },
     } = await github.getRepository(repo);
     const descriptionHTML = description ? `— ${description || ""}` : "";
-    const homepageHTML = homepage ? `— <a href="${homepage}">Demo</a>` : "";
+    const homepageHTML = homepage
+      ? `<nav>
+          <a href="${homepage}">Demo</a>
+        </nav>`
+      : "";
     return `
-      <li>
+      <li class="projects__project">
         <a href="${html_url}">${name}</a> ${descriptionHTML} ${homepageHTML}
       </li>`;
   }
@@ -77,20 +81,13 @@ export async function injectProjects(metadata: GitHubProject[]) {
   return `
       <section class="projects">
         <h1>Projects</h1>
-        <p>
-          Check out my <a href="https://github.com/ponomarevandrey">GitHub</a>.
-        </p>  
         <ul class="projects__list">
           ${(await Promise.all(metadata.map(buildProjectRow))).join("")}
         </ul>
-        
-        <br>
-        <b>Old vanilla JavaScript and frontend stuff</b>
-        <ul class="projects__list">
-          <li>
-            <a href="https://github.com/ponomarevandrey/ypen">ypen</a> — Landing page for YPen (front-end only) — <a href="https://ponomarevandrey.github.io/ypen/">Demo</a>
-          </li>
-        </ul>
+
+        <p>
+          To check out some of my old and less noteworthy projects, visit <a href="https://github.com/ponomarevandrey">GitHub</a>.
+        </p>  
       </section>`;
 }
 
