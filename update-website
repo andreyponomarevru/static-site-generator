@@ -3,7 +3,7 @@
 # If repo url is not provided, set it to:
 REPO="${1:-https://github.com/ponomarevandrey/my-website}"
 
-cd build && \
+cd ssg/build && \
 git init && \
 git add --all && \
 git commit -m "Update website"
