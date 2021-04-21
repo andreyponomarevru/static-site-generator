@@ -4,6 +4,10 @@
 REPO="${1:-https://github.com/ponomarevandrey/my-website}"
 
 cd ssg/build && \
+
+git config --global user.email "info@andreyponomarev.ru"
+git config --global user.name "Andrey Ponomarev"
+
 git init && \
 git add --all && \
 git commit -m "Update website"
