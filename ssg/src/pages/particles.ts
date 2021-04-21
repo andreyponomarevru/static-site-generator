@@ -104,8 +104,10 @@ export function injectArticles(articleMetadata: {
 
   return `
     <section class="articles">
+      <!--  
       <h1>Articles</h1>
       <ul>${rows.join("")}</ul>
+      -->
     </section>`;
 }
 
