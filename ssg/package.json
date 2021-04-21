@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "concurrently --kill-others-on-fail \"nodemon --watch ./test --watch ./src --ext ts,scss,json,md --exec 'TS_NODE_PROJECT=tsconfig.json node --inspect=0.0.0.0:9229 --require ts-node/register ./src/index.ts && npm run test'\" \"live-server --wait=500 ./build\"",
-    "test": "mocha --watch ./test/**/*.test.ts  --recursive --require ts-node/register"
+    "test": "mocha --watch ./test/**/*.test.ts --recursive --require ts-node/register"
   },
   "keywords": [],
   "author": "",

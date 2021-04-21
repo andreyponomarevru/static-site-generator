@@ -46,7 +46,7 @@ export async function build() {
 
   for (let filename of await fs.readdir(SRC_ARTICLES_JSON_PATH)) {
     const name = getFilenameWithoutExtension(filename);
-    const jsonFile = `${SRC_ARTICLES_JSON_PATH}/${name}.json`;
+    const jsonFile = `${SRC_ARTICLES_JSON_PATH}/${filename}`;
     const mdFile = `${SRC_ARTICLES_MD_PATH}/${name}.md`;
 
     const articleMeta = await loadJsonFile<Metadata>(jsonFile);

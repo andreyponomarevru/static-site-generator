@@ -125,6 +125,12 @@ footer {
   }
 }
 
+.projects {
+  &__project {
+    margin-bottom: 1rem;
+  }
+}
+
 // Typography
 
 ul,
@@ -179,7 +185,7 @@ a {
   }
 
   &:active {
-    color: $color_gray-darken;
+    color: $color_sand;
   }
 }
 

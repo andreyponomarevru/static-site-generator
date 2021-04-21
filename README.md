@@ -1,75 +1,164 @@
-- Try makr writeHTML sync function!
-
 # About
 
-Node.js static site generator built from scratch for personal website
+Node.js static site generator built from scratch for personal website.
 
-# Features
+## Motivation
 
-- Takes Markdown and JSON-metadata files, combines them using JavaScript-template and outputs HTML files
-- Imports projects metadata (repository name, last commit date and commit message) from your GitHub account. You can also set in JSON-file from which branch to read this metadata
-- Uses SASS for styling
+Although there are already tons of carefully built and polished static site generators, I decided to build another one. Why? The short answer — most if not all available SSGs are bloated with the stuff I don't need.
+
+## Features
+
+- compiles Markdown files to HTML using JS templates.
+
+  Each template consists of "particles" — JS functions that return specific parts of the page, for instance, "menu", "projects", "articles", "favicons", ... Such modularization allows to reuse same code across multiple templates.
+
+- imports repositories metadata in templates via GitHub API. Supported metadata:
+  - repository description
+  - commit metadata (last commit date, last commit message)
+  - it is also possible to set the specific branch from which to retrieve commit metadata
+- styling using SASS
+- configuration using JSON files and Docker env vars
+- includes Bash script deploying the website to GitHub Pages
 
 # Requirements
 
-- Node.js
-- Set your GitHub API token in `GITHUB` environment variable (in `/etc/environment` or `~/.bashrc`)
-- Set GitHub repository owner name in `REPO_OWNER` environment variable (in `nodemon.json` and in `package.json` > `build` script)
+* Docker Compose
 
-# Structure
+# Internals
 
-Important files:
-
-- `src/`
-  - `dns/` - DNS settings
-  - `favicon/`
-  - `img/` - images used on index page and in markdown articles
-  - `js/` - scripts
-  - `md/` - markdown articles
-  - `meta_index/projects.json` - metadata for portfolio projects ("Portfolio" section on index page)
-  - `meta_md/` - metadata for markdown articles ("Articles" section on index page)
-  - `sass/` - styles
-- `build-scripts/`
-  - `index/template.js` - index page template
-  - `mardown/template.js` - markdown articles template
-- `utility/`
-  - `githubAPIClient.js` - GitHub API client
-- `update-website` - Shell-script for updating the website
-
-`package.json` contains `start` script that starts the dev server:
+Some important dirs/files:
 
 ```
-// package.json
-  ...
-  "start": "concurrently --kill-others
-              \"nodemon --watch ./src -e ts,json --exec TS_NODE_PROJECT=tsconfig.json node --inspect=0.0.0.0:9229 -r ts-node/register ./src/index.ts\"
-              \"live-server ./build\"",
-  ...
+├── ssg
+|   ├── build                      # compiled website files for uploading to GitHub Pages
+|   └── src
+|       ├── dns
+|       │   └── CNAME              # DNS settings
+|       ├── favicon
+|       ├── img                    # images used in HTML pages
+|       ├── js                     # scripts used in HTML pages
+|       ├── pages
+|       |   ├── articles
+|       |   │   ├── md             # Markdown articles
+|       |   │   ├── meta           # HTML metadata for each article
+|       |   │   └── template.ts    # template for Markdown articles
+|       |   ├── index
+|       |   │   ├── about.md       # Text for "About" article on index page
+|       |   │   ├── github-projects.ts # list of projects to retrieve from GitHub API and inject into a template
+|       |   │   ├── index.json     # HTML metadata
+|       |   │   └── template.ts    # template for index page
+|       |   └── particles.ts       # reusable code snippets and JS functions that dynamically generate and inject HTML code
+|       ├── sass
+|       ├── utility
+|       ├── build-helpers.ts
+|       ├── build.ts               # function which bundles everything together
+|       ├── error-handlers.ts
+|       ├── github-api-client.ts
+|       ├── index.ts
+|       └── types.ts
+└── update-website                 # Bash script for deploying/updating the website.
 ```
 
-What it does is basically starts two scripts concurrently (with the help of the package of the same name, `concurrently`):
+SSG consists of only two templates which are regular functions, returning plain HTML code:
 
-1. [`nodemon`](https://github.com/remy/nodemon)
+- template for index page (`ssg/src/pages/index/template.ts`)
+- template for pages compiled from Markdown files (`ssg/src/pages/articles/template`)
 
-- watches for changes in `ts`, `scss` and `json` files
-- compiles TypeScript to JavaScript
+We take metadata from JSON files, articles' text from Markdown files, retrieve some additional data from GitHub API and finally inject all this into our templates. Then we write these templates to disk as HTML pages. Here is a more detailed explanation of the SSG build algorithm:
 
-2. [`live-server`](https://github.com/tapio/live-server#readme) provides us with the live dev server. It serves static files, so we can view our website in browser as we change it. The server runs at `http://127.0.0.01:8080`. You can specify another port as env var in `ssg.env`
+1. Check if the `build` directory exists. If not, create it.
+2. Clean up the `build` dir from all the content left after the previous build
+3. Copy all static assets (images, favicons, scripts, DNS config) from `src` dir to `build`
+4. Compile SASS styles
+5. Compile index page:
+   1. Load HTML metadata from JSON
+   2. Load Markdown article
+   3. Pass the loaded HTML metadata and Markdown article to the page template (which is a function). The template returns HTML code.
+   4. We take this code and write it to the HTML file
+6. Compile Markdown article pages. The process is 100% the same, just instead of compiling a single page, we're looping over an array of articles.
 
-- To add scripts and css files to `index` page, edit `src/templates/index.ts`
-- To add scripts and css files to articles (pages generated from Markdown), edit `src/meta_md`
+Then we use a small Bash script that uploads all files contained in `build` dir to GitHub Pages.
 
-# How to start
+# Building process
 
-1. `docker-compose up ssg`
-2. open `http://127.0.0.01:8080` in your browser
+Although the coding part of the project was straightforward, I can't say the same about the building process - it ended up pretty convoluted so I want to explain (at least for my own self) what happens at each step
 
-# How to update website
+Take a look at the `scripts` property of `package.json`, this is the place where all the magic happens. When we start the Docker container, it triggers `npm run start` — let's explore what each command and option of the `start` script ​does.
 
-1. `npm run build` - the script builds the index page as well as all markdown articles pages.
-2. `./update-website` - push to GitHub (run the script from the root dir). The script pushes all files from `build` dir to https://github.com/ponomarevandrey/my-website, replacing all repository content with new files
+> I've formatted JSON below to make all commands visually more distinguishable and clear
 
-# How to change the domain name
+```json
+"scripts": {
+  "start": "concurrently --kill-others-on-fail
+              \"nodemon --watch ./test
+                        --watch ./src
+                        --ext ts,scss,json,md
+                        --exec
+                            'TS_NODE_PROJECT=tsconfig.json
+                             node --inspect=0.0.0.0:9229
+                                  --require ts-node/register
+                                  ./src/index.ts &&
+                             npm run test'\"
+              \"live-server --wait=500 ./build\"",
+
+  "test": "mocha --watch ./test/**/*.test.ts
+                 --recursive
+                 --require ts-node/register"
+},
+```
+
+Here is a diagram of processes started by the `start` script:
+
+```
+              concurrently
+           /                \
+       nodemon          live-server
+      /        \
+    node       mocha
+(TS compiler)
+```
+
+As you can see we're using `concurrently` to run `nodemon` and `live-server` at the same time.
+
+- [`nodemon`](https://github.com/remy/nodemon) watches for changes in our files and also starts another two processes (using `--exec` option):
+
+  - **`node` process** (TS compiler)
+
+    ```json
+    'TS_NODE_PROJECT=tsconfig.json node --inspect=0.0.0.0:9229
+                                        --require ts-node/register ./src/index.ts &&
+                                   npm run test'\"
+    ```
+
+    First, we pass to the `node` process the `TS_NODE_PROJECT` env var which contains the path to TS compiler config. We also set the debugger (`--inspect=0.0.0.0:9229`). And finally, we pass the `index.ts` to `node`.
+
+    `node` requires TS compiler module (`-require ts-node/register`) and passes it `index.ts`. The compiler checks the config using env var (`TS_NODE_PROJECT`), transpiles TS to JS, and returns the index file to `node` for execution
+
+  - **`mocha` process**
+
+    Unlike the `node` process above, `mocha` is a long-running process. It watches for changes in `test` dir and reruns all tests every time we edit and save the code. We need to set the `--watch` option, otherwise, the process will exit with `No test files found` error. We also need to require the TS compiler module (`--require ts-node/register`). Without it, Mocha process won't be able to run tests written in TypeScript.
+
+- [`live-server`](https://github.com/tapio/live-server#readme) is a "little development server with live reload capability". It serves all files from `/build` dir at [http://127.0.0.01:8080](http://127.0.0.01:8080), so we can check our website in the browser as we change it. You can specify another port as `PORT` env var in `ssg.env`.
+
+So, we have 4 running processes in our container: `nodemon`, `concurrently`, `mocha`, and `live-server`. Additionally, every code change triggers the 5th short-lived process - `node`, which runs TS compiler transpiling the code and then returning the transpiled code ​to `node` for execution
+
+# How to
+
+## How to start the SSG
+
+1. Set your GitHub API token, repository owner name, and other details as env vars in `ssg.env`.
+2. `docker-compose up`
+3. open [http://127.0.0.01:8080](http://127.0.0.01:8080)` in the browser
+4. Now you can edit templates, Markdown files or any other kind of files and all changes will be immediately available in your browser
+
+## How to deploy/update the website using GitHub Pages
+
+1. Create a new GitHub repository for storing your website.
+2. Start Docker container: `docker-compose up ssg`. Docker will create `build` folder on your disk as volume
+3. Run `./update-website <your repo URL>`.
+   For example `./update-website https://github.com/ponomarevandrey/my-website`. This Bash script pushes all files from your Docker's volume (`build` dir) to https://github.com/ponomarevandrey/my-website, replacing all repository content with new files.
+
+## How to change the domain name
 
 1. Change the domain name in `/src/dns/CNAME`
 2. [Repository settings](https://github.com/ponomarevandrey/my-website/settings) > GitHub Pages > Custom Domain (add new domain)
