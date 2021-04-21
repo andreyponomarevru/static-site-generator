@@ -12,10 +12,10 @@
 
 In 2001, when I was 12, my parents bought a computer. At that time at school, we were taught BASIC - although it was fun but not much applicable to real life. Surfing the Internet, I found a book teaching HTML and CSS and built my first website.
 
-Then I got interested in programming and started to learn C++. Should I even mention that I had failed miserably? Afterwards, I spent some time playing around with other languages, messing around the command line, and learning about computer hardware by disassembling and rebuilding my PC.
+Then I got interested in programming and started to learn C++. Should I even mention that I had failed miserably? Afterward, I had spent some time playing around with other languages, messing around the command line, and learning about computer hardware by disassembling and rebuilding the PC again and again.
 
-In 2006 I entered [Murmansk State Technical University](http://www.mstu.edu.ru/). During my first year at university, I started building websites for friends and small businesses. I had been doing mostly frontend and CMS-customization sort of things, sometimes delving more into the design and sometimes writing a little bit of PHP and JavaScript and configuring servers. That's what I had been doing for almost 8 years.
+In 2006 I entered [Murmansk State Technical University](http://www.mstu.edu.ru/). Slowly I started building websites for friends and small businesses. Had been doing mostly frontend and CMS-customization sort of things, sometimes delving more into the design and sometimes writing a little bit of PHP and JavaScript and configuring servers. That's what I had been doing for almost 8 years.
 
 Around 2015, due to the accumulated fatigue, I made a decision to quit web development, at least for a few years.
 
-In 2018 I returned to programming, intending to transition solely into backend development. Since then, I learn new technologies and build new personal projects striving to keep coding fun and enjoyable, as it once was (and currently is).
+In 2018 I returned to programming, intending to transition solely into backend development. Don't want to spread myself too thin anymore, doing design, frontend, backend, and so on at the same time. Since 2018 I haven't been doing any commercial work — I currently only learn and build new personal projects, honing my skills.
