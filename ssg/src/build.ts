@@ -1,6 +1,7 @@
 import fs from "fs-extra";
-import * as indexTemplate from "./pages/index/template";
-import * as mdTemplate from "./pages/articles/template";
+import path from "path";
+import * as indexTemplate from "./templates/index";
+import * as articleTemplate from "./templates/article";
 import {
   cleanPreviousBuild,
   copyAssets,
@@ -9,13 +10,15 @@ import {
   loadMdFile,
   loadJsonFile,
 } from "./build-helpers";
+import { getFilenameWithoutDate } from "./utility/get-filename-without-date";
 import { getFilenameWithoutExtension } from "./utility/get-filename-without-extension";
+import { parseDateInFilename } from "./utility/parse-date-in-filename";
 import { Metadata } from "./types";
 
-const SRC_INDEX_JSON_PATH = process.env.SRC_INDEX_JSON_PATH!;
-const SRC_INDEX_MD_PATH = process.env.SRC_INDEX_MD_PATH!;
-const SRC_ARTICLES_JSON_PATH = process.env.SRC_ARTICLES_JSON_PATH!;
-const SRC_ARTICLES_MD_PATH = process.env.SRC_ARTICLES_MD_PATH!;
+const SRC_INDEX_PATH = process.env.SRC_INDEX_PATH!;
+
+const SRC_ARTICLES_PATH = process.env.SRC_ARTICLES_PATH!;
+
 const SRC_IMG_DIR_PATH = process.env.SRC_IMG_DIR_PATH!;
 const SRC_FAVICON_DIR_PATH = process.env.SRC_FAVICON_DIR_PATH!;
 const SRC_SCRIPTS_DIR_PATH = process.env.SRC_SCRIPTS_DIR_PATH!;
@@ -39,19 +42,22 @@ export async function build() {
   ]);
   await compileSass({ from: SRC_SASS_PATH, to: OUTPUT_CSS_PATH });
 
-  const indexMeta = await loadJsonFile<Metadata>(SRC_INDEX_JSON_PATH);
-  const indexMd = await loadMdFile(SRC_INDEX_MD_PATH);
-  const indexHTML = await indexTemplate.generateHTML(indexMeta, indexMd);
+  const indexMeta = await loadJsonFile<Metadata>(
+    `${SRC_INDEX_PATH}/index.json`,
+  );
+  const indexHTML = await indexTemplate.generateHTML(indexMeta);
   await writeHTML(OUTPUT_ROOT_PATH, "index.html", indexHTML);
 
-  for (let filename of await fs.readdir(SRC_ARTICLES_JSON_PATH)) {
-    const name = getFilenameWithoutExtension(filename);
-    const jsonFile = `${SRC_ARTICLES_JSON_PATH}/${filename}`;
-    const mdFile = `${SRC_ARTICLES_MD_PATH}/${name}.md`;
+  for (let jsonFilename of await fs.readdir(SRC_ARTICLES_PATH)) {
+    if (path.extname(jsonFilename) !== ".json") continue;
+
+    const nameWithoutExt = getFilenameWithoutExtension(jsonFilename);
+
+    const jsonFile = `${SRC_ARTICLES_PATH}/${jsonFilename}`;
+    const mdPath = `${SRC_ARTICLES_PATH}/${nameWithoutExt}.md`;
 
     const articleMeta = await loadJsonFile<Metadata>(jsonFile);
-    const articleMd = await loadMdFile(mdFile);
-    const articleHTML = mdTemplate.generateHTML(articleMeta, articleMd);
-    await writeHTML(OUTPUT_MD_PATH, `${name}.html`, articleHTML);
+    const articleHTML = await articleTemplate.generateHTML(articleMeta, mdPath);
+    await writeHTML(OUTPUT_MD_PATH, `${nameWithoutExt}.html`, articleHTML);
   }
 }
