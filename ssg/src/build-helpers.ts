@@ -46,6 +46,7 @@ export async function loadJsonDir(filesPath: string) {
   try {
     const dirContent: { [key: string]: { [key: string]: string } } = {};
     for (const filename of await fs.readdir(filesPath)) {
+      if (path.extname(filename) !== ".json") continue;
       const filePath = path.join(filesPath, filename);
       dirContent[filename] = JSON.parse(await fs.readFile(filePath, "utf-8"));
     }
@@ -63,11 +64,12 @@ export async function loadMdDir(dir: string) {
 
   try {
     let md: { [key: string]: MdArticle } = {};
-    for (const page of await fs.readdir(dir)) {
+    for (const filename of await fs.readdir(dir)) {
+      if (path.extname(filename) !== ".md") continue;
       md = {
-        [page]: {
-          content: await fs.readFile(path.join(dir, page), "utf-8"),
-          mtime: (await fs.stat(path.join(dir, page))).mtime,
+        [filename]: {
+          content: await fs.readFile(path.join(dir, filename), "utf-8"),
+          mtime: (await fs.stat(path.join(dir, filename))).mtime,
         },
       };
     }
@@ -86,7 +88,7 @@ export async function loadJsonFile<T>(filePath: string) {
     return json;
   } catch (err) {
     console.error(
-      `${__filename}: Error while loading page metadata: ${err.stack}`,
+      `${__filename}: Error while loading page metadata from ${filePath}: ${err.stack}`,
     );
     process.exit(1);
   }
@@ -102,7 +104,7 @@ export async function loadMdFile(filePath: string) {
     };
   } catch (err) {
     console.error(
-      `Error while loading Markdown file from ${path}: ${err.stack}`,
+      `Error while loading Markdown file from ${filePath}: ${err.stack}`,
     );
     process.exit(1);
   }
