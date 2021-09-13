@@ -1,0 +1,301 @@
+:root {
+  --font-stack-sans: "Open Sans", "Arial", "Verdana", "Helvetica", sans-serif;
+  --font-stack-serif: "Georgia", "Big Caslon", "Hoefler Text", "Garamond",
+    "Baskerville", "Palatino Linotype", "Times New Roman", "Times", serif;
+  --font-stack-mono: "Consolas", "PT Mono", "Lucida Console",
+    "Lucida Sans Typewriter", "Courier New", "Courier", monospace;
+
+  --font-size-root: 16px;
+  --font-size-xs: 0.7rem;
+  --font-size-sm: 0.87rem;
+  --font-size-lg: 1.2rem;
+  --font-size-xl: 1.4rem;
+
+  --font-size-h1: 2rem;
+  --font-size-h2: 1.5rem;
+  --font-size-h3: 1.3rem;
+  --font-size-h4: 1rem;
+  --font-size-h5: 0.8rem;
+  --font-size-h6: 0.7rem;
+
+  --line-height-xs: 1.1;
+  --line-height-sm: 1.3;
+  --line-height-md: 1.5;
+  --line-height-lg: 1.7;
+  --line-height-xl: 1.9;
+  --line-height-xxl: 2.1;
+
+  --color-white: white;
+  --color-gray-lightest: #f2f2f2;
+  --color-gray-lighten: #cccccc;
+  --color-gray-light: #a6a6a6;
+  --color-gray: #808080;
+  --color-gray-dark: #595959;
+  --color-gray-darken: #333333;
+  --color-gray-darkest: #1a1a1a;
+  --color-black: black;
+
+  --color-link: #008000;
+  --color-code-text: #333;
+  --color-code-bg: #ecdcc6;
+
+  --color-skin: #f5f2ed;
+  --color-dark-skin: #f2f0ed;
+  --color-sand: #997300;
+}
+
+/*
+ * Index page
+ */
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-stack-serif);
+  font-size: 18px;
+  line-height: 1.6;
+
+  min-height: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 1rem 0.6rem 1rem 0.6rem;
+  background-color: var(--color-gray-lightest);
+}
+@media only screen and (min-width: 750px) {
+  body {
+    font-size: 26px;
+    padding: 1rem 2rem;
+  }
+}
+
+header,
+main {
+  margin-bottom: 2rem;
+}
+
+header nav {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  column-gap: 2rem;
+  justify-content: flex-start;
+  padding: 0 0 2rem 0;
+}
+
+/*
+ * Typography
+ */
+ul,
+ol {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  padding-inline-start: 2rem;
+}
+
+ul ul,
+ol ul {
+  margin-block-start: 0;
+}
+
+a:link {
+  color: var(--color-sand);
+  transition: color 0.35s ease-out, background 0.15s ease-in;
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--color-sand);
+}
+
+a:hover {
+  color: var(--color-gray-darken);
+}
+
+a:focus {
+  color: var(--color-gray-darken);
+}
+
+a:active {
+  color: var(--color-sand);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-block-start: 1rem;
+  margin-block-end: 1rem;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  font-family: var(--font-stack-serif);
+  font-weight: 800;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+  line-height: 1.3;
+}
+
+h5 {
+  font-size: var(--font-size-h5);
+  line-height: 1.4;
+}
+
+h6 {
+  font-size: var(--font-size-h6);
+  line-height: 1.5;
+}
+
+/*
+ * .md article styles (pages generated from Markdown)
+ */
+
+.md-page body {
+  background-color: var(--color-skin);
+  font-size: 15px;
+  background: rgb(204, 204, 204);
+  background: linear-gradient(
+    180deg,
+    rgba(204, 204, 204, 1) 0%,
+    rgba(255, 255, 255, 1) 9%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+@media only screen and (min-width: 750px) {
+  .md-page body {
+    font-size: 16px;
+  }
+}
+
+.md-page header {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  column-gap: 2rem;
+  padding: 0 0.6rem 0 0.6rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media only screen and (min-width: 750px) {
+  .md-page header {
+    padding: 0 0.6rem 0 0.6rem;
+    column-gap: 2rem;
+  }
+}
+
+.md-page .links {
+  padding: 0.7rem 0 0.8rem 0;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 2rem;
+  align-content: flex-start;
+}
+
+.md-page .time {
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 2rem;
+  align-content: flex-end;
+}
+
+.md-page .time time {
+  padding: 0.7rem 0 0.8rem 0;
+  display: inline-block;
+}
+
+.md-page main {
+  display: block;
+  margin: 0;
+  padding: 0 0.3rem 1em 0.3rem;
+  overflow: hidden;
+  row-gap: 0;
+  width: 100%;
+  overflow: hidden;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media only screen and (min-width: 750px) {
+  .md-page main {
+    padding: 0 0.6rem 2rem 0.6rem;
+  }
+}
+
+.md-page img {
+  display: block;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100%;
+  max-width: 700px;
+  background-color: none;
+}
+
+.md-page h1,
+.md-page h2,
+.md-page h3,
+.md-page h4,
+.md-page h5,
+.md-page h6 {
+  margin-block-start: 2rem;
+  margin-block-end: 1rem;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  font-family: var(--font-stack-sans);
+  font-weight: 800;
+  padding-bottom: 5px;
+}
+
+.md-page blockquote {
+  background-color: black;
+  padding: 0.3rem 1.5rem;
+  margin: 0 0 1em 0;
+}
+.md-page blockquote > p {
+  margin-bottom: 0;
+  margin: 0.7rem 0 1em 0;
+  color: var(--color-gray-lighten);
+}
+
+.md-page p code {
+  padding: 2px 5px 1px 5px;
+  font-family: var(--font-stack-mono);
+  color: var(--color-code-text);
+  background-color: var(--color-gray-lighten);
+}
+
+.md-page pre {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.md-page hr {
+  margin: 2rem 0;
+  border-bottom: 0;
+  border-top: 1px dashed black;
+}
+
+.md-page #disqus_thread {
+  max-width: 1000px;
+  margin: 0 auto;
+}

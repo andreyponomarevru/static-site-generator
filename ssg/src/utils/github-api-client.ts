@@ -1,5 +1,5 @@
 import * as request from "superagent";
-import { encodeToBase64 } from "./utility/encode-to-base64";
+import { encodeToBase64 } from "./encode-to-base64";
 
 const USER_AGENT = process.env.USER_AGENT!;
 const API_BASEURL = process.env.API_BASEURL!;

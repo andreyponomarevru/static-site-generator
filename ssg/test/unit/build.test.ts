@@ -4,7 +4,7 @@ import fs from "fs-extra";
 import path from "path";
 
 const OUTPUT_ROOT_PATH = process.env.OUTPUT_ROOT_PATH!;
-
+/*
 describe("#buildWebsite", function () {
   const buildDirPath = path.resolve(OUTPUT_ROOT_PATH);
 
@@ -17,3 +17,4 @@ describe("#buildWebsite", function () {
     expect(await fs.pathExists(`${buildDirPath}/js`)).to.be.true;
   });
 });
+*/

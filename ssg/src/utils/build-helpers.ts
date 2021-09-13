@@ -1,7 +1,6 @@
 import fs from "fs-extra";
 import path from "path";
-import { render as renderSass } from "./utility/sass-promise-wrapper";
-import { MdArticle } from "./types";
+import { MdArticle } from "../types";
 
 export async function cleanPreviousBuild(dirPath: string) {
   console.log("Cleaning previous build...");
@@ -16,26 +15,14 @@ export async function cleanPreviousBuild(dirPath: string) {
   }
 }
 
-export async function compileSass({ from, to }: { from: string; to: string }) {
-  console.log("Compiling Sass to CSS...");
-
-  try {
-    const { css } = await renderSass({ file: from });
-    await fs.ensureDir(path.dirname(to));
-    await fs.writeFile(to, css);
-  } catch (err) {
-    console.error(`Error while compiling SASS: ${err.stack}`);
-    process.exit(1);
-  }
-}
-
 export async function copyAssets(nodes: { from: string; to: string }[]) {
-  console.log(`Copying files and folders...`);
+  console.log("Copying files and folders: ", nodes);
 
   try {
     for (const { from, to } of nodes) await fs.copy(from, to);
   } catch (err) {
     console.error(`Error while copying files and folders: ${err.stack}`);
+
     process.exit(1);
   }
 }

@@ -28,3 +28,9 @@ export type GitHub_GetRepository = {
     homepage: string;
   };
 };
+
+export type GitHubProject = {
+  readonly repo: string;
+  readonly branch: string;
+  readonly [key: string]: string;
+};

@@ -1,6 +1,5 @@
-import { StringMap } from "../types";
-import { GitHubProject } from "./index/github-projects";
-import * as github from "../github-api-client";
+import { StringMap, GitHubProject } from "../types";
+import * as github from "../utils/github-api-client";
 
 export const googleAnalytics = `
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,36 +52,52 @@ export function injectScripts(scripts: string[]) {
     : "";
 }
 
-export function injectMenu(menu: { name: string; link: string }[]) {
+export function injectMenu() {
+  const menu = [
+    { name: "GitHub", link: "https://github.com/ponomarevandrey" },
+    { name: "Email", link: "mailto:info@andreyponomarev.ru" },
+    {
+      name: "LinkedIn",
+      link: "http://linkedin.com/in/andreyponomareveverywhere",
+    },
+  ];
+
   return `
-    <nav class="menu">
-      <img src="https://avatars.githubusercontent.com/u/34704845?v=4" class="my-photo" />
+    <nav>
       ${menu.map(({ name, link }) => `<a href="${link}">${name}</a>`).join("")}
     </nav>`;
 }
 
-export async function injectProjects(metadata: GitHubProject[]) {
+export async function injectProjects() {
+  const gitHubProjects: GitHubProject[] = [
+    { repo: "chillout-tribe", branch: "main" },
+    { repo: "musicbox", branch: "dev" },
+    { repo: "static-site-generator", branch: "dev" },
+    { repo: "automation-scripts", branch: "master" },
+    { repo: "biscuit-components", branch: "master" },
+  ];
+
   async function buildProjectRow({ repo, branch }: GitHubProject) {
     const {
       body: { html_url, name, description, homepage },
     } = await github.getRepository(repo);
     const descriptionHTML = description ? `— ${description || ""}` : "";
     const homepageHTML = homepage
-      ? `<nav>
-          <a href="${homepage}">Demo</a>
-        </nav>`
+      ? `<span>
+          (<a href="${homepage}">demo</a>)
+        </span>`
       : "";
     return `
-      <li class="projects__project">
+      <li>
         <a href="${html_url}">${name}</a> ${descriptionHTML} ${homepageHTML}
       </li>`;
   }
 
   return `
-      <section class="projects">
+      <section>
         <h1>Projects</h1>
-        <ul class="projects__list">
-          ${(await Promise.all(metadata.map(buildProjectRow))).join("")}
+        <ul>
+          ${(await Promise.all(gitHubProjects.map(buildProjectRow))).join("")}
         </ul>
 
         <p>
@@ -103,18 +118,34 @@ export function injectArticles(articleMetadata: {
   }
 
   return `
-    <section class="articles">
-      <!--  
+    <section>
       <h1>Articles</h1>
       <ul>${rows.join("")}</ul>
-      -->
     </section>`;
 }
 
 export function injectAbout(article: string) {
   return `
-    <section class="about">
+    <section>
       <h1>About</h1>
       <article>${article}</article>
     </section>`;
 }
+
+export const defaultMeta = {
+  lang: "en",
+  title: "Andrey Ponomarev",
+  stylesheets: [
+    "./../main.css",
+    "./../reset.css",
+    "https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;0,800;1,400&display=swap",
+  ],
+  scripts: ["./../js/prism.js"],
+  charset: "utf-8",
+  description: "Default page description",
+  keywords: "default, page",
+  author: "Andrey Ponomarev",
+  favicon: "",
+  viewport:
+    "width=device-width,initial-scale=1,viewport-fit=cover,shrink-to-fit=no",
+};

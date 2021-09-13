@@ -1,8 +1,10 @@
 import mocha from "mocha";
 import { expect } from "chai";
-import { getRepository } from "./../../src/github-api-client";
-import { gitHubProjects } from "../../src/pages/index/github-projects";
+import { getRepository } from "./../../src/utils/github-api-client";
+//import { gitHubProjects } from "../../src/templates/_particles";
 import { connect } from "http2";
+
+/* Uncomment to test API
 
 describe("gitHubApiClient", function () {
   describe("#getRepository", function () {
@@ -20,3 +22,4 @@ describe("gitHubApiClient", function () {
     }
   });
 });
+*/

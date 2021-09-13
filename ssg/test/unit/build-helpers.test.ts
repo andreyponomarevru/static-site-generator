@@ -8,13 +8,9 @@ import {
   loadMdDir,
   loadJsonFile,
   loadMdFile,
-} from "./../../src/build-helpers";
+} from "./../../src/utils/build-helpers";
 
-const SRC_ARTICLES_JSON_PATH = process.env.SRC_ARTICLES_JSON_PATH!;
-const SRC_ARTICLES_MD_PATH = process.env.SRC_ARTICLES_MD_PATH!;
-const SRC_INDEX_JSON_PATH = process.env.SRC_INDEX_JSON_PATH!;
-const SRC_INDEX_MD_PATH = process.env.SRC_INDEX_MD_PATH!;
-
+/*
 describe("#builder", function () {
   describe("#cleanPreviousBuild", () => {
     const dirName = "jf5sa228e8w";
@@ -77,3 +73,4 @@ describe("#builder", function () {
     });
   });
 });
+*/
