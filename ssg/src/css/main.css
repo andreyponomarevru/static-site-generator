@@ -62,7 +62,8 @@ body {
   height: 100%;
   margin: 0 auto;
   padding: 1rem 0.6rem 1rem 0.6rem;
-  background-color: var(--color-gray-lightest);
+  background-color: #e3dedb;
+  color: var(--color-gray-darken);
 }
 @media only screen and (min-width: 750px) {
   body {
