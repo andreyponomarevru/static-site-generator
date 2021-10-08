@@ -59,7 +59,7 @@ export async function generateHTML(meta: Metadata) {
       </p>
       
       <p>
-        I got involved in web development in 2003. Over the years, I have gradually transitioтed from web design to frontend development and then (since 2018) to backend development. Self-taught. For most of my career, I have been working alone, as a contractor, with individuals. Currently, looking for a part-time or full-time remote job.
+        I got involved in web development in 2003. Over the years, I have gradually transitioned from web design to frontend development and then (since 2018) to backend development. Self-taught. For most of my career, I have been working alone, as a contractor, with individuals. Currently, looking for a part-time or full-time remote job.
       </p>
 
       <p>
