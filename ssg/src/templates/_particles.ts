@@ -99,10 +99,6 @@ export async function injectProjects() {
         <ul>
           ${(await Promise.all(gitHubProjects.map(buildProjectRow))).join("")}
         </ul>
-
-        <p>
-          To check out some of my old and less noteworthy projects, visit <a href="https://github.com/ponomarevandrey">GitHub</a>.
-        </p>  
       </section>`;
 }
 

@@ -54,15 +54,23 @@ export async function generateHTML(meta: Metadata) {
     
     <header>   
       ${injectMenu()}
-			<p><strong>Hi, my name is Andrey, I'm a web developer specializing in Node.js.</strong>
+			<p>
+			  <strong>Hi, my name is Andrey. I'm a programmer specializing in Node.js.</strong>
+      </p>
+      
+      <p>
+        I got involved in web development in 2003. Over the years, I have gradually transitioтed from web design to frontend development and then (since 2018) to backend development. Self-taught. For most of my career, I have been working alone, as a contractor, with individuals. Currently, looking for a part-time or full-time remote job.
+      </p>
 
-			My tools and experience:
-			<ul> 
-				<li><strong>Languages:</strong> JavaScript/TypeScript (Node.js), SQL, Shell scripting</li>
-				<li><strong>Databases:</strong> PostgreSQL, Redis</li>
-				<li><strong>Infrastructure</strong>: Linux, Nginx, Docker/Docker Compose</li>
-				<li><strong>Protocols:</strong> HTTP, WebSocket</li>
-			</ul>
+      <p>
+			  My tools and experience:
+			  <ul> 
+				  <li><strong>Languages:</strong> JavaScript/TypeScript (Node.js), SQL, Bash</li>
+				  <li><strong>Databases:</strong> PostgreSQL, Redis</li>
+				  <li><strong>Infrastructure</strong>: Linux, Nginx, Docker/Docker Compose</li>
+				  <li><strong>Protocols:</strong> HTTP, WebSocket</li>
+			  </ul>
+			</p>
     </header>
 
     <main>   
