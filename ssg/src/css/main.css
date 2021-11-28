@@ -61,20 +61,24 @@ body {
   min-height: 100%;
   height: 100%;
   margin: 0 auto;
-  padding: 1rem 0.6rem 1rem 0.6rem;
-  background-color: var(--color-gray-lightest);
+  background-color: white;
   color: var(--color-gray-darken);
 }
 @media only screen and (min-width: 750px) {
   body {
     font-size: 26px;
-    padding: 1rem 2rem;
   }
 }
 
 header,
 main {
+  padding: 1rem 1rem 1rem 1rem;
   margin-bottom: 2rem;
+}
+@media only screen and (min-width: 750px) {
+  header {
+    padding: 2rem 1rem;
+  }
 }
 
 header nav {
@@ -85,10 +89,18 @@ header nav {
   padding: 0 0 2rem 0;
 }
 
+header li {
+  list-style-type: disc;
+}
+
+footer {
+  padding: 3rem 1rem 1rem 1rem;
+}
+
 /*
  * Typography
  */
- 
+
 p {
   margin-bottom: 1rem;
 }
@@ -171,6 +183,109 @@ h5 {
 h6 {
   font-size: var(--font-size-h6);
   line-height: 1.5;
+}
+
+/* 
+ * Projects 
+ */
+
+.project {
+  margin-bottom: 6rem;
+}
+
+.app-screenshot {
+  width: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 2rem black;
+}
+
+.project-button {
+  border-radius: 2rem;
+  padding: 0.5rem 2rem;
+  display: inline-block;
+  border: 1px solid var(--color-gray-darkest);
+}
+
+.portfolio-header {
+  padding: 0 1rem;
+}
+
+.portfolio-header__project-button {
+  margin-top: 1rem;
+}
+
+.live-streamer-box {
+  display: grid;
+  column-gap: 2rem;
+  row-gap: 2rem;
+
+  grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
+
+  padding: 2rem 1rem;
+
+  background: linear-gradient(90deg, #e66465, #9198e5);
+}
+.musicbox-box {
+  display: grid;
+  column-gap: 2rem;
+  row-gap: 2rem;
+
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1200px));
+
+  padding: 2rem 1rem;
+
+  background: rgb(98, 176, 214);
+  background: linear-gradient(
+    -90deg,
+    rgba(98, 176, 214, 1) 0%,
+    rgba(0, 215, 101, 1) 100%
+  );
+}
+
+.automation-scripts-box {
+  display: grid;
+  justify-items: center;
+  color: white;
+  font-size: 6rem;
+  font-weight: bold;
+  padding: 6rem 1rem;
+
+  background: black;
+}
+
+.biscuit-box {
+  display: grid;
+  justify-items: center;
+  padding: 6rem 1rem;
+
+  background: rgb(49, 37, 130);
+  background: linear-gradient(
+    -90deg,
+    rgba(49, 37, 130, 1) 0%,
+    rgba(226, 211, 182, 1) 100%
+  );
+}
+
+.ssg-box {
+  display: grid;
+  justify-items: center;
+  color: white;
+  font-size: 6rem;
+  font-weight: bold;
+  padding: 6rem 1rem;
+
+  background: rgb(55, 128, 38);
+  background: linear-gradient(
+    -90deg,
+    rgba(55, 128, 38, 1) 0%,
+    rgba(230, 214, 123, 1) 100%
+  );
+}
+
+.biscuit-logo {
+  margin: 2rem;
+  min-width: 100px;
+  max-width: 600px;
 }
 
 /*

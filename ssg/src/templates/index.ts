@@ -54,30 +54,106 @@ export async function generateHTML(meta: Metadata) {
     
     <header>   
       ${injectMenu()}
-			<p>
-			  <strong>Hi, my name is Andrey. I'm a programmer specializing in Node.js.</strong>
-      </p>
-      
-      <p>
-        I got involved in web development in 2003. Over the years, I have gradually transitioned from web design to frontend development and then (since 2018) to backend development. Self-taught. For most of my career, I have been working alone, as a contractor, with individuals. Currently, looking for a part-time or full-time remote job.
-      </p>
-
-      <p>
-			  My tools and experience:
-			  <ul> 
-				  <li><strong>Languages:</strong> JavaScript/TypeScript (Node.js), SQL, Bash</li>
-				  <li><strong>Databases:</strong> PostgreSQL, Redis</li>
-				  <li><strong>Infrastructure</strong>: Linux, Nginx, Docker/Docker Compose</li>
-				  <li><strong>Protocols:</strong> HTTP, WebSocket</li>
-			  </ul>
-			</p>
+      ${injectAbout(md.render(aboutLong.content))}   
     </header>
 
-    <main>   
-      <!-- PROJECTS -->${await injectProjects()}
-			<!-- ARTICLES ${/*injectArticles(articlesMetadata)*/ ""} -->
-			<!-- ABOUT ${/*injectAbout(md.render(aboutLong.content))*/ ""} -->
-    </main>
+    <!-- PROJECTS ${/*await injectProjects()*/ ""} -->
+    <!-- ARTICLES ${/*injectArticles(articlesMetadata)*/ ""} -->
+
+    <!-- Project -->
+
+    <section class="project">
+      <div class="portfolio-header">
+        <h1>LiveStreamer</h1>
+        <p>
+          Web application for broadcasting live audio and chatting. Conceptually, it is similar to <a href="http://mixlr.com">Mixlr</a> but on a smaller scale.<br>      
+          <a href="https://github.com/ponomarevandrey/live-streamer" class="portfolio-header__project-button project-button">
+            GitHub
+          </a>
+        </p>
+      </div>
+      <div class="live-streamer-box">
+        <img src="./img/live-streamer/01.png" class="app-screenshot live-streamer">
+        <img src="./img/live-streamer/02.png" class="app-screenshot live-streamer">
+        <img src="./img/live-streamer/03.png" class="app-screenshot live-streamer">
+        <img src="./img/live-streamer/04.png" class="app-screenshot live-streamer">
+        <img src="./img/live-streamer/05.png" class="app-screenshot live-streamer">
+        <img src="./img/live-streamer/06.png" class="app-screenshot live-streamer">
+      </div>
+    </section>
+
+    <!-- Project -->
+
+    <section class="project">
+      <div class="portfolio-header">
+        <h1>Musicbox</h1>
+        <p>
+          Browser-based music library explorer for a home server. This database-centric app parses standard ID3v2 tags of your audio files and provides a simple interface to search, sort, and filter your music collection.<br>      
+          <a href="https://github.com/ponomarevandrey/musicbox" class="portfolio-header__project-button project-button">
+            GitHub
+          </a>
+        </p>
+      </div>
+      <div class="musicbox-box">
+        <img src="./img/musicbox/ui-01.png" class="app-screenshot">
+        <img src="./img/musicbox/ui-02.png" class="app-screenshot">
+        <img src="./img/musicbox/ui-03.png" class="app-screenshot">
+      </div>    
+    </section>
+
+    <!-- Project -->   
+
+    <section class="project">
+      <div class="portfolio-header">
+        <h1>Automation Scripts</h1>
+        <p>
+          Bash scripts to automate repetitive tasks<br>      
+          <a href="https://github.com/ponomarevandrey/automation-scripts" class="portfolio-header__project-button project-button">
+            GitHub
+          </a>
+        </p>
+      </div>
+      <div class="automation-scripts-box">
+        >_
+      </div>
+    </section>
+
+    <!-- Project -->
+
+    <section class="project">
+      <div class="portfolio-header">
+        <h1>Biscuit Components</h1>
+        <p>
+          SASS UI components/code snippets library for developing websites based on BEM methodology and a mobile-first approach<br>
+          <a href="https://github.com/ponomarevandrey/biscuit-components" class="portfolio-header__project-button project-button">
+            GitHub
+          </a>
+          <a href="https://ponomarevandrey.github.io/biscuit-components" class="portfolio-header__project-button project-button">
+            Biscuit Website
+          </a>
+        </p>
+      </div>
+      <div class="biscuit-box">
+        <img src="./img/biscuit/biscuit-logo-white.svg" class="biscuit-logo">
+      </div>
+    </section>
+
+    <!-- Project -->
+
+    <section class="project">
+      <div class="portfolio-header">
+        <h1>SSSG (Simple Static Site Generator)</h1>
+        <p>
+          Node.js static site generator developed for personal website<br>
+          <a href="https://github.com/ponomarevandrey/static-site-generator" class="portfolio-header__project-button project-button">
+            GitHub
+          </a>
+        </p>
+      </div>
+      <div class="ssg-box">
+        SSSG
+      </div>
+    </section>    
 
     <footer>© 1989</footer>
   </body>

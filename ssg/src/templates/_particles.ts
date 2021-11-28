@@ -123,7 +123,6 @@ export function injectArticles(articleMetadata: {
 export function injectAbout(article: string) {
   return `
     <section>
-      <h1>About</h1>
       <article>${article}</article>
     </section>`;
 }
