@@ -1,0 +1,7 @@
+{
+  "title": "Asychronous Programming in JavaScript. Part III. Event Loop",
+  "description": "Asychronous Programming in JavaScript. Part III. Event Loop",
+  "keywords": "javascript, asynchronous, programming, node.js, threading",
+  "stylesheets": ["./../reset.css", "./../prism.css", "./../article-light.css"],
+  "scripts": ["./../js/prism.js"]
+}

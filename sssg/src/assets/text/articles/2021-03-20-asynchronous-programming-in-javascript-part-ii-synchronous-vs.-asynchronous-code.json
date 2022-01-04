@@ -1,0 +1,7 @@
+{
+  "title": "Asychronous Programming in JavaScript. Part II. Synchronous vs. Asynchronous code",
+  "description": "Asychronous Programming in JavaScript. Part II. Synchronous vs. Asynchronous code",
+  "keywords": "javascript, asynchronous, programming, node.js",
+  "stylesheets": ["./../reset.css", "./../prism.css", "./../article-light.css"],
+  "scripts": ["./../js/prism.js"]
+}
