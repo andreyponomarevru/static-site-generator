@@ -245,3 +245,7 @@ hr {
   text-align: center;
   height: 5px;
 }
+
+details summary {
+  cursor: pointer;
+}
