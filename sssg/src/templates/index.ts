@@ -80,7 +80,7 @@ export async function generateHTML(meta: Metadata) {
     <meta name="format-detection" content="date=no" />
     <meta name="format-detection" content="address=no" />
     <meta name="format-detection" content="email=no" />
-    <meta name="description" content="Andrey Ponomarev Portfolio" />
+    <meta name="description" content="Andrey Ponomarev" />
     <meta
       name="keywords"
       content="web development, programming, javascript"
@@ -114,7 +114,7 @@ export async function generateHTML(meta: Metadata) {
         <span>Databases</span>
         <span>PostgreSQL, Redis</span>
         <span>Infrastructure</span>
-        <span>Linux, Nginx, Docker, GitHub Actions for CI/CD</span>
+        <span>Linux, Nginx, Docker</span>
         <span>Protocols</span> 
         <span>HTTP, WebSocket</span>
         <span>Frameworks</span>
@@ -135,7 +135,7 @@ export async function generateHTML(meta: Metadata) {
     <!-- ARTICLES -->
     
     <h1>Notes</h1>
-    <p>Writing about some topic, for me, is the best way to digest new knowledge or to brush up on old one, so I post these notes and articles primarily as a reference for my own self.</p>
+    <p>I post these notes and articles primarily as a reference for my own self. They are periodically revisited and updated. Writing about some topic, for me, is the best way to digest new knowledge or to brush up on old one.</p>
     <section class="articles">
       <ul>${buildArticlesList(articlesMetadata)}</ul>
     </section>
