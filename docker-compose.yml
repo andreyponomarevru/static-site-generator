@@ -1,22 +1,22 @@
 version: "3.7"
 
 services:
-  ssg:
-    container_name: ssg
+  sssg:
+    container_name: sssg
     build:
-      context: ./ssg
+      context: ./sssg
       dockerfile: Dockerfile.dev
     volumes:
-      - ./ssg/src:/ssg/src
-      - ./ssg/test:/ssg/test
-      - ./ssg/package.json:/ssg/package.json
-      - ./ssg/tsconfig.json:/ssg/tsconfig.json
-      - ./ssg/build:/ssg/build
+      - ./sssg/src:/sssg/src
+      - ./sssg/test:/sssg/test
+      - ./sssg/package.json:/sssg/package.json
+      - ./sssg/tsconfig.json:/sssg/tsconfig.json
+      - ./sssg/build:/sssg/build
     expose:
       - "8080"
     ports:
       - "8080:8080"
       - "9229:9229"
     env_file:
-      - ./ssg.env
+      - ./sssg.env
     command: npm start
