@@ -29,6 +29,8 @@ export type Metadata = {
   readonly author: string;
   readonly favicon: string;
   readonly viewport: string;
+  readonly published: string;
+  readonly updated?: string;
 };
 
 export type GitHub_GetRepository = {

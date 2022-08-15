@@ -9,9 +9,14 @@ export function buildArticlesList(articleMeta: ArticleMeta) {
     const link = `./articles/${articleFilename.replace("json", "html")}`;
     const title = articleMeta[articleFilename].title;
 
-    const row = `<li><a href="${link}">${title}</a></li>`;
+    const row = `
+      <li>
+        <time>${articleMeta[articleFilename].published || ""}</time>
+        <a href="${link}"><span>${title}</span></a>
+      </li>
+    `;
 
-    rows.push(row);
+    rows.unshift(row);
   }
 
   return rows.join("");

@@ -1,7 +1,0 @@
-{
-  "title": "CI/CD for VPS with GitHub Actions",
-  "description": "Setting up Continuous Integration and Continuous Deployment for VPS with GitHub Actions",
-  "keywords": "ci/cd, continuous integration, continuous deployment, vps, github actions, docker, docker compose, node.js, typescript, container",
-  "stylesheets": ["./../reset.css", "./../prism.css", "./../article-light.css"],
-  "scripts": ["./../js/prism.js"]
-}

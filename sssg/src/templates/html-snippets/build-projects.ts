@@ -5,7 +5,7 @@ export function buildProjects(projectsMeta: ProjectsMeta[]) {
 
   for (let meta of projectsMeta) {
     const demoLink = meta.links.demo
-      ? `<a href="${meta.links.demo}">Demo</a>`
+      ? `&#183;<a href="${meta.links.demo}">Demo</a>`
       : "";
     const year = meta.year || "—";
 
@@ -16,21 +16,19 @@ export function buildProjects(projectsMeta: ProjectsMeta[]) {
       : "";
 
     const project = `
-      <div class="project">
-        ${header}
-        <div class="project__body">
-          <h2>${meta.title}</h2>
-          <time class="project__time">${year}</time>
-          <p>${meta.about}</p>  
-        </div>
-        <div class="project-btns">
-          <a href="${meta.links.github}">GitHub</a>
+      <li class="project">
+        <header>${meta.title}</header>
+        <time>${year}</time>
+        <span>${meta.about}</span> 
+        <span></span>
+        <nav>
+          <a href="${meta.links.github}">GitHub</a>   	
           ${demoLink}
-        </div>
-      </div>`;
+        </nav>
+      </li>`;
 
     projects.push(project);
   }
 
-  return projects.join("");
+  return `<ul>${projects.join("")}</ul>`;
 }

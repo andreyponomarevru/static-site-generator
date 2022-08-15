@@ -24,61 +24,6 @@ Although there are already tons of carefully built and polished static site gene
 
 * Docker Compose
 
-# Internals
-
-Some important dirs/files:
-
-```
-├── ssg
-|   ├── build                      # compiled website files for uploading to GitHub Pages
-|   └── src
-|       ├── dns
-|       │   └── CNAME              # DNS settings
-|       ├── favicon
-|       ├── img                    # images used in HTML pages
-|       ├── js                     # scripts used in HTML pages
-|       ├── pages
-|       |   ├── articles
-|       |   │   ├── md             # Markdown articles
-|       |   │   ├── meta           # HTML metadata for each article
-|       |   │   └── template.ts    # template for Markdown articles
-|       |   ├── index
-|       |   │   ├── about.md       # Text for "About" article on index page
-|       |   │   ├── github-projects.ts # list of projects to retrieve from GitHub API and inject into a template
-|       |   │   ├── index.json     # HTML metadata
-|       |   │   └── template.ts    # template for index page
-|       |   └── particles.ts       # reusable code snippets and JS functions that dynamically generate and inject HTML code
-|       ├── sass
-|       ├── utility
-|       ├── build-helpers.ts
-|       ├── build.ts               # function which bundles everything together
-|       ├── error-handlers.ts
-|       ├── github-api-client.ts
-|       ├── index.ts
-|       └── types.ts
-└── update-website                 # Bash script for deploying/updating the website.
-```
-
-SSG consists of only two templates which are regular functions, returning plain HTML code:
-
-- template for index page (`ssg/src/pages/index/template.ts`)
-- template for pages compiled from Markdown files (`ssg/src/pages/articles/template`)
-
-We take metadata from JSON files, articles' text from Markdown files, retrieve some additional data from GitHub API and finally inject all this into our templates. Then we write these templates to disk as HTML pages. Here is a more detailed explanation of the SSG build algorithm:
-
-1. Check if the `build` directory exists. If not, create it.
-2. Clean up the `build` dir from all the content left after the previous build
-3. Copy all static assets (images, favicons, scripts, DNS config) from `src` dir to `build`
-4. Compile SASS styles
-5. Compile index page:
-   1. Load HTML metadata from JSON
-   2. Load Markdown article
-   3. Pass the loaded HTML metadata and Markdown article to the page template (which is a function). The template returns HTML code.
-   4. We take this code and write it to the HTML file
-6. Compile Markdown article pages. The process is 100% the same, just instead of compiling a single page, we're looping over an array of articles.
-
-Then we use a small Bash script that uploads all files contained in `build` dir to GitHub Pages.
-
 # Building process
 
 Although the coding part of the project was straightforward, I can't say the same about the building process - it ended up pretty convoluted so I want to explain (at least for my own self) what happens at each step
@@ -100,10 +45,6 @@ Take a look at the `scripts` property of `package.json`, this is the place where
                                   ./src/index.ts &&
                              npm run test'\"
               \"live-server --wait=500 ./build\"",
-
-  "test": "mocha --watch ./test/**/*.test.ts
-                 --recursive
-                 --require ts-node/register"
 },
 ```
 
@@ -113,8 +54,8 @@ Here is a diagram of processes started by the `start` script:
               concurrently
            /                \
        nodemon          live-server
-      /        \
-    node       mocha
+      /        
+    node  
 (TS compiler)
 ```
 
@@ -133,14 +74,6 @@ As you can see we're using `concurrently` to run `nodemon` and `live-server` at 
     First, we pass to the `node` process the `TS_NODE_PROJECT` env var which contains the path to TS compiler config. We also set the debugger (`--inspect=0.0.0.0:9229`). And finally, we pass the `index.ts` to `node`.
 
     `node` requires TS compiler module (`-require ts-node/register`) and passes it `index.ts`. The compiler checks the config using env var (`TS_NODE_PROJECT`), transpiles TS to JS, and returns the index file to `node` for execution
-
-  - **`mocha` process**
-
-    Unlike the `node` process above, `mocha` is a long-running process. It watches for changes in `test` dir and reruns all tests every time we edit and save the code. We need to set the `--watch` option, otherwise, the process will exit with `No test files found` error. We also need to require the TS compiler module (`--require ts-node/register`). Without it, Mocha process won't be able to run tests written in TypeScript.
-
-- [`live-server`](https://github.com/tapio/live-server#readme) is a "little development server with live reload capability". It serves all files from `/build` dir at [http://127.0.0.01:8080](http://127.0.0.01:8080), so we can check our website in the browser as we change it. You can specify another port as `PORT` env var in `ssg.env`.
-
-So, we have 4 running processes in our container: `nodemon`, `concurrently`, `mocha`, and `live-server`. Additionally, every code change triggers the 5th short-lived process - `node`, which runs TS compiler transpiling the code and then returning the transpiled code ​to `node` for execution
 
 # How to
 

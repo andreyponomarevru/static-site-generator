@@ -1,7 +1,0 @@
-{
-  "title": "Asynchronous Programming in JavaScript. Part I. Threading",
-  "description": "Asynchronous Programming in JavaScript. Part I. Threading",
-  "keywords": "javascript, asynchronous, programming, node.js, threading",
-  "stylesheets": ["./../reset.css", "./../prism.css", "./../article-light.css"],
-  "scripts": ["./../js/prism.js"]
-}
