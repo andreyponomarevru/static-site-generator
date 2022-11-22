@@ -1,6 +1,6 @@
 import { loadJsonDir } from "../utils/build-helpers";
 import { Metadata, ProjectsMeta } from "../types";
-import { GOOGLE_ANALYTICS, FAV_ICONS } from "../config/html-snippets";
+import { FAV_ICONS } from "../config/html-snippets";
 import { buildMenu } from "./html-snippets/build-menu";
 import { injectStylesheets } from "./html-snippets/inject-stylesheets";
 import { buildProjects } from "./html-snippets/build-projects";
@@ -84,7 +84,6 @@ export async function generateHTML(meta: Metadata) {
     <meta name="author" content="Andrey Ponomarev" />
     ${FAV_ICONS}
     <title>${meta.title}</title>
-    ${GOOGLE_ANALYTICS}
     ${GOOGLE_FONTS}
     ${injectStylesheets(meta.stylesheets)}
   </head>

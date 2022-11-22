@@ -1,15 +1,3 @@
-export const GOOGLE_ANALYTICS = `
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-33652174-2"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-33652174-2');
-  </script>
-`;
-
 export const FAV_ICONS = `
   <link
     rel="apple-touch-icon"

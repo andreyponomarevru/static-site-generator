@@ -40,7 +40,7 @@
   --color-gray-darkest: #1a1a1a;
   --color-black: black;
 
-  --color-link: #008000;
+  --color-link: black;
   --color-code-text: #333;
   --color-code-bg: #ecdcc6;
 
@@ -63,6 +63,7 @@ body {
   margin: 0 auto;
   background-color: white;
   color: var(--color-gray-darken);
+  max-width: 1000px;
 }
 
 main {
@@ -83,13 +84,12 @@ main > header {
   line-height: var(--line-height-md);
   margin-bottom: 1rem;
   padding: 0 1rem 0 1rem;
-  font-family: var(--font-stack-sans);
+  font-family: var(--font-stack-serif);
   font-size: 1.8rem;
 }
 
 footer {
-  max-width: 400px;
-  padding: 0 1rem 1rem 1rem;
+  padding: 2rem 1rem;
 }
 
 /*
@@ -97,16 +97,17 @@ footer {
  */
 
 a:link {
-  color: black;
+  color: var(--color-link);
+  text-underline-offset: 0.4em;
 }
 a:visited {
-  color: black;
+  color: var(--color-link);
 }
 a:hover {
-  color: grey;
+  color: var(--color-link);
 }
 a:active {
-  color: black;
+  color: var(--color-link);
 }
 
 p {
@@ -131,7 +132,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-stack-sans);
+  font-family: var(--font-stack-serif);
   margin-block-start: 1rem;
   margin-block-end: 1rem;
   margin-inline-start: 0;
@@ -217,47 +218,13 @@ h6 {
   font-style: italic;
 }
 
-/*
- * Articles
- */
-
-.articles {
-  margin-bottom: 3rem;
-}
-
-h1 + p {
-  padding: 0 1rem;
-}
-
-.articles ul {
-  padding: 0;
-}
-
-.articles ul li:last-child {
-  border-bottom: 1px solid black;
-}
-
-.articles ul li {
-  display: grid;
-  grid-template-columns: 70px 1fr;
-  padding: 0.5rem 1rem;
-  column-gap: 2rem;
-  border-top: 1px solid black;
-  overflow: hidden;
-  justify-content: flex-start;
-  justify-items: flex-start;
-  margin-bottom: 0;
-}
-
 /* 
  * Projects 
  */
 
 .projects {
   display: grid;
-  margin-bottom: 2rem;
   row-gap: 1px;
-  padding: 0 0 1rem 0;
 }
 
 .projects ul {
@@ -268,14 +235,9 @@ h1 + p {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto auto auto auto;
-  padding: 1rem 1rem;
+  padding: 0 1rem 3rem 1rem;
   overflow: hidden;
   align-content: flex-start;
-  border-bottom: 1px solid black;
-}
-
-.project:first-child {
-  border-top: 1px solid black;
 }
 
 @media (min-width: 1000px) {
@@ -290,7 +252,6 @@ h1 + p {
 
 .project time {
   display: inline-block;
-  color: var(--color-gray);
   overflow: hidden;
 }
 

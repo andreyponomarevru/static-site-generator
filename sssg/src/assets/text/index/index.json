@@ -1,6 +1,6 @@
 {
   "lang": "en",
-  "stylesheets": ["./reset.css", "./main.css", "./prism.css"],
+  "stylesheets": ["./reset.css", "./main.css"],
   "scripts": [],
   "charset": "utf-8",
   "title": "Andrey Ponomarev",
