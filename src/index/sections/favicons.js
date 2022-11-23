@@ -1,4 +1,4 @@
-export const FAV_ICONS = `
+const favicons = `
   <link
     rel="apple-touch-icon"
     sizes="180x180"
@@ -20,5 +20,6 @@ export const FAV_ICONS = `
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
   <meta name="msapplication-TileColor" content="#da532c" />
   <meta name="theme-color" content="#ffffff" />
-  <link rel="icon" type="image/png" href="/favicon.png" />
-`;
+  <link rel="icon" type="image/png" href="/favicon.png" />`;
+
+module.exports = { favicons };

@@ -1,16 +1,21 @@
 [
   {
     "title": "LiveStreamer",
-    "year": "2021",
-    "about": "Web application for broadcasting live audio and chatting. Conceptually, it is similar to <a href='http://mixlr.com'>Mixlr</a> but on a smaller scale.",
-    "links": { "github": "https://github.com/ponomarevandrey/live-streamer" }
+    "year": "2021–...",
+    "about": "Web application for broadcasting live audio and chatting. Conceptually, it is similar to <a href=\"http://mixlr.com\">Mixlr</a> but on a smaller scale.",
+    "links": {
+      "github": "https://github.com/ponomarevandrey/live-streamer",
+      "demo": "https://live.andreyponomarev.ru/"
+    }
   },
+
   {
     "title": "Musicbox",
-    "year": "2020",
+    "year": "2020–2021",
     "about": "Browser-based music library explorer for a home server. Musicbox is a  database-centric app. It parses standard ID3v2 tags of your audio files and provides a simple interface to search, sort, and filter your music collection.",
     "links": { "github": "https://github.com/ponomarevandrey/musicbox" }
   },
+
   {
     "title": "Automation Scripts",
     "about": "Bash scripts to automate repetitive tasks",
@@ -18,17 +23,19 @@
       "github": "https://github.com/ponomarevandrey/automation-scripts"
     }
   },
+
   {
     "title": "Simple Static Site Generator",
-    "year": "2020",
+    "year": "2019",
     "about": "Vanilla Node.js static site generator developed for personal website",
     "links": {
       "github": "https://github.com/ponomarevandrey/static-site-generator"
     }
   },
+
   {
     "title": "Biscuit Components",
-    "year": "2018/2019",
+    "year": "2018–2019",
     "about": "SASS UI components/code snippets library for developing websites based on BEM methodology and a mobile-first approach",
     "links": {
       "github": "https://github.com/ponomarevandrey/biscuit-components",

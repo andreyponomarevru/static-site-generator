@@ -1,0 +1,23 @@
+{
+  "name": "sssg",
+  "version": "1.0.0",
+  "description": "simple static site generator",
+  "main": "index.js",
+  "scripts": {
+    "build": "node src/index.js"
+  },
+  "keywords": [
+    "static",
+    "html",
+    "website",
+    "generator",
+    "nodejs",
+    "markdown"
+  ],
+  "author": "Andrey Ponomarev",
+  "license": "MIT",
+  "devDependencies": {
+    "fs-extra": "^10.0.0",
+    "markdown-it": "^12.2.0"
+  }
+}

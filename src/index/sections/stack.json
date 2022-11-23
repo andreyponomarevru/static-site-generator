@@ -1,0 +1,7 @@
+[
+  { "name": "Languages", "list": "JavaScript/TypeScript (Node.js), SQL, Bash" },
+  { "name": "Databases", "list": "PostgreSQL, Redis, MongoDB" },
+  { "name": "Infrastructure", "list": "Linux, Nginx, Docker" },
+  { "name": "Protocols", "list": "HTTP, WebSocket" },
+  { "name": "Frameworks", "list": "Express.js, React.js; Jest for testing" }
+]

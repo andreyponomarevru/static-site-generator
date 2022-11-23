@@ -1,0 +1,25 @@
+[
+  {
+    "year": "2006—2008",
+    "position": "Front End Developer",
+    "place": { "link": "", "name": "Freelance" }
+  },
+
+  {
+    "year": "2008",
+    "position": "Web Designer",
+    "place": { "link": "http://arcticmedia.ru/", "name": "Arctic Media Group" }
+  },
+
+  {
+    "year": "2008—2014",
+    "position": "Front End Developer",
+    "place": { "link": "", "name": "Freelance" }
+  },
+
+  {
+    "year": "2018—present",
+    "position": "Back End",
+    "place": { "link": "", "name": "Freelance" }
+  }
+]

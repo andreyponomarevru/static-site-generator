@@ -1,8 +1,7 @@
-import fs from "fs-extra";
-import path from "path";
-import { MdArticle } from "../types";
+const fs = require("fs-extra");
+const path = require("path");
 
-export async function cleanPreviousBuild(dirPath: string) {
+async function cleanPreviousBuild(dirPath) {
   console.log("Cleaning previous build...");
 
   try {
@@ -17,7 +16,7 @@ export async function cleanPreviousBuild(dirPath: string) {
   }
 }
 
-export async function copyAssets(nodes: { from: string; to: string }[]) {
+async function copyAssets(nodes) {
   console.log("Copying files and folders: ", nodes);
 
   try {
@@ -30,11 +29,11 @@ export async function copyAssets(nodes: { from: string; to: string }[]) {
   }
 }
 
-export async function loadJsonDir(filesPath: string) {
+async function loadJsonDir(filesPath) {
   console.log("Loading page metadata from JSON...");
 
   try {
-    const dirContent: { [key: string]: { [key: string]: string } } = {};
+    const dirContent = {};
     for (const filename of await fs.readdir(filesPath)) {
       if (path.extname(filename) !== ".json") continue;
       const filePath = path.join(filesPath, filename);
@@ -51,11 +50,11 @@ export async function loadJsonDir(filesPath: string) {
   }
 }
 
-export async function loadMdDir(dir: string) {
+async function loadMdDir(dir) {
   console.log(`Loading Markdown files from ${dir}...`);
 
   try {
-    let md: { [key: string]: MdArticle } = {};
+    let md = {};
     for (const filename of await fs.readdir(dir)) {
       if (path.extname(filename) !== ".md") continue;
       md = {
@@ -74,11 +73,11 @@ export async function loadMdDir(dir: string) {
   }
 }
 
-export async function loadJsonFile<T>(filePath: string) {
+async function loadJsonFile(filePath) {
   console.log("Loading page metadata from JSON...");
 
   try {
-    const json: T = JSON.parse(await fs.readFile(filePath, "utf-8"));
+    const json = JSON.parse(await fs.readFile(filePath, "utf-8"));
     return json;
   } catch (err) {
     if (err instanceof Error) {
@@ -90,7 +89,7 @@ export async function loadJsonFile<T>(filePath: string) {
   }
 }
 
-export async function loadMdFile(filePath: string) {
+async function loadMdFile(filePath) {
   console.log(`Loading Markdown file from ${filePath}...`);
 
   try {
@@ -108,11 +107,7 @@ export async function loadMdFile(filePath: string) {
   }
 }
 
-export async function writeHTML(
-  outputDir: string,
-  filename: string,
-  HTMLcontent: string,
-) {
+async function writeHTML(outputDir, filename, HTMLcontent) {
   console.log("Writing HTML...");
 
   try {
@@ -126,3 +121,13 @@ export async function writeHTML(
     process.exit(1);
   }
 }
+
+module.exports = {
+  cleanPreviousBuild,
+  copyAssets,
+  loadJsonDir,
+  loadMdDir,
+  loadJsonFile,
+  loadMdFile,
+  writeHTML,
+};

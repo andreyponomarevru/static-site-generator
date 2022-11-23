@@ -1,3 +1,11 @@
+How it should work:
+
+npm install sssg
+
+in 'index' dir you will find an example index page. If you need more pages, create a dir with another name containing similar files. If some files will be absent, they will be replaced by files from index
+
+
+
 # About
 
 Node.js static site generator built from scratch for personal website.
