@@ -20,7 +20,7 @@ function buildArticlesList(articleMeta) {
 
 function buildMenu(menu) {
   return `
-    <nav>
+    <nav class="nav">
       ${menu.map(({ name, link }) => `<a href="${link}">${name}</a>`).join("")}
     </nav>`;
 }
@@ -71,10 +71,10 @@ function buildProjects(projectsMeta) {
     const project = `
       <li class="project">
         <header class="project__header bold">${meta.title}</header>
-        <time>${year}</time>
+        <time class="project__time">${year}</time>
         <span>${meta.about}</span> 
         <span></span>
-        <nav>
+        <nav class="project__nav">
           <a href="${meta.links.github}">GitHub</a>   	
           ${demoLink}
         </nav>
@@ -83,7 +83,7 @@ function buildProjects(projectsMeta) {
     projects.push(project);
   }
 
-  return `<ul>${projects.join("")}</ul>`;
+  return `<ul class="projects">${projects.join("")}</ul>`;
 }
 
 function injectScripts(scripts) {

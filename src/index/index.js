@@ -37,7 +37,7 @@ async function generateHTML({
 
     ${topMenu}
 
-    <header>   
+    <header class="header">   
       <p>
         Hi, my name is Andrey. I'm a developer specializing in Node.js.
       </p>
@@ -46,20 +46,18 @@ async function generateHTML({
       </p>
     </header>
 
-    <main>     
+    <main class="main">     
       <div class="two-column">
         ${stack}
         ${jobExperience}
       </div>
 
       <h1>Projects</h1> 
-      <section class="projects">
-        ${projects}
-      </section>  
+      ${projects}  
 
     </main>
  
-    <footer>${footer}</footer>
+    <footer class="footer">${footer}</footer>
 
   </body>
 </html>`;
