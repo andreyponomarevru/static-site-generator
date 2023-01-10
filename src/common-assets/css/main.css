@@ -74,6 +74,7 @@ body {
   margin-bottom: 2rem;
   padding: 1rem 1rem 0 1rem;
   margin-bottom: 2rem;
+  font-weight: 800;
 }
 
 .main {
@@ -88,6 +89,20 @@ body {
   line-height: var(--line-height-sm);
   font-family: var(--font-stack-serif);
   font-size: 1.8rem;
+}
+
+.nav a:link {
+  color: var(--color-link);
+  text-decoration: none;
+}
+.nav a:visited {
+  color: var(--color-link);
+}
+.nav a:hover {
+  color: var(--color-link);
+}
+.nav a:active {
+  color: var(--color-link);
 }
 
 .footer {
