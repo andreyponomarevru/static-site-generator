@@ -1,12 +1,12 @@
 [
-  { "name": "E-mail", "link": "mailto:info@andreyponomarev.ru" },
-  { "name": "GitHub", "link": "https://github.com/ponomarevandrey" },
+  { "name": "Почта", "link": "mailto:info@andreyponomarev.ru" },
+  { "name": "ГитХаб", "link": "https://github.com/ponomarevandrey" },
   {
-    "name": "LinkedIn",
-    "link": "http://linkedin.com/in/andreyponomareveverywhere"
+    "name": "ХабрКарьера",
+    "link": "https://career.habr.com/andreyponomarevhabr"
   },
   {
-    "name": "Хабр Карьера",
-    "link": "https://career.habr.com/andreyponomarevhabr"
+    "name": "ХэдХантер",
+    "link": "https://murmansk.hh.ru/resume/7cb02b8fff09963f5d0039ed1f355461507663"
   }
 ]

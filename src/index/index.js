@@ -35,26 +35,34 @@ async function generateHTML({
 
   <body>   
 
-    ${topMenu}
+    <!--
 
     <header class="header">   
-      <p>
-        Hi, my name is Andrey. I'm a developer specializing in Node.js.
-      </p>
-      <p>
-        Been doing web development since 2006. Until 2014 mostly as a frontend developer; then been out of programming for four years; since 2018 doing full-stack development building primarily my own projects, SPA + REST APIs (Node.js, TypeScript, PostgreSQL, React).
-      </p>
     </header>
 
+    -->
+
     <main class="main">     
-      <div class="two-column">
+      ${topMenu}
+
+      <div class="about">
+        <section class="bio">
+          <p>
+            Привет, меня зовут Андрей. Я разработчик, специализирующийся на Node.js.
+          </p>
+          <p>
+            Занимаюсь веб-разработкой с 2006. До 2014 в основном как фронтенд. Затем был перерыв в 4 года, вне IT. С 2018 занимаюсь фул-стэк  разработкой, с упором на бэкэнд, работая в основном над собственными проектами (SPA, REST API на базе Node.js, TypeScript, PostgreSQL, React) и частными заказами (поддержка сайтов и серверов, консультации, доработка API и подобное).
+          </p>
+        </section>
         ${stack}
         ${jobExperience}
       </div>
 
-      <h1>Projects</h1> 
-      ${projects}  
-
+      ${projects} 
+      <!-- <div class="two-column"> -->
+      <!-- </div> -->
+      <!-- <h1>Проекты</h1> <div class="two-column"> -->      
+      <!-- </div> -->
     </main>
  
     <footer class="footer">${footer}</footer>

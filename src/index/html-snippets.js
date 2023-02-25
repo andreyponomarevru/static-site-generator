@@ -30,8 +30,11 @@ function buildStack(meta) {
 
   for (let { name, list } of meta) {
     const row = `
-      <span class="bold">${name}</span> 
-      <span>${list}</span>`;
+      <div>
+        <span class="bold">${name}</span>
+        <span></span> 
+        <span>${list}</span>
+      </div>`;
     html.push(row);
   }
 
@@ -43,41 +46,36 @@ function buildJobExperience(meta) {
 
   for (let { year, position, place } of meta) {
     const row = `
-      <span class="bold">${year}</span>
-      <span>
-        ${
-          place.link
-            ? `<a href=${place.link}>${place.name}</a>`
-            : `${place.name}`
-        }<br>
-        <span class="job-position">${position}</span>
-      </span>
-      `;
+      <div>
+        <span class="bold">${year}</span>
+        <span></span>
+        <span>
+          ${
+            place.link
+              ? `<a href=${place.link}>${place.name}</a>`
+              : `${place.name}`
+          }<br>
+          <span class="job-position">${position}</span>
+        </span>
+      </div>`;
     html.push(row);
   }
 
-  return `<section class="job-history">${html.join("")}</section>`;
+  return `<section class="job-history">${html.reverse().join("")}</section>`;
 }
 
 function buildProjects(projectsMeta) {
   const projects = [];
 
   for (let meta of projectsMeta) {
-    const demoLink = meta.links.demo
-      ? `&#183;<a href="${meta.links.demo}">Demo</a>`
-      : "";
-    const year = meta.year || "—";
-
     const project = `
       <li class="project">
-        <header class="project__header bold">${meta.title}</header>
-        <time class="project__time">${year}</time>
-        <span>${meta.about}</span> 
-        <span></span>
-        <nav class="project__nav">
-          <a href="${meta.links.github}">GitHub</a>   	
-          ${demoLink}
-        </nav>
+        <span class="project__header">${meta.title}</span>
+        <span class="project__body">${meta.about}</span>
+          <span class="project__nav">
+            <a href="${meta.links.github}">ГитХаб</a>   	
+            ${meta.links.demo ? `<a href="${meta.links.demo}">Демо</a>` : ""}
+          </span>
       </li>`;
 
     projects.push(project);

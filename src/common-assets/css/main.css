@@ -3,7 +3,8 @@
  */
 
 :root {
-  --font-stack-sans: "Tahoma", "Verdana", "Helvetica", "Open Sans", sans-serif;
+  --font-stack-sans: "PT Sans", "Tahoma", "Verdana", "Helvetica", "Open Sans",
+    sans-serif;
   --font-stack-serif: "Faustina", "Georgia", "Big Caslon", "Hoefler Text",
     "Garamond", "Baskerville", "Palatino Linotype", "Times New Roman", "Times",
     serif;
@@ -39,6 +40,7 @@
   --color-gray-darken: #333333;
   --color-gray-darkest: #1a1a1a;
   --color-black: black;
+  --color-black-light: #5e5e5e;
 
   --color-link: black;
   --color-code-text: #333;
@@ -55,77 +57,69 @@ html {
 }
 
 body {
-  font-family: var(--font-stack-serif);
-  font-size: 17px;
+  font-family: var(--font-stack-sans);
+  font-size: 18px;
   line-height: 1.6;
   min-height: 100%;
   height: 100%;
-  margin: 0 auto;
+  margin: 1rem auto;
   background-color: white;
-  color: var(--color-gray-darken);
-  max-width: 1000px;
-}
-
-.nav {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  column-gap: 2rem;
-  justify-content: flex-start;
-  margin-bottom: 2rem;
-  padding: 1rem 1rem 0 1rem;
-  margin-bottom: 2rem;
-  font-weight: 800;
+  color: var(--color-black-light);
+  max-width: 1950px;
 }
 
 .main {
-  margin-bottom: 1rem;
+  margin: 0 3% 1rem 3%;
+  display: grid;
+  row-gap: 2rem;
+  align-items: start;
+  column-gap: 4rem;
 }
 
-.header {
-  margin-bottom: 1rem;
-  padding: 0 1rem 0 1rem;
-
-  font-weight: 400;
-  line-height: var(--line-height-sm);
-  font-family: var(--font-stack-serif);
-  font-size: 1.8rem;
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1.8rem;
+  max-width: 100%;
+  font-size: 1.5rem;
 }
 
-.nav a:link {
-  color: var(--color-link);
-  text-decoration: none;
+.about section:not(:first-child) {
+  margin: 5rem 0;
+  border-top: 1px solid var(--color-gray-lighten);
 }
-.nav a:visited {
-  color: var(--color-link);
-}
-.nav a:hover {
-  color: var(--color-link);
-}
-.nav a:active {
-  color: var(--color-link);
+
+.about section:last-child {
+  margin: 0;
 }
 
 .footer {
-  padding: 2rem 1rem;
-  margin-bottom: 1rem;
+  margin: 0 3% 1rem 3%;
+  padding-top: 1rem;
 }
 
 /*
  * Typography
  */
 
+.bold {
+  font-weight: bold;
+}
+
 a:link {
-  color: var(--color-link);
-  text-underline-offset: 0.3em;
+  color: black;
+  text-decoration: none;
 }
 a:visited {
-  color: var(--color-link);
+  color: black;
 }
 a:hover {
-  color: var(--color-link);
+  color: black;
+  text-decoration: underline;
 }
 a:active {
-  color: var(--color-link);
+  color: black;
+  text-decoration: underline;
 }
 
 p {
@@ -189,107 +183,131 @@ h6 {
   line-height: 1.5;
 }
 
-.bold {
-  font-weight: bold;
-}
-
-/*
- * Layout
- */
-
-.two-column {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-auto-flow: row;
-  column-gap: 2rem;
-  max-width: 1200px;
-  padding: 1rem 1rem 0 1rem;
-}
-
-.two-column > * {
-  margin-bottom: 2rem;
-}
-
-.main-devider {
-  height: 15px;
-  border: 0;
-  background-color: black;
-}
-
 /*
  * Stack
  * Job History
  */
 
-.stack,
-.job-history {
+.stack div,
+.job-history div {
   display: grid;
-  grid-template-columns: 130px minmax(170px, 1fr);
-  grid-template-rows: row(7, auto);
-  column-gap: 2%;
-  justify-content: flex-start;
-  align-content: flex-start;
+
+  grid-template-rows: auto 0 auto;
+
+  padding: 0.5rem 0;
+
+  column-gap: 1rem;
+  border-bottom: 1px solid var(--color-gray-lighten);
 }
 
-.job-position {
-  font-style: italic;
-}
-
-/* 
- * Projects 
- */
+/* Projects */
 
 .projects {
-  display: grid;
-  row-gap: 0.5em;
-
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  row-gap: 2rem;
+  align-items: flex-start;
   padding: 0;
 }
 
 .project {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto auto auto auto auto;
-  padding: 1rem 1rem 1rem 1rem;
-  overflow: hidden;
-  align-content: flex-start;
-}
-
-@media (min-width: 1000px) {
-  .project {
-    column-gap: 2rem;
-    grid-template-areas: "Title Date About . Links";
-    grid-template-columns: 13% 8% minmax(30%, 50%) minmax(0, 1fr) auto;
-    margin-bottom: 0;
-    padding: 0.5rem 1rem;
-  }
+  column-gap: 2rem;
+  row-gap: 0.5rem;
+  margin-bottom: 0;
+  border-radius: 0 0 0.5rem 0.5rem;
+  border: 1px solid var(--color-gray-lighten);
+  box-shadow: 0 0 1rem var(--color-gray-lighten);
 }
 
 .project__time {
-  display: inline-block;
+  display: block;
   overflow: hidden;
-  margin-block-end: 0.5rem;
-}
-
-.project__nav {
-  display: flex;
-  justify-content: flex-end;
-  align-content: flex-start;
-  align-items: flex-start;
-  justify-items: flex-start;
-  padding: 0;
-  column-gap: 0.5rem;
-  margin: 0;
-  margin-block-end: 0.5rem;
 }
 
 .project__header {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  color: white;
+  border-radius: 0.5rem 0.5rem 0 0;
+
   overflow: hidden;
   margin: 0;
-  padding: 0;
+  padding: 0.7rem 1.5rem 0.7rem 1.5rem;
+  font-weight: bold;
+}
+
+.project__body {
+  display: block;
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+}
+
+.project__nav {
+  border-top: 1px solid var(--color-gray-lighten);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.project__nav a {
+  display: inline-flex;
+  border-left: 1px solid var(--color-gray-lighten);
+  padding: 0.7rem 1.5rem 0.7rem 1.5rem;
+}
+
+p:not(:last-child) {
   margin-block-end: 0.5rem;
 }
 
-.project__p {
-  margin-block-end: 0.5rem;
+p:last-child {
+  margin-block-end: 0;
+}
+
+/*
+ * Media Queries 
+ */
+
+@media (min-width: 1300px) {
+  .main {
+    grid-template-columns: 150px 1fr 1fr;
+  }
+}
+
+@media (min-width: 600px) {
+  body {
+    margin-top: 2rem;
+  }
+
+  .stack div {
+    grid-template-columns: 190px 1rem auto;
+  }
+
+  .job-history div {
+    grid-template-columns: 190px 1rem auto;
+  }
+}
+
+/*
+ * Effects
+ */
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+body {
+  animation: fadeInAnimation ease 1s;
+  -webkit-animation: fadeInAnimation ease 1s;
+  -moz-animation: fadeInAnimation ease 1s;
+  -ms-animation: fadeInAnimation ease 1s;
+  -o-animation: fadeInAnimation ease 1s;
+
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }

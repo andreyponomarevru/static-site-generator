@@ -1,8 +1,8 @@
 [
   {
     "title": "LiveStreamer",
-    "year": "2021–...",
-    "about": "Web application for broadcasting live audio and chatting. Conceptually, it is similar to <a href=\"http://mixlr.com\">Mixlr</a> but on a smaller scale.",
+    "year": "2021–2023",
+    "about": "Многопользовательское веб-приложение для аудио-стриминга и общения в чате. Концептуально, это клон <a href=\"http://mixlr.com\">Mixlr</a>, но в меньшем масштабе. Архитектурно, состоит из трёх компонентов: фронт, API и CLI-приложение для стриминга. Аудио-стриминг реализован по HTTP, а чат, интерактивные функции и уведомления — через WebSocket. Желающий постримить, запускает на своей машине HTTP клиент, который захватывает музыку из ОС и отправляет её на сервер приложения, с которого уже каждый слушатель, открывший приложение, может слушать стрим, общаться в чате, ставить лайки и пользоваться другими интерактивными функциями. Более подробное описание см. на ГитХабе.",
     "links": {
       "github": "https://github.com/ponomarevandrey/live-streamer",
       "demo": "https://live.andreyponomarev.ru/"
@@ -12,13 +12,13 @@
   {
     "title": "Musicbox",
     "year": "2020–2021",
-    "about": "Browser-based music library explorer for a home server. Musicbox is a  database-centric app. It parses standard ID3v2 tags of your audio files and provides a simple interface to search, sort, and filter your music collection.",
+    "about": "Музыкальный менеджер и плеер для домашнего сервера. Олегчает навигацию, фильтрацию и поиск файлов в большой аудио библиотеке. Архитектурно представляет собой REST API + фронт на React. Приложение строится вокруг базы данных: при первом запуске, указываем директорию с музыкой и приложение парсит стандартные ID3v2 теги, сохраняя всё в БД. Затем, в веб-браузере, благодаря удобному интерфейсу мы получаем возможность сортировать, фильтровать и искать музыку по всем ID3v2 тегам, а заодно и проигрывать файлы.",
     "links": { "github": "https://github.com/ponomarevandrey/musicbox" }
   },
 
   {
-    "title": "Automation Scripts",
-    "about": "Bash scripts to automate repetitive tasks",
+    "title": "Скрипты для автоматизации",
+    "about": "Bash (и не только) скрипты для автоматизации различных задач",
     "links": {
       "github": "https://github.com/ponomarevandrey/automation-scripts"
     }
@@ -27,7 +27,7 @@
   {
     "title": "Simple Static Site Generator",
     "year": "2019",
-    "about": "Vanilla Node.js static site generator developed for personal website",
+    "about": "Небольшой генератор статических сайтов на Node.js",
     "links": {
       "github": "https://github.com/ponomarevandrey/static-site-generator"
     }
@@ -36,7 +36,7 @@
   {
     "title": "Biscuit Components",
     "year": "2018–2019",
-    "about": "SASS UI components/code snippets library for developing websites based on BEM methodology and a mobile-first approach",
+    "about": "Библиотека UI-компонентов/сниппетов для разработки сайтов на базе БЭМ-методологи. По сути, мой личный Бутстрап: кнопки, слайдеры, галереи изображений, сетки, иконки и многое другое",
     "links": {
       "github": "https://github.com/ponomarevandrey/biscuit-components",
       "demo": "https://ponomarevandrey.github.io/biscuit-components"

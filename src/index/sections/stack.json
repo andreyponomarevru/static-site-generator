@@ -1,7 +1,10 @@
 [
-  { "name": "Languages", "list": "JavaScript/TypeScript (Node.js), SQL, Bash" },
-  { "name": "Databases", "list": "PostgreSQL, Redis, MongoDB" },
-  { "name": "Infrastructure", "list": "Linux, Nginx, Docker" },
-  { "name": "Protocols", "list": "HTTP, WebSocket" },
-  { "name": "Frameworks", "list": "Express.js, React.js; Jest for testing" }
+  { "name": "Языки", "list": "JavaScript/TypeScript (Node.js), SQL, Bash" },
+  { "name": "Базы данных", "list": "PostgreSQL, Redis, MongoDB" },
+  { "name": "Инфраструктура", "list": "Linux, Nginx, Docker" },
+  { "name": "Протоколы", "list": "HTTP, WebSocket" },
+  {
+    "name": "Фреймворки",
+    "list": "Express.js, React.js (без Redux)"
+  }
 ]

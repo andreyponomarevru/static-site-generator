@@ -3,9 +3,9 @@
   "stylesheets": ["./reset.css", "./main.css"],
   "scripts": [],
   "charset": "utf-8",
-  "title": "Andrey Ponomarev",
+  "title": "Андрей Пономарев",
   "description": "Portfolio",
-  "keywords": "web developmentm, programming, javascript, node.js",
-  "author": "Andrey Ponomarev",
+  "keywords": "web-разработка, программирование, javascript, node.js",
+  "author": "Андрей Пономарев",
   "viewport": "width=device-width,initial-scale=1,viewport-fit=cover,shrink-to-fit=no"
 }
