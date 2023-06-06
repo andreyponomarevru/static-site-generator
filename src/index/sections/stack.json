@@ -6,5 +6,9 @@
   {
     "name": "Фреймворки",
     "list": "Express.js, React.js (без Redux)"
+  },
+  {
+    "name": "Прочее",
+    "list": "Git, Jira, Confluence"
   }
 ]
