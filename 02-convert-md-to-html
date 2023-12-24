@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# How to use
+#     ./script /path/to/markdown/file.md
+
+clear
+set -eu -o pipefail
+
+MD_FILEPATH="$1"
+
+printf 'Copy %s file, fixing image paths and extensions ...\n' "$MD_FILEPATH"
+
+MD_NAME="${1##*/}";
+MD_NAME_WITHOUT_EXTENSION="${MD_NAME%.md}"
+
+sed \
+  --regexp-extended "s/(\.)(\.\/img\/.*\.(svg|png|jpeg|jpg|gif|mp4))/\2/g" \
+  "$MD_FILEPATH" | 
+sed \
+  --regexp-extended "s/\.svg/.png/g" | \
+  "./src/index.js" "$MD_NAME_WITHOUT_EXTENSION"
+
+printf 'Done.\n'

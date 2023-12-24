@@ -1,0 +1,34 @@
+#!/bin/bash
+
+clear
+set -eu -o pipefail
+
+MD_FILEPATH="$1"
+KNOWLEDGE_BASE_DIRPATH='/mnt/9904b8b1-2f58-4bc1-a5de-aa1584088b5e/knowledge-base'
+
+printf 'Clean up the build/img/* dir ...\n'
+rm --force ./build/img/*
+
+printf 'Find all media files in %s and copy them to the build/ dir ...\n' "$MD_FILEPATH"
+
+grep \
+  --extended-regexp \
+  --only-matching \
+  "img\/.*\.(svg|png|jpeg|jpg|gif|mp4)" "$MD_FILEPATH" | while read -r image_filepath
+do
+  if [[ "$image_filepath" =~ \.svg$ ]]
+  then
+    NAME="${image_filepath##*/}"
+    NAME_WITHOUT_EXTENSION="${NAME%.*}"
+    inkscape \
+      "$KNOWLEDGE_BASE_DIRPATH/$image_filepath" \
+      --export-type=png \
+      --export-width=1400 \
+      --export-filename="./build/img/$NAME_WITHOUT_EXTENSION.png"
+    # --export-text-to-path
+  else
+    cp "$KNOWLEDGE_BASE_DIRPATH/$image_filepath" "./build/img"
+  fi
+done
+
+printf 'Done.\n'

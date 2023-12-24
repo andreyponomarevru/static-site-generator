@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,shrink-to-fit=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="format-detection" content="date=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="description" content="Portfolio" />
+    <meta name="keywords" content="web-разработка, программирование, javascript, node.js" />
+    <meta name="author" content="Андрей Пономарев" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />    
+    
+    <title>Андрей Пономарев</title>    
+    
+    <!-- icons -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+    
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  </head>
+
+  <body class="body_index">   
+
+  <nav class="menu_top">
+    <a href="/" class="logo">
+      <div><strong>Андрей Пономарев</strong></div>
+    </a>
+    <div class="menu__list">
+      <a href="mailto:andreyponomarev.ru">Почта</a>
+      <a href="https://github.com/ponomarevandrey">ГитХаб</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="projects">
+      <div class="projects__wrapper">
+        <!-- <h1>Проекты</h1> -->
+
+        <h2>Web-приложения</h2>
+
+        <div class="projects__list">
+          <div class="project">
+            <h3 class="project__header">GetAudio</h3>
+            <div class="project__about">Приложение для конвертации видео с популярных площадок в аудио.</div>
+            <div class="project__stack">
+              <span class="stack-item">WebSocket</span>
+              <span class="stack-item">Node.js</span>
+              <span class="stack-item">TypeScript</span>
+              <span class="stack-item">MongoDB</span>
+              <span class="stack-item">Docker</span>
+              <span class="stack-item">Nginx</span>
+              <span class="stack-item">React.js</span>
+              <span class="stack-item">Bash</span>
+            </div>
+            <div class="project__links">
+              <a href="https://github.com/ponomarevandrey/live-streamer">ГитХаб</a>
+              <a href="https://live.andreyponomarev.ru/">Демо</a>
+            </div>
+          </div>
+          <div class="project">
+            <h3 class="project__header">LiveStreamer</h3>
+            <div class="project__about">Многопользовательское веб-приложение для аудио-стриминга и общения в чате. Концептуально, это клон <a href="http://mixlr.com">Mixlr</a>, но в меньшем масштабе.</div>
+            <div class="project__stack">
+              <span class="stack-item">WebSocket</span>
+              <span class="stack-item">Node.js</span>
+              <span class="stack-item">TypeScript</span>
+              <span class="stack-item">PostgreSQL</span>
+              <span class="stack-item">Redis</span>
+              <span class="stack-item">Docker</span>
+              <span class="stack-item">Nginx</span>
+              <span class="stack-item">React.js</span>
+              <span class="stack-item">Bash</span>
+            </div>
+            <div class="project__links">
+              <a href="https://github.com/ponomarevandrey/live-streamer">ГитХаб</a>
+              <a href="https://live.andreyponomarev.ru/">Демо</a>
+            </div>
+          </div>
+          <div class="project">
+            <h3 class="project__header">MusicBox</h3>
+            <span class="project__about">Браузерный музыкальный менеджер и плеер для домашнего сервера. Аналог  стримингового сервера <a href="https://ampache.org/">Ampache</a></span>
+            <div class="project__stack">
+              <span class="stack-item">Node.js</span>
+              <span class="stack-item">TypeScript</span>
+              <span class="stack-item">PostgreSQL</span>
+              <span class="stack-item">Docker</span>
+              <span class="stack-item">Nginx</span>
+              <span class="stack-item">React.js</span>
+            </div>
+            <div class="project__links">
+              <a href="https://github.com/ponomarevandrey/musicbox"  class="project__nav">ГитХаб</a>   
+            </div>
+          </div>
+        </div>
+
+        <h2>CLI-приложения и скрипты для автоматизации</h2>
+        <div class="projects__list">      
+          <div class="project">
+            <h3 class="project__header">Cue Splitter</h3>
+            <span class="project__about"><p>CLI-приложение для разрезания аудио на отдельные треки по CUE-файлу. Формат получаемых файлов всегда FLAC.</p><o>Функционал:</o>
+              <ul>
+                <li>Поддерживает FLAC, APE, WV, WAV</li>
+                <li>При разрезании, заполняет все ID3v2 теги данными из CUE</li>
+                <li>Поддерживает CUE-файлы с кириллицей</li>
+                <li>Обнаруживает и предупреждает, если есть проблемы с pre-gap'ом</li>
+              </ul> 
+            </span>
+            <div class="project__stack">
+              <span class="stack-item">Bash</span>
+            </div>
+            <div class="project__links">
+              <a href="https://github.com/ponomarevandrey/cuesplitter"  class="project__nav">ГитХаб</a>   
+            </div>
+          </div>
+          <div class="project">
+            <h3 class="project__header">Прочие скрипты</h3>
+            <span class="project__about">Прочие скрипты для автоматизации рабочих и нерабочих процессов: бэкап баз даннных, создание SSL-сертификатов, обновление и настройка VPS, очистка системы и т.п.</span>
+            <div class="project__stack">
+              <span class="stack-item">Bash</span>
+              <span class="stack-item">JavaScript</span>
+              <span class="stack-item">Linux</span>
+            </div>
+            <div class="project__links">
+              <a href="https://github.com/ponomarevandrey/automation-scripts"  class="project__nav">ГитХаб</a>   
+            </div>
+          </div>
+        </div>
+          
+        <h2>Разное</h2>
+        <div class="projects__list">
+          <div class="project">
+            <h3 class="project__header">Заметки по JavaScript</h3>
+            <span class="project__about">Заметки по браузерному и серверному (Node.js) JavaScript'у.</span>
+            <div class="project__stack">
+              <span class="stack-item">Node.js</span>
+              <span class="stack-item">JavaScript</span>
+            </div>
+            <div class="project__links">
+              <a href="https://andreyponomarev.ru/programming_langs_js_index.html"  class="project__nav">Читать</a> 
+            </div>
+          </div>
+          <div class="project">
+            <h3 class="project__header">Simple Static Site Generator</h3>
+            <span class="project__about">Генератор статических сайтов на Node.js + Bash с помощью которого генерируется и обновлятся сайт, на котором вы сейчас находитесь.</span>
+            <div class="project__stack">
+              <span class="stack-item">Node.js</span>
+              <span class="stack-item">Bash</span>
+              <span class="stack-item">JavaScript</span>
+            </div>
+            <div class="project__links">
+              <a href="https://github.com/ponomarevandrey/static-site-generator"  class="project__nav">ГитХаб</a> 
+            </div>
+          </div>
+          <div class="project">
+            <h3 class="project__header">Biscuit Components</h3>
+            <span class="project__about">Библиотека UI-компонентов/сниппетов для разработки сайтов на базе БЭМ-методологи.</span>
+            <div class="project__stack">
+              <span class="stack-item">JavaScript</span>
+              <span class="stack-item">CSS (SASS)</span>
+              <span class="stack-item">Pug</span>
+              <span class="stack-item">Webpack</span>
+            </div>
+            <div class="project__links">
+              <a href="https://github.com/ponomarevandrey/biscuit-components"  class="project__nav">ГитХаб</a>
+              <a href="https://ponomarevandrey.github.io/biscuit-components/">Демо</a> 
+            </div>
+          </div>   
+        </div>
+      </div>
+    </section>
+
+    <section class="cv">
+      <section class="bio">
+        <p>
+          Привет, меня зовут Андрей. Я разработчик, специализирующийся на Node.js.
+        </p>
+        <p>
+          Занимаюсь веб-разработкой с 2006. До 2014 в основном как фронтенд. Затем был перерыв в 4 года, вне IT. С 2018 занимаюсь фул-стэк  разработкой, с упором на бэкэнд, работая в основном над собственными проектами (SPA, REST API на базе Node.js, TypeScript, PostgreSQL, React) и частными заказами (поддержка сайтов и серверов, консультации, доработка API и т.п.).
+        </p>
+      </section>
+      <section class="stack">
+        <div>
+          <span class="bold">Языки</span>
+          <span></span> 
+          <span>JavaScript/TypeScript (Node.js), SQL, Bash</span>
+        </div>
+        <div>
+          <span class="bold">Базы данных</span>
+          <span></span> 
+          <span>PostgreSQL, Redis, MongoDB</span>
+        </div>
+        <div>
+          <span class="bold">Инфраструктура</span>
+          <span></span> 
+          <span>Linux, Nginx, Docker, RabbitMQ</span>
+        </div>
+        <div>
+          <span class="bold">Протоколы</span>
+          <span></span> 
+          <span>HTTP, WebSocket</span>
+        </div>
+        <div>
+          <span class="bold">Фреймворки</span>
+          <span></span> 
+          <span>Express.js, React.js (без Redux)</span>
+        </div>
+        <div>
+          <span class="bold">Прочее</span>
+          <span></span> 
+          <span>Git, Jira, Confluence</span>
+        </div>
+      </section>
+      <section class="job-history">
+        <div>
+          <span class="bold">июнь 2022—настоящее время</span>
+          <span></span>
+          <span>
+            Фриланс<br>
+            <span class="job-position">Back-end разработчик</span>
+          </span>
+        </div>
+        <div>
+          <span class="bold">март 2022—май 2022</span>
+          <span></span>
+          <span>
+            <a href=https://fabit.ru/>Фабрика Информационных Технологий, департамент проектов в области культуры — PRO.Культура.РФ</a><br>
+            <span class="job-position">Back-end разработчик</span>
+          </span>
+        </div>
+        <div>
+          <span class="bold">2018—февраль 2022</span>
+          <span></span>
+          <span>
+            Фриланс<br>
+            <span class="job-position">Back-end разработчик</span>
+          </span>
+        </div>
+        <div>
+          <span class="bold">2008—2014</span>
+          <span></span>
+          <span>
+            Фриланс<br>
+            <span class="job-position">Front-end разработчик</span>
+          </span>
+        </div>
+        <div>
+          <span class="bold">2008</span>
+          <span></span>
+          <span>
+            Arctic Media Group<br>
+            <span class="job-position">Web-дизайнер</span>
+          </span>
+        </div>
+        <div>
+          <span class="bold">2006—2008</span>
+          <span></span>
+          <span>
+            Фриланс<br>
+            <span class="job-position">Front-end разработчик</span>
+          </span>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">Андрей Пономарев</footer>
+
+  </main>
+
+  </body>
+</html>

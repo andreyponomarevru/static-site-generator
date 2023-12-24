@@ -1,26 +1,35 @@
-const util = require("util");
-const fs = require("fs-extra");
-const {
-  cleanPreviousBuild,
-  copyAssets,
+#!/usr/bin/env node
+
+import util from "util";
+import parseMarkdownYaml from "markdown-yaml-metadata-parser";
+import markdownit from "markdown-it";
+// Adds an id attribute to headings, e.g. ## Foo becomes <h2 id="foo">Foo</h2>.
+import markdownItAnchor from "markdown-it-anchor";
+// Add GitHub style anchor tags to headers
+import markdownItGitHubHeadings from "markdown-it-github-headings";
+// Generate a slug just like GitHub does for markdown headings.
+import GithubSlugger from "github-slugger";
+import markdownItFootnote from "markdown-it-footnote";
+import markdownItDefList from "markdown-it-deflist";
+import markdownItAbbr from "markdown-it-abbr";
+import {
   writeHTML,
-  loadJsonFile,
-} = require("./utils/build-helpers");
-const {
-  buildMenu,
-  injectStylesheets,
   injectScripts,
-  buildProjects,
-  buildStack,
-  buildJobExperience,
-} = require("./index/html-snippets");
-const menu = require("./index/sections/menu.json");
-const projects = require("./index/sections/projects.json");
-const stack = require("./index/sections/stack.json");
-const jobExperience = require("./index/sections/job-experience.json");
-const footer = require("./index/sections/footer.json");
-const { favicons } = require("./index/sections/favicons");
-const { fonts } = require("./index/sections/fonts");
+  injectStylesheets,
+  getCurrentDate,
+} from "./utils.js";
+import { getHeaders, buildTOC } from "./toc.js";
+import { generateHTMLpage } from "./templates/article/template.js";
+import {
+  MARKDOWNIT_CONFIG,
+  STYLESHEETS,
+  SCRIPTS,
+  HTML_FAVICONS,
+  HTML_FONTS,
+} from "./templates/article/config.js";
+
+const MD_FILENAME = process.argv[2];
+const BUILD_DIR_PATH = "./build/";
 
 process.on("unhandledRejection", (reason, promise) => {
   console.error(
@@ -28,42 +37,35 @@ process.on("unhandledRejection", (reason, promise) => {
   );
 });
 
-//
+const md = markdownit(MARKDOWNIT_CONFIG)
+  .use(markdownItAnchor, { slugify: (s) => new GithubSlugger().slug(s) })
+  .use(markdownItFootnote)
+  .use(markdownItGitHubHeadings, { linkIcon: "#" })
+  .use(markdownItDefList)
+  .use(markdownItAbbr);
 
-const indexTemplate = require("./index/index");
+async function build() {
+  // Get Markdown from STDIN and parse it
+  let markdownFile = "";
+  for await (const chunk of process.stdin) markdownFile += chunk;
+  const { metadata, content } = parseMarkdownYaml(markdownFile);
 
-const common = {
-  css: { from: "./src/common-assets/css/", to: "./build/" },
-  favicon: { from: "./src/common-assets/favicon/", to: "./build/" },
-};
-
-const index = {
-  htmlTemplate: { from: "./src/index/", to: "./build/" },
-  imgDir: { from: "./src/index/img/", to: "./build/img/" },
-  scriptsDir: { from: "./src/index/js/", to: "./build/js/" },
-  // SRC_INDEX_MD_PATH: "./src/assets/text/index",
-};
-
-(async function build() {
-  await fs.ensureDir(index.htmlTemplate.to);
-  await cleanPreviousBuild(index.htmlTemplate.to);
-
-  await copyAssets([common.css, common.favicon]);
-  await copyAssets([index.imgDir, index.scriptsDir]);
-
-  const indexMeta = await loadJsonFile(`${index.htmlTemplate.from}/index.json`);
-
-  const indexHTML = await indexTemplate.generateHTML({
-    pageMeta: indexMeta,
-    stylesheets: injectStylesheets(indexMeta.stylesheets),
-    scripts: injectScripts(indexMeta.scripts),
-    topMenu: buildMenu(menu),
-    stack: buildStack(stack),
-    jobExperience: buildJobExperience(jobExperience),
-    projects: buildProjects(projects),
-    footer: footer.author,
-    favicons: favicons,
-    fonts: fonts,
+  const indexHTML = generateHTMLpage({
+    ...metadata,
+    markdownContent: md.render(content),
+    stylesheets: injectStylesheets(STYLESHEETS),
+    scripts: injectScripts(SCRIPTS),
+    favicons: HTML_FAVICONS,
+    fonts: HTML_FONTS,
+    toc: buildTOC(getHeaders(md, markdownFile)),
+    date: getCurrentDate(),
   });
-  await writeHTML(index.htmlTemplate.to, "index.html", indexHTML);
-})().catch(console.error);
+
+  await writeHTML(BUILD_DIR_PATH, `${MD_FILENAME}.html`, indexHTML);
+}
+
+try {
+  await build();
+} catch (err) {
+  console.error(`Ooops! ${err}`);
+}

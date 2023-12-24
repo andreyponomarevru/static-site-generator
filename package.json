@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Simple Static Site Generator",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "node src/index.js"
   },
@@ -16,7 +17,15 @@
   ],
   "author": "Andrey Ponomarev",
   "license": "MIT",
-  "devDependencies": {
-    "fs-extra": "^10.0.0"
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "github-slugger": "^2.0.0",
+    "markdown-it": "^14.0.0",
+    "markdown-it-abbr": "^2.0.0",
+    "markdown-it-anchor": "^8.6.7",
+    "markdown-it-deflist": "^3.0.0",
+    "markdown-it-footnote": "^4.0.0",
+    "markdown-it-github-headings": "^2.0.1",
+    "markdown-yaml-metadata-parser": "^3.0.0"
   }
 }

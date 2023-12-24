@@ -57,13 +57,14 @@ package-lock.json
 node_modules/
 dist/
 log/
-build/
+build/*.html
 _source/
 
 ###########################################################
 ### Whitelisted Files (track these files if they exist) ###
 ###########################################################
 
+!build/index.html
 !.gitignore
 !.gitattributes
 
