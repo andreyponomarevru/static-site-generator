@@ -1,0 +1,14 @@
+#!/bin/bash
+
+printf 'Deploying to %s\n' "$VPS_USER_SIMPLECLOUD@$VPS_IP_SIMPLECLOUD"
+printf '...\n\n'
+
+rsync \
+  --verbose \
+  --rsh=ssh \
+  --progress \
+  --archive \
+  --recursive \
+  ./build/ "$VPS_USER_SIMPLECLOUD@$VPS_IP_SIMPLECLOUD:/var/www/andreyponomarev.ru/html/"\
+  
+printf 'Done.\n'
