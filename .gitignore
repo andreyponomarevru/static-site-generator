@@ -52,7 +52,6 @@ redis_data/
 *~
 ~*
 .*
-package-lock.json
 .goutputstream-*
 node_modules/
 dist/
