@@ -52,6 +52,10 @@ redis_data/
 *~
 ~*
 .*
+# ignore all files starting with a dot (e.g. `.README.txt`)
+.*
+# ignore all dirs starting with a dot (e.g. `.ui-design`)
+.*/
 .goutputstream-*
 node_modules/
 dist/
