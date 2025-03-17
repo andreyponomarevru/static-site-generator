@@ -69,26 +69,36 @@
 
         <div class="projects__list">
           <div class="project">
-            <h3 class="project__header">GetAudio</h3>
-            <div class="project__about">Приложение для конвертации видео с популярных площадок в аудио.</div>
+            <h3 class="project__header">Smartlist Generator</h3>
+            <div class="project__dates">2024</div>
+            <img src="./img-static/smartlist-generator.png" class="project__image">
+            <div class="project__about"><p>Приложение для радиостанции для ускорения ручного создания плейлистов по заданным критериям на основе регулярно обновляющейся аудио-библиотеки.</p>Функционал:
+            <ul>
+              <li>Создание, сохранение и редактирование фильтров (по годам, жанрам, с возможностью комбинировать фильтры при помощи логических операторов). Возможность импортировать/экспортировть фильтры из/в JSON.</li>
+              <li>Конструктор плейлиста (на основе сохранённых фильтров)</li>
+              <li>Аудио-плеер</li>
+              <li>Валидация ID3v2-тегов (+ генерация репорта) и простое обновление базы данных (запускаются как child-process, сообщающий свой статус через Server-sent events)</li>
+              <li>Статистика библиотеки</li>
+              <li>Возможность импортировать треки (в видео M3U-плейлиста), которые должны быть исключены из поиска</li>
+            </ul>
+            </div>
             <div class="project__stack">
-              <span class="stack-item">WebSocket</span>
               <span class="stack-item">Node.js</span>
               <span class="stack-item">TypeScript</span>
-              <span class="stack-item">MongoDB</span>
+              <span class="stack-item">PostgreSQL</span>
               <span class="stack-item">Docker</span>
-              <span class="stack-item">Nginx</span>
               <span class="stack-item">React.js</span>
-              <span class="stack-item">Bash</span>
+              <span class="stack-item">Server-sent events</span>
             </div>
             <div class="project__links">
-              <a href="https://github.com/ponomarevandrey/live-streamer">ГитХаб</a>
-              <a href="https://live.andreyponomarev.ru/">Демо</a>
+              <a href="https://github.com/ponomarevandrey/playlist-generator">ГитХаб</a>
             </div>
           </div>
           <div class="project">
             <h3 class="project__header">LiveStreamer</h3>
-            <div class="project__about">Многопользовательское веб-приложение для аудио-стриминга и общения в чате. Концептуально, это клон <a href="http://mixlr.com">Mixlr</a>, но в меньшем масштабе.</div>
+            <div class="project__dates">2022&#8212;...</div>
+            <img src="./img-static/livestreamer.png" class="project__image">
+            <div class="project__about">Многопользовательское веб-приложение для аудио-стриминга и общения в чате. Концептуально, это аналог <a href="http://mixlr.com">Mixlr</a>, но в меньшем масштабе.</div>
             <div class="project__stack">
               <span class="stack-item">WebSocket</span>
               <span class="stack-item">Node.js</span>
@@ -99,6 +109,7 @@
               <span class="stack-item">Nginx</span>
               <span class="stack-item">React.js</span>
               <span class="stack-item">Bash</span>
+              <span class="stack-item">Jest</span>
             </div>
             <div class="project__links">
               <a href="https://github.com/ponomarevandrey/live-streamer">ГитХаб</a>
@@ -107,6 +118,8 @@
           </div>
           <div class="project">
             <h3 class="project__header">MusicBox</h3>
+            <div class="project__dates">2021</div>
+            <img src="./img-static/musicbox.png" class="project__image">
             <span class="project__about">Браузерный музыкальный менеджер и плеер для домашнего сервера. Аналог  стримингового сервера <a href="https://ampache.org/">Ampache</a></span>
             <div class="project__stack">
               <span class="stack-item">Node.js</span>
@@ -126,7 +139,7 @@
         <div class="projects__list">      
           <div class="project">
             <h3 class="project__header">Cue Splitter</h3>
-            <span class="project__about"><p>CLI-приложение для разрезания аудио на отдельные треки по CUE-файлу. Формат получаемых файлов всегда FLAC.</p><o>Функционал:</o>
+            <span class="project__about"><p>CLI-приложение для разрезания аудио на отдельные треки по CUE-файлу. Формат получаемых файлов всегда FLAC.</p>Функционал:
               <ul>
                 <li>Поддерживает FLAC, APE, WV, WAV</li>
                 <li>При разрезании, заполняет все ID3v2 теги данными из CUE</li>
@@ -142,8 +155,21 @@
             </div>
           </div>
           <div class="project">
+            <h3 class="project__header">Simple Static Site Generator</h3>
+            <span class="project__about"><p>Генератор статического сайта: конвертирует Markdown-файлы в HTML на основе JS-шаблона.</p>
+            </span>
+            <div class="project__stack">
+              <span class="stack-item">Node.js</span>
+              <span class="stack-item">Bash</span>
+              <span class="stack-item">JavaScript</span>
+            </div>
+            <div class="project__links">
+              <a href="https://github.com/ponomarevandrey/static-site-generator"  class="project__nav">ГитХаб</a> 
+            </div>
+          </div>
+          <div class="project">
             <h3 class="project__header">Прочие скрипты</h3>
-            <span class="project__about">Прочие скрипты для автоматизации рабочих и нерабочих процессов: бэкап баз даннных, создание SSL-сертификатов, обновление и настройка VPS, очистка системы и т.п.</span>
+            <span class="project__about">Прочие скрипты для автоматизации рабочих и нерабочих процессов: бэкап баз даннных, создание SSL-сертификатов, обновление и настройка VPS, очистка системы, ...</span>
             <div class="project__stack">
               <span class="stack-item">Bash</span>
               <span class="stack-item">JavaScript</span>
@@ -158,30 +184,8 @@
         <h2>Разное</h2>
         <div class="projects__list">
           <div class="project">
-            <h3 class="project__header">Заметки по JavaScript</h3>
-            <span class="project__about">Заметки по браузерному и серверному (Node.js) JavaScript'у.</span>
-            <div class="project__stack">
-              <span class="stack-item">Node.js</span>
-              <span class="stack-item">JavaScript</span>
-            </div>
-            <div class="project__links">
-              <a href="https://andreyponomarev.ru/programming_langs_js_index.html"  class="project__nav">Читать</a> 
-            </div>
-          </div>
-          <div class="project">
-            <h3 class="project__header">Simple Static Site Generator</h3>
-            <span class="project__about">Генератор статических сайтов на Node.js + Bash с помощью которого генерируется и обновлятся сайт, на котором вы сейчас находитесь.</span>
-            <div class="project__stack">
-              <span class="stack-item">Node.js</span>
-              <span class="stack-item">Bash</span>
-              <span class="stack-item">JavaScript</span>
-            </div>
-            <div class="project__links">
-              <a href="https://github.com/ponomarevandrey/static-site-generator"  class="project__nav">ГитХаб</a> 
-            </div>
-          </div>
-          <div class="project">
             <h3 class="project__header">Biscuit Components</h3>
+            <div class="project__dates">2019</div>
             <span class="project__about">Библиотека UI-компонентов/сниппетов для разработки сайтов на базе БЭМ-методологи.</span>
             <div class="project__stack">
               <span class="stack-item">JavaScript</span>
@@ -231,12 +235,12 @@
         <div>
           <span class="bold">Фреймворки</span>
           <span></span> 
-          <span>Express.js, React.js (без Redux)</span>
+          <span>Express.js, React.js (без Redux), Jest</span>
         </div>
         <div>
           <span class="bold">Прочее</span>
           <span></span> 
-          <span>Git, Jira, Confluence</span>
+          <span>Git, Jira</span>
         </div>
       </section>
       <section class="job-history">
